@@ -27,6 +27,7 @@ class ModelArguments:
 @dataclass
 class DataArguments:
     dataset_use: str = field(default="")
+    dataset_config: Optional[str] = field(default=None)
     video_max_frames: Optional[int] = field(default=8)
     video_min_frames: Optional[int] = field(default=4)
     data_flatten: bool = field(default=False)

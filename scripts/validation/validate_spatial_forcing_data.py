@@ -17,7 +17,10 @@ from qwen_vl.data.data_qwen import make_supervised_data_module
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model-path", required=True)
-    parser.add_argument("--data-root", required=True)
+    dataset = parser.add_mutually_exclusive_group(required=True)
+    dataset.add_argument("--dataset-config")
+    dataset.add_argument("--data-root")
+    parser.add_argument("--dataset-use", default="janusvln_r2r")
     parser.add_argument("--cache-dir", default=None)
     return parser.parse_args()
 
@@ -37,7 +40,8 @@ def main():
         use_fast=False,
     )
     data_args = SimpleNamespace(
-        dataset_use="janusvln_r2r",
+        dataset_use=args.dataset_use,
+        dataset_config=args.dataset_config,
         janusvln_data_root=args.data_root,
         max_samples=9,
         shuffle=False,

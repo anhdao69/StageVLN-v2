@@ -3,6 +3,7 @@ import json
 import pytest
 import torch
 
+from qwen_vl.data import data_list
 from qwen_vl.data.data_qwen import (
     build_current_image_token_mask,
     normalize_janusvln_image_path,
@@ -62,3 +63,52 @@ def test_normalize_janus_path_uses_configured_root(tmp_path):
     old_absolute_path = "/some/old/location/R2R-CE-640x480/train/7/step_0003_STOP.png"
     relative_path = normalize_janusvln_image_path(old_absolute_path, tmp_path)
     assert relative_path == "R2R-CE-640x480/train/7/step_0003_STOP.png"
+
+
+def test_normalize_legacy_rxr_path_uses_configured_root(tmp_path):
+    old_absolute_path = "/old/JanusVLN/RxR-CE-640x480/train/9/step_0001_STOP.png"
+    relative_path = normalize_janusvln_image_path(old_absolute_path, tmp_path)
+    assert relative_path == "RxR-CE-640x480/train/9/step_0001_STOP.png"
+
+
+def test_spatialstack_style_dataset_config(tmp_path):
+    config_path = tmp_path / "dataset.json"
+    config_path.write_text(
+        json.dumps(
+            {
+                "dataset_name": "janusvln_r2r_rxr",
+                "annotation_path": "/dataset/train_r2r_rxr.json",
+                "data_path": "/dataset",
+            }
+        )
+    )
+
+    configs = data_list([], dataset_config=config_path)
+
+    assert configs == [
+        {
+            "dataset_name": "janusvln_r2r_rxr",
+            "annotation_path": "/dataset/train_r2r_rxr.json",
+            "data_path": "/dataset",
+            "tag": "3d",
+            "dataset_format": "janusvln",
+            "sampling_rate": 1.0,
+        }
+    ]
+
+
+def test_dataset_config_supports_spatialstack_sampling_suffix(tmp_path):
+    config_path = tmp_path / "dataset.json"
+    config_path.write_text(
+        json.dumps(
+            {
+                "dataset_name": "janusvln_r2r",
+                "annotation_path": "/dataset/train_r2r.json",
+                "data_path": "/dataset",
+            }
+        )
+    )
+
+    configs = data_list(["janusvln_r2r%25"], dataset_config=config_path)
+
+    assert configs[0]["sampling_rate"] == 0.25

@@ -5,10 +5,9 @@ model:
   use_geometry_fusion: false
 
 dataset:
-  dataset_use: janusvln_r2r
-  dataset_config: configs/datasets/janusvln_r2r.json
-  annotation_path: /scratch/11528/anhdao69/data/JanusVLN_data/train_r2r.json
-  data_path: /scratch/11528/anhdao69/data/JanusVLN_data
+  dataset_config: configs/datasets/janusvln_r2r_rxr.json
+  annotation_path: /mnt/data/vmo-ai-task/anhdh35/JanusVLN/train_r2r_rxr.json
+  data_path: /mnt/data/vmo-ai-task/anhdh35/JanusVLN
   max_samples: -1
   max_history_frames: 8
   current_frame_last: true
@@ -18,9 +17,13 @@ training:
   gradient_accumulation_steps: 8
   num_train_epochs: 1
   learning_rate: 1.0e-6
+  warmup_ratio: 0.03
   precision: bf16
   gradient_checkpointing: true
   deepspeed_stage: 2
+  save_strategy: steps
+  save_steps: 1000
+  save_total_limit: 10
 
 student:
   tune_mm_llm: true

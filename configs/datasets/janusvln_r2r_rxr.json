@@ -1,0 +1,7 @@
+{
+  "dataset_name": "janusvln_r2r_rxr",
+  "annotation_path": "/mnt/data/vmo-ai-task/anhdh35/JanusVLN/train_r2r_rxr.json",
+  "data_path": "/mnt/data/vmo-ai-task/anhdh35/JanusVLN",
+  "tag": "3d",
+  "dataset_format": "janusvln"
+}

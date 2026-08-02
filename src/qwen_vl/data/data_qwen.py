@@ -124,10 +124,12 @@ def normalize_janusvln_image_path(image_path: str, dataset_root: str) -> str:
         try:
             relative_path = path.resolve().relative_to(root)
         except ValueError:
-            marker = "R2R-CE-640x480"
-            if marker not in path.parts:
+            markers = ("R2R-CE-640x480", "RxR-CE-640x480")
+            marker = next((item for item in markers if item in path.parts), None)
+            if marker is None:
                 raise ValueError(
-                    f"JanusVLN image path is outside {root} and has no {marker} component: {path}"
+                    f"JanusVLN image path is outside {root} and has no known "
+                    f"R2R/RxR image-root component: {path}"
                 )
             marker_index = path.parts.index(marker)
             relative_path = Path(*path.parts[marker_index:])
@@ -319,9 +321,10 @@ class LazySupervisedDataset(Dataset):
     def __init__(self, tokenizer: transformers.PreTrainedTokenizer, data_args):
         super(LazySupervisedDataset, self).__init__()
 
-        dataset = data_args.dataset_use.split(",")
+        dataset = data_args.dataset_use.split(",") if data_args.dataset_use else []
         dataset_list = data_list(
             dataset,
+            dataset_config=getattr(data_args, "dataset_config", None),
             janusvln_data_root=getattr(data_args, "janusvln_data_root", None),
         )
         print(f"Loading datasets: {dataset_list}")
@@ -363,14 +366,14 @@ class LazySupervisedDataset(Dataset):
             else:
                 rank0_print(f"dataset name: {data}")
             for ann in annotations:
-                if data["dataset_name"] == "janusvln_r2r":
+                if data.get("dataset_format") == "janusvln":
                     frame_paths = ann.get("images")
                     if (
                         not isinstance(frame_paths, list)
                         or not 1 <= len(frame_paths) <= 9
                     ):
                         raise ValueError(
-                            "JanusVLN R2R records must contain 1-9 ordered images"
+                            "JanusVLN records must contain 1-9 ordered images"
                         )
                     ann["images"] = [
                         normalize_janusvln_image_path(path, data["data_path"])
@@ -387,6 +390,7 @@ class LazySupervisedDataset(Dataset):
                 ann["data_path"] = data["data_path"]
                 ann["tag"] = data["tag"]
                 ann["dataset_name"] = data["dataset_name"]
+                ann["dataset_format"] = data.get("dataset_format")
             list_data_dict += annotations
 
         print(f"Total training samples: {len(list_data_dict)}")
@@ -757,9 +761,9 @@ class LazySupervisedDataset(Dataset):
             if getattr(self.data_args, "use_geometry_encoder", False):
                 data_dict["geometry_encoder_inputs"] = geometry_encoder_inputs
             if self.spatial_forcing_enabled:
-                if source_record.get("dataset_name") != "janusvln_r2r":
+                if source_record.get("dataset_format") != "janusvln":
                     raise ValueError(
-                        "Spatial Forcing currently requires the janusvln_r2r adapter"
+                        "Spatial Forcing currently requires the JanusVLN adapter"
                     )
                 if sf_teacher_pixel_values is None:
                     raise ValueError("The current VGGT frame tensor was not prepared")

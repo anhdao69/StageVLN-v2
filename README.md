@@ -55,7 +55,10 @@ The run completed in 563.1 seconds of trainer time (10 minutes 34 seconds end to
 
 ```text
 configs/spatial_forcing_vln_r2r.yaml       reference configuration
+configs/spatial_forcing_vln_full.yaml      one-epoch R2R+RxR configuration
+configs/datasets/                          editable annotation/media path pairs
 scripts/train/train_spatial_forcing_vln.sh distributed training launcher
+scripts/train/train_spatial_forcing_vln_full.sh one-epoch full-data recipe
 scripts/validation/                        data, backward, and inference checks
 src/qwen_vl/data/                          JanusVLN adapter and token masks
 src/qwen_vl/model/spatial_forcing.py       projector and alignment objective
@@ -112,7 +115,19 @@ The training launcher checks this condition before allocating model replicas and
 
 ## Data preparation
 
-Download or construct the JanusVLN trajectory data using the upstream [JanusVLN repository](https://github.com/MIV-XJTU/JanusVLN). The R2R root expected by this adapter is:
+Download or construct the JanusVLN trajectory data using the upstream [JanusVLN repository](https://github.com/MIV-XJTU/JanusVLN). Datasets use SpatialStack's annotation/media path-pair convention:
+
+```json
+{
+  "dataset_name": "janusvln_r2r_rxr",
+  "annotation_path": "/mnt/data/vmo-ai-task/anhdh35/JanusVLN/train_r2r_rxr.json",
+  "data_path": "/mnt/data/vmo-ai-task/anhdh35/JanusVLN",
+  "tag": "3d",
+  "dataset_format": "janusvln"
+}
+```
+
+To switch datasets, edit the path pair or set `DATASET_CONFIG` to another JSON file. A config may also contain a list of named entries; set `DATASET_USE` to select a comma-separated subset. The included R2R test configuration has this layout:
 
 ```text
 JanusVLN_data/
@@ -139,12 +154,9 @@ The final image is treated as the current observation; preceding images are hist
 This command checks real records with 1, 2, 4, and 9 frames and verifies that only the final image span is selected:
 
 ```bash
-MODEL_PATH=Qwen/Qwen3.5-4B
-DATA_ROOT=/path/to/JanusVLN_data
-
 python scripts/validation/validate_spatial_forcing_data.py \
-  --model-path "$MODEL_PATH" \
-  --data-root "$DATA_ROOT"
+  --model-path Qwen/Qwen3.5-4B \
+  --dataset-config configs/datasets/janusvln_r2r.json
 ```
 
 For the tested 640×480 R2R observations, Qwen produces grid `[1, 24, 32]`, corresponding to 192 tokens after its 2×2 spatial merge.
@@ -187,16 +199,22 @@ Useful overrides:
 | Variable | Default | Purpose |
 |---|---:|---|
 | `NPROC_PER_NODE` | visible GPU count | Distributed world size |
+| `DATASET_CONFIG` | unset | JSON object/list with `annotation_path` and `data_path` |
+| `DATASET_USE` | config entries or `janusvln_r2r` | Optional named config selection |
 | `GRADIENT_ACCUMULATION_STEPS` | `8` | Steps accumulated per GPU |
+| `NUM_TRAIN_EPOCHS` | `1` | Epoch count when `MAX_STEPS` is unset |
 | `LEARNING_RATE` | `1e-6` | Qwen and multimodal merger learning rate |
 | `SF_PROJECTOR_LR` | `1e-5` | Alignment projector learning rate |
 | `SF_LOSS_WEIGHT` | `0.3` | Auxiliary-loss weight |
 | `SF_USE_VGGT_PE` | `False` | Add reference UV positional encoding to VGGT features before pooling |
-| `MAX_STEPS` | `-1` | Optional bounded smoke run |
+| `MAX_STEPS` | unset | Optional positive bound for smoke tests only |
 | `MAX_SAMPLES` | `-1` | Optional JSON prefix size |
 | `DATALOADER_NUM_WORKERS` | `4` | Workers per distributed process |
 | `SAVE_STRATEGY` | `steps` | Hugging Face checkpoint strategy |
+| `SAVE_STEPS` | `1000` | Optimizer-step interval between checkpoints |
+| `SAVE_TOTAL_LIMIT` | `10` | Number of periodic checkpoints retained; `0` keeps all |
 | `WARMUP_STEPS` | `1` | Optimizer warmup |
+| `WARMUP_RATIO` | unset | Ratio-based warmup; takes precedence when set |
 
 For a 100-step smoke test without large ZeRO optimizer checkpoints:
 
@@ -213,7 +231,37 @@ NPROC_PER_NODE=4 \
 bash scripts/train/train_spatial_forcing_vln.sh
 ```
 
-The launcher writes `train.log`, `trainer_state.json`, processor/tokenizer files, and the final student checkpoint to `OUTPUT_DIR`.
+The launcher writes periodic `checkpoint-<step>` directories according to the save controls. It also writes the final student model, processor/tokenizer, `trainer_state.json`, and `train.log` directly to `OUTPUT_DIR`. For `T` optimizer steps, step-based saving triggers `floor(T / SAVE_STEPS)` periodic saves; at most `SAVE_TOTAL_LIMIT` remain when the limit is positive.
+
+### Full R2R + RxR training
+
+The full launcher consumes every record for exactly one epoch, enables the VGGT UV positional encoding, uses a 3% warmup ratio, saves every 1,000 optimizer steps by default, retains the latest 10 periodic checkpoints, and deliberately does not pass `max_steps`:
+
+```bash
+NPROC_PER_NODE=4 \
+CACHE_DIR=/path/to/model-cache \
+OUTPUT_DIR=/path/to/output \
+bash scripts/train/train_spatial_forcing_vln_full.sh
+```
+
+For example, save every 500 optimizer steps and retain the latest 20 checkpoints:
+
+```bash
+SAVE_STEPS=500 \
+SAVE_TOTAL_LIMIT=20 \
+NPROC_PER_NODE=4 \
+bash scripts/train/train_spatial_forcing_vln_full.sh
+```
+
+The validated R2R dataset has 19,727 optimizer steps per epoch on four GPUs with gradient accumulation 8. At the defaults, 19 periodic saves are triggered, the latest 10 numbered checkpoints remain, and the final step-19,727 model is written directly to the output root.
+
+It defaults to `configs/datasets/janusvln_r2r_rxr.json`. To use another full annotation without changing code:
+
+```bash
+DATASET_CONFIG=/path/to/my_dataset.json \
+NPROC_PER_NODE=4 \
+bash scripts/train/train_spatial_forcing_vln_full.sh
+```
 
 ## Teacher-free checkpoint validation
 
