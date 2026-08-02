@@ -1,0 +1,35 @@
+*cpython-310*
+*__pycache__
+*egg-info
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.py[cod]
+/data/
+
+/output/
+/cache/
+/logs/
+/env/
+/slurm_logs/
+hf_cache/
+checkpoints/
+wandb/
+slurm-*.out
+
+*.env
+.miniconda3/
+.conda/
+# visualization/
+/models/
+/vsibench/
+sam_hq_vit_h.pth
+
+# Local reference implementations and research notes are intentionally not
+# part of the SpatialForcing-VLN source release.
+/JanusVLN/
+/Spatial-Forcing/
+/papers/
+/plans/
+/reports/
+/.claude/
