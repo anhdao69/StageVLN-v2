@@ -1,7 +1,11 @@
+import pytest
 import torch
 
 from qwen_vl.model.spatial_forcing import (
     SpatialForcingProjector,
+    add_vggt_position_embedding,
+    create_aspect_ratio_uv_grid,
+    position_grid_to_sincos_embedding,
     resize_teacher_spatial_grid,
     spatial_forcing_cosine_loss,
 )
@@ -16,6 +20,71 @@ def test_resize_teacher_uses_spatial_grid():
     )
     assert resized.shape == (12, 3)
     assert torch.isfinite(resized).all()
+
+
+def test_vggt_position_embedding_matches_reference_uv_encoding():
+    positioned = add_vggt_position_embedding(
+        torch.zeros(2, 8),
+        teacher_grid_hw=(1, 2),
+        image_hw=(1, 2),
+    )
+    expected = torch.tensor(
+        [
+            [
+                -0.0432454832,
+                -0.0044706455,
+                0.0901655629,
+                0.0999000221,
+                0.0,
+                0.0,
+                0.1,
+                0.1,
+            ],
+            [
+                0.0432454832,
+                0.0044706455,
+                0.0901655629,
+                0.0999000221,
+                0.0,
+                0.0,
+                0.1,
+                0.1,
+            ],
+        ]
+    )
+    assert torch.allclose(positioned, expected, atol=1e-7)
+    assert torch.allclose(positioned.norm(dim=-1), torch.full((2,), 0.2))
+
+
+def test_vggt_position_embedding_preserves_grid_for_pooling():
+    teacher = torch.randn(6, 16, dtype=torch.bfloat16)
+    positioned = add_vggt_position_embedding(
+        teacher,
+        teacher_grid_hw=(2, 3),
+        image_hw=(200, 600),
+    )
+    resized = resize_teacher_spatial_grid(
+        positioned,
+        teacher_grid_hw=(2, 3),
+        student_grid_hw=(4, 5),
+    )
+    assert positioned.shape == teacher.shape
+    assert positioned.dtype == torch.float32
+    assert resized.shape == (20, 16)
+    assert torch.isfinite(resized).all()
+
+
+def test_vggt_position_embedding_validates_dimensions():
+    grid = create_aspect_ratio_uv_grid(3, 2, aspect_ratio=1.5)
+    assert grid.shape == (2, 3, 2)
+    with pytest.raises(ValueError, match="divisible by four"):
+        position_grid_to_sincos_embedding(grid, embed_dim=10)
+    with pytest.raises(ValueError, match="token count"):
+        add_vggt_position_embedding(
+            torch.zeros(5, 8),
+            teacher_grid_hw=(2, 3),
+            image_hw=(200, 300),
+        )
 
 
 def test_cosine_loss_is_zero_for_identical_features():

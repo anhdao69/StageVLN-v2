@@ -19,6 +19,146 @@ from transformers.models.qwen3_5.modeling_qwen3_5 import (
 from .geometry_encoders import create_geometry_encoder
 
 
+VGGT_POSITION_EMBED_SCALE = 0.1
+VGGT_POSITION_EMBED_OMEGA = 100.0
+
+
+def create_aspect_ratio_uv_grid(
+    width: int,
+    height: int,
+    *,
+    aspect_ratio: float | None = None,
+    dtype: torch.dtype = torch.float32,
+    device: torch.device | None = None,
+) -> torch.Tensor:
+    """Create the normalized UV grid used by the Spatial-Forcing reference."""
+    width = int(width)
+    height = int(height)
+    if width <= 0 or height <= 0:
+        raise ValueError("UV-grid dimensions must be positive")
+    if aspect_ratio is None:
+        aspect_ratio = width / height
+    aspect_ratio = float(aspect_ratio)
+    if not torch.isfinite(torch.tensor(aspect_ratio)) or aspect_ratio <= 0:
+        raise ValueError("UV-grid aspect ratio must be finite and positive")
+
+    diagonal = (aspect_ratio**2 + 1.0) ** 0.5
+    span_x = aspect_ratio / diagonal
+    span_y = 1.0 / diagonal
+    x_coordinates = torch.linspace(
+        -span_x * (width - 1) / width,
+        span_x * (width - 1) / width,
+        steps=width,
+        dtype=dtype,
+        device=device,
+    )
+    y_coordinates = torch.linspace(
+        -span_y * (height - 1) / height,
+        span_y * (height - 1) / height,
+        steps=height,
+        dtype=dtype,
+        device=device,
+    )
+    horizontal, vertical = torch.meshgrid(x_coordinates, y_coordinates, indexing="xy")
+    return torch.stack((horizontal, vertical), dim=-1)
+
+
+def _make_1d_sincos_position_embedding(
+    embed_dim: int,
+    positions: torch.Tensor,
+    *,
+    omega_0: float = VGGT_POSITION_EMBED_OMEGA,
+) -> torch.Tensor:
+    if embed_dim <= 0 or embed_dim % 2:
+        raise ValueError(
+            "Each 1D sine/cosine embedding dimension must be positive and even"
+        )
+    frequencies = torch.arange(
+        embed_dim // 2,
+        dtype=torch.float64,
+        device=positions.device,
+    )
+    frequencies /= embed_dim / 2.0
+    frequencies = 1.0 / float(omega_0) ** frequencies
+    angles = torch.einsum("m,d->md", positions.reshape(-1), frequencies)
+    return torch.cat((torch.sin(angles), torch.cos(angles)), dim=-1).float()
+
+
+def position_grid_to_sincos_embedding(
+    position_grid: torch.Tensor,
+    embed_dim: int,
+    *,
+    omega_0: float = VGGT_POSITION_EMBED_OMEGA,
+) -> torch.Tensor:
+    """Convert an ``[H, W, 2]`` UV grid to an ``[H, W, D]`` embedding."""
+    if position_grid.ndim != 3 or position_grid.shape[-1] != 2:
+        raise ValueError("position_grid must have shape [height, width, 2]")
+    if embed_dim <= 0 or embed_dim % 4:
+        raise ValueError("2D sine/cosine embedding dimension must be divisible by four")
+
+    height, width, _ = position_grid.shape
+    flattened = position_grid.reshape(-1, 2)
+    horizontal = _make_1d_sincos_position_embedding(
+        embed_dim // 2,
+        flattened[:, 0],
+        omega_0=omega_0,
+    )
+    vertical = _make_1d_sincos_position_embedding(
+        embed_dim // 2,
+        flattened[:, 1],
+        omega_0=omega_0,
+    )
+    return torch.cat((horizontal, vertical), dim=-1).reshape(height, width, embed_dim)
+
+
+def add_vggt_position_embedding(
+    teacher_features: torch.Tensor,
+    *,
+    teacher_grid_hw: tuple[int, int],
+    image_hw: tuple[int, int],
+    scale: float = VGGT_POSITION_EMBED_SCALE,
+) -> torch.Tensor:
+    """Add reference-compatible aspect-ratio-aware UV encoding before pooling."""
+    if teacher_features.ndim != 2:
+        raise ValueError(
+            f"teacher_features must have shape [N, D], got {tuple(teacher_features.shape)}"
+        )
+    teacher_h, teacher_w = (int(value) for value in teacher_grid_hw)
+    image_h, image_w = (int(value) for value in image_hw)
+    if min(teacher_h, teacher_w, image_h, image_w) <= 0:
+        raise ValueError("Teacher-grid and image dimensions must be positive")
+    if teacher_features.shape[0] != teacher_h * teacher_w:
+        raise ValueError(
+            "VGGT token count does not match its spatial grid before positional encoding: "
+            f"tokens={teacher_features.shape[0]}, grid={teacher_h}x{teacher_w}"
+        )
+    if teacher_features.shape[-1] % 4:
+        raise ValueError("VGGT feature dimension must be divisible by four")
+    if not torch.isfinite(torch.tensor(float(scale))) or float(scale) < 0:
+        raise ValueError(
+            "VGGT positional-embedding scale must be finite and nonnegative"
+        )
+
+    position_grid = create_aspect_ratio_uv_grid(
+        teacher_w,
+        teacher_h,
+        aspect_ratio=image_w / image_h,
+        dtype=teacher_features.dtype,
+        device=teacher_features.device,
+    )
+    position_embedding = position_grid_to_sincos_embedding(
+        position_grid,
+        teacher_features.shape[-1],
+    )
+    feature_grid = teacher_features.reshape(
+        teacher_h, teacher_w, teacher_features.shape[-1]
+    )
+    positioned = feature_grid.float() + float(scale) * position_embedding
+    if not torch.isfinite(positioned).all():
+        raise FloatingPointError("Position-encoded VGGT features contain NaN or Inf")
+    return positioned.reshape_as(teacher_features)
+
+
 class SpatialForcingProjector(nn.Module):
     """LayerNorm -> Linear -> GELU -> Linear projection into VGGT space."""
 
@@ -113,6 +253,7 @@ class Qwen3_5ForConditionalGenerationWithSpatialForcing(
         self.sf_loss_weight = float(getattr(config, "sf_loss_weight", 0.3))
         self.sf_student_layer = int(getattr(config, "sf_student_layer", 24))
         self.sf_teacher_layer = int(getattr(config, "sf_teacher_layer", 23))
+        self.sf_use_vggt_pe = bool(getattr(config, "sf_use_vggt_pe", False))
         self.sf_verify_invariants = bool(getattr(config, "sf_verify_invariants", True))
         self.sf_spatial_merge_size = int(
             getattr(config.vision_config, "spatial_merge_size", 2)
@@ -299,6 +440,15 @@ class Qwen3_5ForConditionalGenerationWithSpatialForcing(
                 )[0][0]
             teacher_features = teacher_features.detach()
             raw_teacher_counts.append(teacher_features.shape[0])
+            if self.sf_use_vggt_pe:
+                teacher_features = add_vggt_position_embedding(
+                    teacher_features,
+                    teacher_grid_hw=(teacher_h, teacher_w),
+                    image_hw=(
+                        int(teacher_input.shape[-2]),
+                        int(teacher_input.shape[-1]),
+                    ),
+                )
             teacher_features = resize_teacher_spatial_grid(
                 teacher_features,
                 teacher_grid_hw=(teacher_h, teacher_w),
@@ -340,6 +490,11 @@ class Qwen3_5ForConditionalGenerationWithSpatialForcing(
                 device=sf_loss.device,
                 dtype=torch.float32,
             ).mean(),
+            "vggt_pos_embed_enabled": torch.tensor(
+                float(self.sf_use_vggt_pe),
+                device=sf_loss.device,
+                dtype=torch.float32,
+            ),
         }
         return sf_loss, metrics
 

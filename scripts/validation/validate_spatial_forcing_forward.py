@@ -24,6 +24,11 @@ def parse_args():
     parser.add_argument("--teacher-path", required=True)
     parser.add_argument("--data-root", required=True)
     parser.add_argument("--cache-dir", default=None)
+    parser.add_argument(
+        "--use-vggt-pe",
+        action=argparse.BooleanOptionalAction,
+        default=False,
+    )
     return parser.parse_args()
 
 
@@ -50,6 +55,7 @@ def main():
     config.sf_loss_weight = 0.3
     config.sf_student_layer = 24
     config.sf_teacher_layer = 23
+    config.sf_use_vggt_pe = args.use_vggt_pe
     config.sf_projector_hidden_dim = 4096
     config.sf_teacher_dim = 2048
     config.sf_verify_invariants = True
@@ -130,6 +136,7 @@ def main():
     assert result["projector_grad_verified"]
     assert result["student_grad_verified"]
     assert not result["vggt_has_gradient"]
+    assert result["vggt_pos_embed_enabled"] == float(args.use_vggt_pe)
 
 
 if __name__ == "__main__":

@@ -20,6 +20,7 @@ MAX_SAMPLES="${MAX_SAMPLES:--1}"
 LEARNING_RATE="${LEARNING_RATE:-1e-6}"
 SF_PROJECTOR_LR="${SF_PROJECTOR_LR:-1e-5}"
 SF_LOSS_WEIGHT="${SF_LOSS_WEIGHT:-0.3}"
+SF_USE_VGGT_PE="${SF_USE_VGGT_PE:-False}"
 LOGGING_STEPS="${LOGGING_STEPS:-1}"
 DATALOADER_NUM_WORKERS="${DATALOADER_NUM_WORKERS:-4}"
 WARMUP_STEPS="${WARMUP_STEPS:-1}"
@@ -66,6 +67,7 @@ train_args=(
     --use_geometry_fusion False
     --sf_student_layer 24
     --sf_teacher_layer 23
+    --sf_use_vggt_pe "$SF_USE_VGGT_PE"
     --sf_projector_hidden_dim 4096
     --sf_loss_weight "$SF_LOSS_WEIGHT"
     --sf_verify_invariants True

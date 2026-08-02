@@ -32,6 +32,7 @@ The implementation deliberately does not use geometry fusion, a spatial cache, o
 - Aligns only the final/current image tokens; history, prompt, action, and padding tokens are excluded.
 - Extracts Qwen decoder layer 24 and VGGT aggregator layer 23.
 - Resizes VGGT patch features as a two-dimensional grid before token alignment.
+- Optionally adds the reference Spatial-Forcing aspect-ratio-aware UV sine/cosine encoding to VGGT features before resizing.
 - Keeps VGGT frozen, in evaluation mode, and under `torch.no_grad()`.
 - Logs navigation loss, alignment loss, total loss, cosine similarity, token counts, and gradient invariants.
 - Saves no VGGT parameters in the Hugging Face checkpoint.
@@ -39,7 +40,7 @@ The implementation deliberately does not use geometry fusion, a spatial cache, o
 
 ## Verified configuration
 
-The reference smoke test used Qwen3.5-4B, VGGT-1B, 4,096 R2R records, and 100 optimizer steps on four H100 GPUs.
+The reference smoke test used Qwen3.5-4B, VGGT-1B, 4,096 R2R records, and 100 optimizer steps on four H100 GPUs. It predates the optional UV positional-embedding flag and therefore corresponds to `SF_USE_VGGT_PE=False`.
 
 | Metric | Step 1 | Step 100 |
 |---|---:|---:|
@@ -155,7 +156,8 @@ python scripts/validation/validate_spatial_forcing_forward.py \
   --model-path Qwen/Qwen3.5-4B \
   --teacher-path facebook/VGGT-1B \
   --data-root /path/to/JanusVLN_data \
-  --cache-dir /path/to/model-cache
+  --cache-dir /path/to/model-cache \
+  --use-vggt-pe
 ```
 
 The validator requires:
@@ -189,6 +191,7 @@ Useful overrides:
 | `LEARNING_RATE` | `1e-6` | Qwen and multimodal merger learning rate |
 | `SF_PROJECTOR_LR` | `1e-5` | Alignment projector learning rate |
 | `SF_LOSS_WEIGHT` | `0.3` | Auxiliary-loss weight |
+| `SF_USE_VGGT_PE` | `False` | Add reference UV positional encoding to VGGT features before pooling |
 | `MAX_STEPS` | `-1` | Optional bounded smoke run |
 | `MAX_SAMPLES` | `-1` | Optional JSON prefix size |
 | `DATALOADER_NUM_WORKERS` | `4` | Workers per distributed process |
@@ -201,6 +204,7 @@ For a 100-step smoke test without large ZeRO optimizer checkpoints:
 MAX_STEPS=100 \
 MAX_SAMPLES=4096 \
 SAVE_STRATEGY=no \
+SF_USE_VGGT_PE=True \
 MODEL_PATH=Qwen/Qwen3.5-4B \
 TEACHER_MODEL_PATH=facebook/VGGT-1B \
 JANUSVLN_DATA_ROOT=/path/to/JanusVLN_data \
@@ -235,6 +239,7 @@ The focused suite covers JSON streaming, path normalization, current-frame masks
 
 - Hugging Face hidden-state index 24 corresponds to the output of zero-based Qwen decoder block 23. Transformers 5.3 does not populate the intermediate hidden-state tuple in this Qwen3.5 training path, so the implementation captures that exact block output with a temporary forward hook.
 - The verified current frame gives 768 raw VGGT patches (`24×32`) and 192 merged Qwen positions (`12×16`). VGGT is reshaped spatially and bilinearly resized to `12×16`; the flattened sequence is never interpolated directly.
+- `SF_USE_VGGT_PE=True` adds the reference implementation's normalized UV sine/cosine grid at scale `0.1` to the frozen VGGT grid before bilinear resizing. `False` preserves previously verified checkpoints and training behavior. VGGT's own learned positional embedding and 2D RoPE remain active in both modes.
 - `use_geometry_encoder` and `use_geometry_fusion` must both be false. The VGGT instance owned by Spatial Forcing is loss-only.
 - The full Qwen language model and multimodal merger are trainable; the Qwen vision tower and VGGT are frozen.
 

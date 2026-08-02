@@ -29,6 +29,7 @@ teacher:
   frozen: true
   input_frames: current_only
   teacher_layer: 23
+  use_vggt_pe: false
   use_history_cache: false
 
 spatial_forcing:

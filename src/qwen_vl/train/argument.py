@@ -19,6 +19,7 @@ class ModelArguments:
     sf_loss_weight: float = field(default=0.3)
     sf_student_layer: int = field(default=24)
     sf_teacher_layer: int = field(default=23)
+    sf_use_vggt_pe: bool = field(default=False)
     sf_projector_hidden_dim: int = field(default=4096)
     sf_verify_invariants: bool = field(default=True)
 

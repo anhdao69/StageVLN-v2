@@ -180,6 +180,7 @@ def train(attn_implementation="flash_attention_2"):
         "sf_loss_weight",
         "sf_student_layer",
         "sf_teacher_layer",
+        "sf_use_vggt_pe",
         "sf_projector_hidden_dim",
         "sf_verify_invariants",
     ]:
