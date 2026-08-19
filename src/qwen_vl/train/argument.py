@@ -22,6 +22,19 @@ class ModelArguments:
     sf_use_vggt_pe: bool = field(default=False)
     sf_projector_hidden_dim: int = field(default=4096)
     sf_verify_invariants: bool = field(default=True)
+    sf_multiframe_teacher: bool = field(default=False)
+
+    depth_supervision_enabled: bool = field(default=False)
+    depth_loss_weight: float = field(default=0.05)
+    depth_student_layers: list[int] = field(
+        default_factory=lambda: [7, 16, 24, 32]
+    )
+    depth_loss_type: str = field(default="geo_depth")
+    depth_gradient_scales: list[int] = field(
+        default_factory=lambda: [1, 2, 4, 8]
+    )
+    depth_outlier_keep_ratio: float = field(default=0.98)
+    depth_use_teacher_confidence: bool = field(default=False)
 
 
 @dataclass
@@ -52,5 +65,6 @@ class TrainingArguments(transformers.TrainingArguments):
         },
     )
     mm_projector_lr: Optional[float] = None
+    depth_head_lr: Optional[float] = field(default=1e-5)
     vision_tower_lr: Optional[float] = None
     group_by_modality_length: bool = field(default=False)

@@ -24,6 +24,10 @@ LEARNING_RATE="${LEARNING_RATE:-1e-6}"
 SF_PROJECTOR_LR="${SF_PROJECTOR_LR:-1e-5}"
 SF_LOSS_WEIGHT="${SF_LOSS_WEIGHT:-0.3}"
 SF_USE_VGGT_PE="${SF_USE_VGGT_PE:-False}"
+DEPTH_SUPERVISION_ENABLED="${DEPTH_SUPERVISION_ENABLED:-False}"
+DEPTH_LOSS_WEIGHT="${DEPTH_LOSS_WEIGHT:-0.05}"
+DEPTH_HEAD_LR="${DEPTH_HEAD_LR:-1e-5}"
+DEPTH_OUTLIER_KEEP_RATIO="${DEPTH_OUTLIER_KEEP_RATIO:-0.98}"
 LOGGING_STEPS="${LOGGING_STEPS:-1}"
 DATALOADER_NUM_WORKERS="${DATALOADER_NUM_WORKERS:-4}"
 WARMUP_STEPS="${WARMUP_STEPS:-1}"
@@ -88,6 +92,7 @@ fi
 
 echo ">>>>> num_train_epochs=$NUM_TRAIN_EPOCHS max_samples=$MAX_SAMPLES max_steps=${MAX_STEPS:-disabled}"
 echo ">>>>> sf_use_vggt_pe=$SF_USE_VGGT_PE"
+echo ">>>>> depth_supervision_enabled=$DEPTH_SUPERVISION_ENABLED depth_loss_weight=$DEPTH_LOSS_WEIGHT depth_head_lr=$DEPTH_HEAD_LR"
 echo ">>>>> save_strategy=$SAVE_STRATEGY save_steps=$SAVE_STEPS save_total_limit=$SAVE_TOTAL_LIMIT"
 
 if [[ "$SAVE_STRATEGY" == "steps" ]] && ! [[ "$SAVE_STEPS" =~ ^[1-9][0-9]*$ ]]; then
@@ -129,6 +134,14 @@ train_args=(
     --sf_projector_hidden_dim 4096
     --sf_loss_weight "$SF_LOSS_WEIGHT"
     --sf_verify_invariants True
+    --sf_multiframe_teacher False
+    --depth_supervision_enabled "$DEPTH_SUPERVISION_ENABLED"
+    --depth_loss_weight "$DEPTH_LOSS_WEIGHT"
+    --depth_student_layers 7 16 24 32
+    --depth_loss_type geo_depth
+    --depth_gradient_scales 1 2 4 8
+    --depth_outlier_keep_ratio "$DEPTH_OUTLIER_KEEP_RATIO"
+    --depth_use_teacher_confidence False
     --tune_mm_llm True
     --tune_mm_mlp True
     --tune_mm_vision False
@@ -142,6 +155,7 @@ train_args=(
     --gradient_accumulation_steps "$GRADIENT_ACCUMULATION_STEPS"
     --learning_rate "$LEARNING_RATE"
     --mm_projector_lr "$SF_PROJECTOR_LR"
+    --depth_head_lr "$DEPTH_HEAD_LR"
     --vision_tower_lr 0
     --optim adamw_torch
     --model_max_length 12800
@@ -197,4 +211,4 @@ fi
     --master_port="$MASTER_PORT" \
     src/qwen_vl/train/train_qwen.py \
     "${train_args[@]}" \
-    2>&1 | tee "$OUTPUT_DIR/train.log"
+    2>&1 | tee -a "$OUTPUT_DIR/train.log"

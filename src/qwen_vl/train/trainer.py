@@ -109,20 +109,52 @@ class SpatialForcingTrainer(Trainer):
             logs["student_grad_verified"] = float(
                 getattr(unwrapped_model, "_sf_student_grad_verified", False)
             )
+            logs["depth_head_grad_verified"] = float(
+                getattr(unwrapped_model, "_depth_head_grad_verified", False)
+            )
+            logs["qwen_depth_grad_verified"] = float(
+                getattr(unwrapped_model, "_depth_student_grad_verified", False)
+            )
             teacher = getattr(unwrapped_model, "spatial_teacher", None)
-            logs["vggt_has_gradient"] = float(
+            vggt_has_gradient = bool(
                 teacher is not None
                 and any(
                     parameter.grad is not None for parameter in teacher.parameters()
                 )
             )
+            logs["vggt_has_gradient"] = float(vggt_has_gradient)
+            logs["vggt_grad_verified_zero"] = float(not vggt_has_gradient)
+            teacher_depth_head = (
+                getattr(getattr(teacher, "vggt", None), "depth_head", None)
+                if teacher is not None
+                else None
+            )
+            vggt_depth_has_gradient = bool(
+                teacher_depth_head is not None
+                and any(
+                    parameter.grad is not None
+                    for parameter in teacher_depth_head.parameters()
+                )
+            )
+            logs["vggt_depth_has_gradient"] = float(vggt_depth_has_gradient)
+            logs["vggt_depth_grad_verified_zero"] = float(
+                not vggt_depth_has_gradient
+            )
+            if self.optimizer is not None:
+                for group in self.optimizer.param_groups:
+                    if group.get("group_name") == "depth_head":
+                        logs["depth_head_learning_rate"] = float(group["lr"])
+                        logs["depth_head_configured_learning_rate"] = float(
+                            self.args.depth_head_lr
+                        )
+                        break
             self._spatial_metric_sums = {}
             self._spatial_metric_count = 0
         super().log(logs, start_time=start_time)
 
 
 def create_optimizer(self):
-    """Use the configured projector LR for Qwen's merger and SF projector."""
+    """Use disjoint base, projector, and student-depth parameter groups."""
     if self.optimizer is not None:
         return self.optimizer
 
@@ -133,38 +165,84 @@ def create_optimizer(self):
         for name, _ in self.model.named_parameters()
         if "merger" in name or "spatial_projector" in name
     }
+    depth_head_names = {
+        name
+        for name, _ in self.model.named_parameters()
+        if "student_depth_head" in name
+    }
+    projector_names -= depth_head_names
     projector_lr = self.args.mm_projector_lr
+    depth_head_lr = self.args.depth_head_lr
 
-    def parameters(*, decay: bool, projector: bool):
+    def parameters(*, decay: bool, category: str):
         return [
             parameter
             for name, parameter in self.model.named_parameters()
             if parameter.requires_grad
             and (name in decay_names) is decay
-            and (name in projector_names) is projector
+            and (
+                (category == "depth_head" and name in depth_head_names)
+                or (category == "projector" and name in projector_names)
+                or (
+                    category == "base"
+                    and name not in depth_head_names
+                    and name not in projector_names
+                )
+            )
         ]
 
     grouped_parameters = []
-    for use_decay in (True, False):
-        base_parameters = parameters(decay=use_decay, projector=False)
-        if base_parameters:
-            grouped_parameters.append(
-                {
-                    "params": base_parameters,
-                    "weight_decay": self.args.weight_decay if use_decay else 0.0,
-                }
+    for category, learning_rate in (
+        ("base", None),
+        ("projector", projector_lr),
+        ("depth_head", depth_head_lr),
+    ):
+        for use_decay in (True, False):
+            selected_parameters = parameters(
+                decay=use_decay,
+                category=category,
             )
-
-    for use_decay in (True, False):
-        projected_parameters = parameters(decay=use_decay, projector=True)
-        if projected_parameters:
+            if not selected_parameters:
+                continue
             group = {
-                "params": projected_parameters,
+                "params": selected_parameters,
                 "weight_decay": self.args.weight_decay if use_decay else 0.0,
+                "group_name": category,
             }
-            if projector_lr is not None and projector_lr != 0:
-                group["lr"] = projector_lr
+            if learning_rate is not None and learning_rate != 0:
+                group["lr"] = learning_rate
             grouped_parameters.append(group)
+
+    assigned_parameter_ids = [
+        id(parameter)
+        for group in grouped_parameters
+        for parameter in group["params"]
+    ]
+    expected_parameter_ids = {
+        id(parameter)
+        for parameter in self.model.parameters()
+        if parameter.requires_grad
+    }
+    if len(assigned_parameter_ids) != len(set(assigned_parameter_ids)):
+        raise AssertionError("A trainable parameter appears in multiple optimizer groups")
+    if set(assigned_parameter_ids) != expected_parameter_ids:
+        raise AssertionError("Optimizer groups do not cover every trainable parameter")
+    if depth_head_names:
+        assigned_depth_ids = {
+            id(parameter)
+            for group in grouped_parameters
+            if group["group_name"] == "depth_head"
+            for parameter in group["params"]
+        }
+        expected_depth_ids = {
+            id(parameter)
+            for name, parameter in self.model.named_parameters()
+            if name in depth_head_names and parameter.requires_grad
+        }
+        if assigned_depth_ids != expected_depth_ids:
+            raise AssertionError(
+                "Each trainable depth-head parameter must appear exactly once"
+            )
 
     optimizer_class, optimizer_kwargs = Trainer.get_optimizer_cls_and_kwargs(self.args)
     self.optimizer = optimizer_class(grouped_parameters, **optimizer_kwargs)

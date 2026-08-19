@@ -22,7 +22,10 @@ from qwen_vl.data.data_qwen import make_supervised_data_module
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--checkpoint", required=True)
-    parser.add_argument("--data-root", required=True)
+    parser.add_argument("--data-root", default=None)
+    parser.add_argument("--dataset-config", default=None)
+    parser.add_argument("--dataset-use", default="janusvln_r2r")
+    parser.add_argument("--sample-index", type=int, default=0)
     return parser.parse_args()
 
 
@@ -39,6 +42,7 @@ def main():
     forbidden_modules = (
         "spatial_teacher",
         "spatial_projector",
+        "student_depth_head",
         "geometry_encoder",
         "geometry_merger",
     )
@@ -55,12 +59,14 @@ def main():
         use_fast=False,
     )
     data_args = SimpleNamespace(
-        dataset_use="janusvln_r2r",
+        dataset_use=args.dataset_use,
+        dataset_config=args.dataset_config,
         janusvln_data_root=args.data_root,
-        max_samples=1,
+        max_samples=args.sample_index + 1,
         shuffle=False,
         model_type="qwen3.5",
         spatial_forcing_enabled=False,
+        depth_supervision_enabled=False,
         use_geometry_encoder=False,
         image_processor=processor.image_processor,
         max_pixels=576 * 28 * 28,
@@ -73,7 +79,9 @@ def main():
         video_min_frame_pixels=256 * 28 * 28,
     )
     data_module = make_supervised_data_module(tokenizer=tokenizer, data_args=data_args)
-    batch = data_module["data_collator"]([data_module["train_dataset"][0]])
+    batch = data_module["data_collator"](
+        [data_module["train_dataset"][args.sample_index]]
+    )
     batch = {
         key: value.cuda() if isinstance(value, torch.Tensor) else value
         for key, value in batch.items()

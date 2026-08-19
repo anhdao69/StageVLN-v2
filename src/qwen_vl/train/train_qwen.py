@@ -132,6 +132,10 @@ def set_model(model_args, model):
     if getattr(model, "spatial_projector", None) is None:
         raise ValueError("Spatial Forcing projector was not initialized")
     model.spatial_projector.requires_grad_(True)
+    if model_args.depth_supervision_enabled:
+        if getattr(model, "student_depth_head", None) is None:
+            raise ValueError("Depth supervision head was not initialized")
+        model.student_depth_head.requires_grad_(True)
 
 
 def train(attn_implementation="flash_attention_2"):
@@ -166,6 +170,18 @@ def train(attn_implementation="flash_attention_2"):
         raise ValueError("Set use_geometry_encoder=False: VGGT is a loss-only teacher")
     if model_args.use_geometry_fusion:
         raise ValueError("Set use_geometry_fusion=False for Spatial Forcing")
+    if model_args.sf_multiframe_teacher:
+        raise ValueError("v4 depth supervision requires sf_multiframe_teacher=False")
+    if model_args.depth_supervision_enabled:
+        if model_args.depth_student_layers != [7, 16, 24, 32]:
+            raise ValueError(
+                "v4 requires depth_student_layers=[7, 16, 24, 32], got "
+                f"{model_args.depth_student_layers}"
+            )
+        if model_args.depth_loss_type != "geo_depth":
+            raise ValueError("v4 supports only depth_loss_type=geo_depth")
+        if model_args.depth_use_teacher_confidence:
+            raise ValueError("v4 intentionally excludes teacher-confidence weighting")
     if data_args.data_flatten:
         raise ValueError("Spatial Forcing requires data_flatten=False")
 
@@ -183,6 +199,14 @@ def train(attn_implementation="flash_attention_2"):
         "sf_use_vggt_pe",
         "sf_projector_hidden_dim",
         "sf_verify_invariants",
+        "sf_multiframe_teacher",
+        "depth_supervision_enabled",
+        "depth_loss_weight",
+        "depth_student_layers",
+        "depth_loss_type",
+        "depth_gradient_scales",
+        "depth_outlier_keep_ratio",
+        "depth_use_teacher_confidence",
     ]:
         setattr(config, key, getattr(model_args, key))
     config.sf_teacher_dim = 2048
@@ -242,6 +266,11 @@ def train(attn_implementation="flash_attention_2"):
         print(model.config)
     setattr(data_args, "use_geometry_encoder", False)
     setattr(data_args, "spatial_forcing_enabled", True)
+    setattr(
+        data_args,
+        "depth_supervision_enabled",
+        model_args.depth_supervision_enabled,
+    )
     data_module = make_supervised_data_module(tokenizer=tokenizer, data_args=data_args)
     trainer = SpatialForcingTrainer(
         model=model, processing_class=tokenizer, args=training_args, **data_module

@@ -16,6 +16,11 @@ from transformers.models.qwen3_5.modeling_qwen3_5 import (
     Qwen3_5ForConditionalGeneration,
 )
 
+from .depth_supervision import (
+    GeoVRDepthHead,
+    compute_geovr_depth_loss,
+    finite_depth_statistics,
+)
 from .geometry_encoders import create_geometry_encoder
 
 
@@ -238,6 +243,7 @@ class Qwen3_5ForConditionalGenerationWithSpatialForcing(
     accepts_loss_kwargs = False
     _keys_to_ignore_on_load_missing = [
         r"spatial_projector\..*",
+        r"student_depth_head\..*",
     ]
 
     def __init__(self, config):
@@ -246,6 +252,8 @@ class Qwen3_5ForConditionalGenerationWithSpatialForcing(
         self.last_spatial_forcing_metrics = {}
         self._sf_projector_grad_verified = False
         self._sf_student_grad_verified = False
+        self._depth_head_grad_verified = False
+        self._depth_student_grad_verified = False
 
         self.spatial_forcing_enabled = bool(
             getattr(config, "spatial_forcing_enabled", False)
@@ -255,8 +263,29 @@ class Qwen3_5ForConditionalGenerationWithSpatialForcing(
         self.sf_teacher_layer = int(getattr(config, "sf_teacher_layer", 23))
         self.sf_use_vggt_pe = bool(getattr(config, "sf_use_vggt_pe", False))
         self.sf_verify_invariants = bool(getattr(config, "sf_verify_invariants", True))
+        self.sf_multiframe_teacher = bool(
+            getattr(config, "sf_multiframe_teacher", False)
+        )
         self.sf_spatial_merge_size = int(
             getattr(config.vision_config, "spatial_merge_size", 2)
+        )
+        self.depth_supervision_enabled = bool(
+            getattr(config, "depth_supervision_enabled", False)
+        )
+        self.depth_loss_weight = float(getattr(config, "depth_loss_weight", 0.05))
+        self.depth_student_layers = tuple(
+            int(layer)
+            for layer in getattr(config, "depth_student_layers", [7, 16, 24, 32])
+        )
+        self.depth_gradient_scales = tuple(
+            int(scale)
+            for scale in getattr(config, "depth_gradient_scales", [1, 2, 4, 8])
+        )
+        self.depth_outlier_keep_ratio = float(
+            getattr(config, "depth_outlier_keep_ratio", 0.98)
+        )
+        self.depth_use_teacher_confidence = bool(
+            getattr(config, "depth_use_teacher_confidence", False)
         )
 
         if self.spatial_forcing_enabled:
@@ -274,6 +303,36 @@ class Qwen3_5ForConditionalGenerationWithSpatialForcing(
                     parameter.register_hook(self._record_projector_gradient)
         else:
             self.spatial_projector = None
+
+        if self.depth_supervision_enabled:
+            if not self.spatial_forcing_enabled:
+                raise ValueError("Depth supervision requires Spatial Forcing v0")
+            if self.sf_multiframe_teacher:
+                raise ValueError("Depth supervision requires a current-frame-only teacher")
+            if self.depth_student_layers != (7, 16, 24, 32):
+                raise ValueError(
+                    "Depth supervision requires layers (7, 16, 24, 32), got "
+                    f"{self.depth_student_layers}"
+                )
+            if self.depth_loss_weight < 0:
+                raise ValueError("depth_loss_weight must be nonnegative")
+            if self.depth_use_teacher_confidence:
+                raise ValueError(
+                    "Teacher confidence weighting is excluded from the v4 ablation"
+                )
+            vision_patch_size = int(getattr(config.vision_config, "patch_size", 14))
+            self.student_depth_head = GeoVRDepthHead(
+                dim_in=int(config.text_config.hidden_size),
+                patch_size=vision_patch_size * self.sf_spatial_merge_size,
+                target_patch_size=14 * 2,
+            )
+            # GeoVR relies on the default PyTorch initialization of its newly
+            # attached DenseHead. Do not overwrite it with Qwen initialization.
+            for parameter in self.student_depth_head.parameters():
+                if parameter.requires_grad:
+                    parameter.register_hook(self._record_depth_head_gradient)
+        else:
+            self.student_depth_head = None
 
     @classmethod
     def from_pretrained(cls, pretrained_model_name_or_path, *model_args, **kwargs):
@@ -307,6 +366,7 @@ class Qwen3_5ForConditionalGenerationWithSpatialForcing(
             model_path=teacher_model_path,
             reference_frame="first",
             freeze_encoder=True,
+            enable_depth=self.depth_supervision_enabled,
         )
         teacher.load_model(teacher_model_path, cache_dir=cache_dir)
         teacher.requires_grad_(False)
@@ -330,6 +390,46 @@ class Qwen3_5ForConditionalGenerationWithSpatialForcing(
                 state.pop(key)
         return state
 
+    def load_state_dict(self, state_dict, strict: bool = True, assign: bool = False):
+        """Restore a student checkpoint while reusing the initialized teacher.
+
+        DeepSpeed restores module state strictly. The frozen VGGT is
+        deliberately omitted by :meth:`state_dict`, so its missing keys are
+        the only strict-load exception; all student/trainable missing or
+        unexpected keys still fail immediately.
+        """
+        incompatible = super().load_state_dict(
+            state_dict,
+            strict=False,
+            assign=assign,
+        )
+        missing_keys = [
+            key
+            for key in incompatible.missing_keys
+            if not key.startswith("spatial_teacher.")
+        ]
+        unexpected_keys = list(incompatible.unexpected_keys)
+        if strict and (missing_keys or unexpected_keys):
+            messages = []
+            if unexpected_keys:
+                messages.append(
+                    "Unexpected key(s) in state_dict: {}.".format(
+                        ", ".join(f'"{key}"' for key in unexpected_keys)
+                    )
+                )
+            if missing_keys:
+                messages.append(
+                    "Missing key(s) in state_dict: {}.".format(
+                        ", ".join(f'"{key}"' for key in missing_keys)
+                    )
+                )
+            raise RuntimeError(
+                "Error(s) in loading state_dict for {}:\n\t{}".format(
+                    self.__class__.__name__, "\n\t".join(messages)
+                )
+            )
+        return type(incompatible)(missing_keys, unexpected_keys)
+
     def _record_projector_gradient(self, gradient: torch.Tensor):
         if (
             gradient is not None
@@ -348,17 +448,46 @@ class Qwen3_5ForConditionalGenerationWithSpatialForcing(
             self._sf_student_grad_verified = True
         return gradient
 
-    def _student_capture_layer(self) -> nn.Module:
-        # Hugging Face hidden_states[0] is the embedding output, so
-        # hidden_states[24] is the output of zero-based decoder layer 23.
-        decoder_index = self.sf_student_layer - 1
+    def _record_depth_head_gradient(self, gradient: torch.Tensor):
+        if (
+            gradient is not None
+            and torch.isfinite(gradient).all()
+            and torch.count_nonzero(gradient)
+        ):
+            self._depth_head_grad_verified = True
+        return gradient
+
+    def _record_depth_student_gradient(self, gradient: torch.Tensor):
+        if (
+            gradient is not None
+            and torch.isfinite(gradient).all()
+            and torch.count_nonzero(gradient)
+        ):
+            self._depth_student_grad_verified = True
+        return gradient
+
+    def _student_capture_module(self, hidden_state_index: int) -> nn.Module:
+        """Map a Hugging Face hidden-state index to its producing module.
+
+        Entry zero is the input embedding. Entries 1..N-1 are raw decoder
+        block outputs, while entry N is the final block output after the
+        language model's final RMSNorm.
+        """
         layers = self.model.language_model.layers
+        hidden_state_index = int(hidden_state_index)
+        if hidden_state_index == len(layers):
+            return self.model.language_model.norm
+        decoder_index = hidden_state_index - 1
         if decoder_index < 0 or decoder_index >= len(layers):
             raise ValueError(
-                f"sf_student_layer={self.sf_student_layer} is invalid for "
+                f"hidden_state_index={hidden_state_index} is invalid for "
                 f"a {len(layers)}-layer Qwen3.5 decoder"
             )
         return layers[decoder_index]
+
+    def _student_capture_layer(self) -> nn.Module:
+        # Existing v0 convention: hidden_states[24] is decoder block 23 output.
+        return self._student_capture_module(self.sf_student_layer)
 
     def _compute_spatial_forcing(
         self,
@@ -368,7 +497,8 @@ class Qwen3_5ForConditionalGenerationWithSpatialForcing(
         sf_teacher_pixel_values: Sequence[torch.Tensor],
         frame_count: Optional[torch.Tensor],
         current_frame_index: Optional[torch.Tensor],
-    ) -> tuple[torch.Tensor, dict[str, torch.Tensor]]:
+        depth_student_hidden: Optional[dict[int, torch.Tensor]] = None,
+    ) -> tuple[torch.Tensor, torch.Tensor, dict[str, torch.Tensor]]:
         if self.spatial_teacher is None or self.spatial_projector is None:
             raise RuntimeError("Spatial Forcing modules were not initialized")
         if current_image_token_mask.dtype != torch.bool:
@@ -391,10 +521,43 @@ class Qwen3_5ForConditionalGenerationWithSpatialForcing(
             if not torch.equal(current_frame_index, frame_count - 1):
                 raise AssertionError("The current observation must be the final frame")
 
+        use_depth = self.depth_supervision_enabled
+        if use_depth:
+            if self.student_depth_head is None:
+                raise RuntimeError("Student depth head was not initialized")
+            if depth_student_hidden is None:
+                raise RuntimeError("Depth hidden states were not captured")
+            missing_layers = set(self.depth_student_layers) - set(depth_student_hidden)
+            if missing_layers:
+                raise RuntimeError(
+                    f"Missing captured Qwen depth layers: {sorted(missing_layers)}"
+                )
+            if depth_student_hidden[self.sf_student_layer] is not student_hidden:
+                raise AssertionError(
+                    "Layer 24 must be captured once and reused by SF and depth"
+                )
+
         per_sample_losses = []
         per_sample_cosines = []
         resized_teacher_counts = []
         raw_teacher_counts = []
+        depth_losses = []
+        depth_regression_losses = []
+        depth_gradient_losses = []
+        depth_maes = []
+        depth_valid_fractions = []
+        depth_target_heights = []
+        depth_target_widths = []
+        teacher_pad_heights = []
+        teacher_pad_widths = []
+        teacher_invalid_fractions = {
+            "nan": [],
+            "inf": [],
+            "nonpositive": [],
+        }
+        teacher_depth_statistics = {}
+        predicted_depth_statistics = {}
+        teacher_confidence_means = []
 
         for batch_index in range(batch_size):
             grid_t, grid_h, grid_w = (
@@ -432,22 +595,43 @@ class Qwen3_5ForConditionalGenerationWithSpatialForcing(
             teacher_w = int(teacher_input.shape[-1]) // self.spatial_teacher.patch_size
 
             with torch.no_grad():
-                teacher_features = self.spatial_teacher.encode_layers(
-                    teacher_input,
-                    layer_indices=[self.sf_teacher_layer],
-                    spatial_merge_size=1,
-                    include_camera_token=False,
-                )[0][0]
+                if use_depth:
+                    teacher_outputs = (
+                        self.spatial_teacher.encode_features_and_depth(
+                            teacher_input,
+                            layer_indices=[self.sf_teacher_layer],
+                            spatial_merge_size=1,
+                            include_camera_token=False,
+                        )
+                    )
+                    teacher_features = teacher_outputs["sf_features"][0][0]
+                    teacher_h, teacher_w = teacher_outputs["teacher_grid_hw"]
+                    teacher_image_hw = teacher_outputs["teacher_image_hw"]
+                    teacher_pad_heights.append(
+                        float(teacher_outputs["teacher_padding_hw"][0])
+                    )
+                    teacher_pad_widths.append(
+                        float(teacher_outputs["teacher_padding_hw"][1])
+                    )
+                else:
+                    teacher_outputs = None
+                    teacher_image_hw = (
+                        int(teacher_input.shape[-2]),
+                        int(teacher_input.shape[-1]),
+                    )
+                    teacher_features = self.spatial_teacher.encode_layers(
+                        teacher_input,
+                        layer_indices=[self.sf_teacher_layer],
+                        spatial_merge_size=1,
+                        include_camera_token=False,
+                    )[0][0]
             teacher_features = teacher_features.detach()
             raw_teacher_counts.append(teacher_features.shape[0])
             if self.sf_use_vggt_pe:
                 teacher_features = add_vggt_position_embedding(
                     teacher_features,
                     teacher_grid_hw=(teacher_h, teacher_w),
-                    image_hw=(
-                        int(teacher_input.shape[-2]),
-                        int(teacher_input.shape[-1]),
-                    ),
+                    image_hw=teacher_image_hw,
                 )
             teacher_features = resize_teacher_spatial_grid(
                 teacher_features,
@@ -469,12 +653,105 @@ class Qwen3_5ForConditionalGenerationWithSpatialForcing(
             per_sample_losses.append(sample_loss)
             per_sample_cosines.append(sample_cosine)
 
+            if use_depth:
+                teacher_depth = teacher_outputs["depth"][0]
+                teacher_confidence = teacher_outputs["depth_conf"][0]
+                if teacher_depth.ndim != 2:
+                    raise AssertionError(
+                        "Current-frame VGGT pseudo-depth must be two-dimensional, "
+                        f"got {tuple(teacher_depth.shape)}"
+                    )
+                if teacher_confidence.shape != teacher_depth.shape:
+                    raise AssertionError(
+                        "VGGT depth confidence must match pseudo-depth shape"
+                    )
+
+                selected_features = []
+                for layer_index in self.depth_student_layers:
+                    layer_hidden = depth_student_hidden[layer_index]
+                    if layer_hidden.shape[:2] != current_image_token_mask.shape:
+                        raise ValueError(
+                            f"Layer {layer_index} shape does not match the current-token mask"
+                        )
+                    current_features = layer_hidden[batch_index][
+                        current_image_token_mask[batch_index]
+                    ]
+                    if current_features.shape[0] != expected_student_tokens:
+                        raise AssertionError(
+                            "Depth-layer current-token count does not match the grid: "
+                            f"layer={layer_index}, tokens={current_features.shape[0]}, "
+                            f"expected={expected_student_tokens}"
+                        )
+                    if current_features.requires_grad:
+                        current_features.register_hook(
+                            self._record_depth_student_gradient
+                        )
+                    selected_features.append(current_features.unsqueeze(0))
+
+                predicted_depth = self.student_depth_head(
+                    selected_features,
+                    student_grid_hw=(student_h, student_w),
+                    image_hw=(
+                        int(teacher_input.shape[-2]),
+                        int(teacher_input.shape[-1]),
+                    ),
+                    target_hw=tuple(int(value) for value in teacher_depth.shape),
+                )[0]
+                if predicted_depth.requires_grad:
+                    # Register on the live output rather than relying only on
+                    # constructor-time parameter hooks. DeepSpeed ZeRO may
+                    # replace/partition parameter objects during wrapping,
+                    # while this tensor is created inside the wrapped forward.
+                    predicted_depth.register_hook(
+                        self._record_depth_head_gradient
+                    )
+                depth_output = compute_geovr_depth_loss(
+                    predicted_depth.float(),
+                    teacher_depth.float(),
+                    gradient_scales=self.depth_gradient_scales,
+                    outlier_keep_ratio=self.depth_outlier_keep_ratio,
+                )
+                depth_losses.append(depth_output.loss)
+                depth_regression_losses.append(depth_output.regression)
+                depth_gradient_losses.append(depth_output.gradient)
+                depth_maes.append(depth_output.mae)
+                depth_valid_fractions.append(depth_output.valid_fraction)
+                depth_target_heights.append(float(teacher_depth.shape[-2]))
+                depth_target_widths.append(float(teacher_depth.shape[-1]))
+
+                teacher_invalid_fractions["nan"].append(
+                    torch.isnan(teacher_depth).float().mean()
+                )
+                teacher_invalid_fractions["inf"].append(
+                    torch.isinf(teacher_depth).float().mean()
+                )
+                teacher_invalid_fractions["nonpositive"].append(
+                    (torch.isfinite(teacher_depth) & (teacher_depth <= 0))
+                    .float()
+                    .mean()
+                )
+                for name, value in finite_depth_statistics(teacher_depth).items():
+                    teacher_depth_statistics.setdefault(name, []).append(value)
+                for name, value in finite_depth_statistics(predicted_depth).items():
+                    predicted_depth_statistics.setdefault(name, []).append(value)
+                finite_confidence = teacher_confidence[
+                    torch.isfinite(teacher_confidence)
+                ]
+                teacher_confidence_means.append(
+                    finite_confidence.float().mean()
+                    if finite_confidence.numel()
+                    else torch.tensor(
+                        float("nan"), device=teacher_confidence.device
+                    )
+                )
+
         sf_loss = torch.stack(per_sample_losses).mean()
         mean_cosine = torch.stack(per_sample_cosines).mean()
         if not torch.isfinite(sf_loss):
             raise FloatingPointError("Spatial Forcing loss contains NaN or Inf")
         metrics = {
             "spatial_forcing_loss": sf_loss.detach(),
+            "sf_weighted_loss": (self.sf_loss_weight * sf_loss).detach(),
             "mean_cosine_similarity": mean_cosine.detach(),
             "current_qwen_token_count": current_image_token_mask.sum(dim=-1)
             .float()
@@ -496,7 +773,69 @@ class Qwen3_5ForConditionalGenerationWithSpatialForcing(
                 dtype=torch.float32,
             ),
         }
-        return sf_loss, metrics
+        if use_depth:
+            depth_loss = torch.stack(depth_losses).mean()
+            depth_regression_loss = torch.stack(depth_regression_losses).mean()
+            depth_gradient_loss = torch.stack(depth_gradient_losses).mean()
+            if not torch.isfinite(depth_loss):
+                raise FloatingPointError("Depth loss contains NaN or Inf")
+
+            def mean_values(values):
+                return torch.stack(
+                    [value.detach().float().to(sf_loss.device) for value in values]
+                ).mean()
+
+            metrics.update(
+                depth_loss=depth_loss.detach(),
+                depth_reg_loss=depth_regression_loss.detach(),
+                depth_grad_loss=depth_gradient_loss.detach(),
+                depth_weighted_loss=(self.depth_loss_weight * depth_loss).detach(),
+                depth_mae=mean_values(depth_maes),
+                depth_valid_fraction=mean_values(depth_valid_fractions),
+                depth_target_height=torch.tensor(
+                    depth_target_heights,
+                    device=sf_loss.device,
+                    dtype=torch.float32,
+                ).mean(),
+                depth_target_width=torch.tensor(
+                    depth_target_widths,
+                    device=sf_loss.device,
+                    dtype=torch.float32,
+                ).mean(),
+                teacher_depth_nan_fraction=mean_values(
+                    teacher_invalid_fractions["nan"]
+                ),
+                teacher_depth_inf_fraction=mean_values(
+                    teacher_invalid_fractions["inf"]
+                ),
+                teacher_depth_nonpositive_fraction=mean_values(
+                    teacher_invalid_fractions["nonpositive"]
+                ),
+                teacher_depth_confidence_mean=mean_values(
+                    teacher_confidence_means
+                ),
+                vggt_aggregator_calls_per_sample=torch.tensor(
+                    1.0, device=sf_loss.device
+                ),
+                vggt_teacher_pad_height=torch.tensor(
+                    teacher_pad_heights,
+                    device=sf_loss.device,
+                    dtype=torch.float32,
+                ).mean(),
+                vggt_teacher_pad_width=torch.tensor(
+                    teacher_pad_widths,
+                    device=sf_loss.device,
+                    dtype=torch.float32,
+                ).mean(),
+                depth_layer_24_reused=torch.tensor(1.0, device=sf_loss.device),
+            )
+            for name, values in teacher_depth_statistics.items():
+                metrics[f"teacher_depth_{name}"] = mean_values(values)
+            for name, values in predicted_depth_statistics.items():
+                metrics[f"pred_depth_{name}"] = mean_values(values)
+        else:
+            depth_loss = sf_loss.new_zeros(())
+        return sf_loss, depth_loss, metrics
 
     def forward(
         self,
@@ -523,8 +862,8 @@ class Qwen3_5ForConditionalGenerationWithSpatialForcing(
         use_spatial_forcing = (
             self.spatial_forcing_enabled and self.training and labels is not None
         )
-        captured_hidden = {}
-        capture_handle = None
+        captured_hidden: dict[int, torch.Tensor] = {}
+        capture_handles = []
         if use_spatial_forcing:
             if bool(getattr(self.config, "use_geometry_encoder", False)) or bool(
                 getattr(self.config, "use_geometry_fusion", False)
@@ -533,14 +872,27 @@ class Qwen3_5ForConditionalGenerationWithSpatialForcing(
                     "Geometry fusion cannot run in the Spatial Forcing path"
                 )
 
-            def capture_layer_output(_module, _inputs, output):
-                captured_hidden["value"] = (
-                    output[0] if isinstance(output, tuple) else output
-                )
+            capture_indices = {self.sf_student_layer}
+            if self.depth_supervision_enabled:
+                capture_indices.update(self.depth_student_layers)
 
-            capture_handle = self._student_capture_layer().register_forward_hook(
-                capture_layer_output
-            )
+            for hidden_state_index in sorted(capture_indices):
+                def capture_layer_output(
+                    _module,
+                    _inputs,
+                    output,
+                    *,
+                    index=hidden_state_index,
+                ):
+                    captured_hidden[index] = (
+                        output[0] if isinstance(output, tuple) else output
+                    )
+
+                capture_handles.append(
+                    self._student_capture_module(
+                        hidden_state_index
+                    ).register_forward_hook(capture_layer_output)
+                )
 
         try:
             outputs = super().forward(
@@ -560,13 +912,13 @@ class Qwen3_5ForConditionalGenerationWithSpatialForcing(
                 **kwargs,
             )
         finally:
-            if capture_handle is not None:
+            for capture_handle in capture_handles:
                 capture_handle.remove()
 
         if not use_spatial_forcing:
             self.last_spatial_forcing_metrics = {}
             return outputs
-        if "value" not in captured_hidden:
+        if self.sf_student_layer not in captured_hidden:
             raise RuntimeError("Failed to capture the requested Qwen3.5 hidden state")
         if any(
             value is None
@@ -581,21 +933,34 @@ class Qwen3_5ForConditionalGenerationWithSpatialForcing(
         navigation_loss = outputs.loss
         if navigation_loss is None or not torch.isfinite(navigation_loss):
             raise FloatingPointError("Navigation loss is missing, NaN, or Inf")
-        sf_loss, metrics = self._compute_spatial_forcing(
-            student_hidden=captured_hidden["value"],
+        sf_loss, depth_loss, metrics = self._compute_spatial_forcing(
+            student_hidden=captured_hidden[self.sf_student_layer],
             current_image_token_mask=current_image_token_mask,
             current_image_grid_thw=current_image_grid_thw,
             sf_teacher_pixel_values=sf_teacher_pixel_values,
             frame_count=frame_count,
             current_frame_index=current_frame_index,
+            depth_student_hidden=(
+                captured_hidden if self.depth_supervision_enabled else None
+            ),
         )
-        total_loss = navigation_loss + self.sf_loss_weight * sf_loss
+        total_loss = (
+            navigation_loss
+            + self.sf_loss_weight * sf_loss
+            + self.depth_loss_weight * depth_loss
+        )
         if not torch.isfinite(total_loss):
             raise FloatingPointError("Total training loss contains NaN or Inf")
 
         metrics.update(
             navigation_loss=navigation_loss.detach(),
             total_loss=total_loss.detach(),
+            configured_sf_loss_weight=torch.tensor(
+                self.sf_loss_weight, device=total_loss.device
+            ),
+            configured_depth_loss_weight=torch.tensor(
+                self.depth_loss_weight, device=total_loss.device
+            ),
         )
         self.last_spatial_forcing_metrics = metrics
         return Qwen3_5CausalLMOutputWithPast(

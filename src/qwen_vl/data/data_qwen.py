@@ -338,6 +338,11 @@ class LazySupervisedDataset(Dataset):
         self.spatial_forcing_enabled = getattr(
             data_args, "spatial_forcing_enabled", False
         )
+        self.depth_supervision_enabled = getattr(
+            data_args, "depth_supervision_enabled", False
+        )
+        if self.depth_supervision_enabled and not self.spatial_forcing_enabled:
+            raise ValueError("Depth supervision requires Spatial Forcing metadata")
         if data_args.model_type == "qwen2.5vl":
             self.get_rope_index = get_rope_index_25
         elif data_args.model_type == "qwen3.5":
@@ -523,6 +528,7 @@ class LazySupervisedDataset(Dataset):
 
     def __getitem__(self, i) -> Dict[str, torch.Tensor]:
         num_base_retries = 3
+        last_exception = None
 
         # try the current sample first
         for attempt_idx in range(num_base_retries):
@@ -530,30 +536,36 @@ class LazySupervisedDataset(Dataset):
                 sample = self._get_item(i)
                 return sample
             except Exception as e:
+                last_exception = e
                 # sleep 1s in case it is a cloud disk issue
                 print(f"[Try #{attempt_idx}] Failed to fetch sample {i}. Exception:", e)
                 time.sleep(1)
 
-        # try other samples, in case it is file corruption issue
-        for attempt_idx in range(num_base_retries):
+        # Try genuinely distinct records for local corruption/missing-media
+        # failures. The previous implementation retried only ``i + 1`` on
+        # every attempt, which is ineffective when adjacent annotations share
+        # the same missing trajectory directory.
+        fallback_count = min(10, max(len(self.list_data_dict) - 1, 0))
+        fallback_offsets = random.sample(
+            range(1, len(self.list_data_dict)),
+            k=fallback_count,
+        )
+        for attempt_idx, offset in enumerate(fallback_offsets):
+            next_index = (i + offset) % len(self.list_data_dict)
             try:
-                next_index = min(i + 1, len(self.list_data_dict) - 1)
-                # sample_idx = random.choice(range(len(self)))
                 sample = self._get_item(next_index)
                 return sample
             except Exception as e:
+                last_exception = e
                 # no need to sleep
                 print(
                     f"[Try other #{attempt_idx}] Failed to fetch sample {next_index}. Exception:",
                     e,
                 )
-                pass
 
-        try:
-            sample = self._get_item(i)
-            return sample
-        except Exception as e:
-            raise e
+        if last_exception is None:
+            raise RuntimeError("Cannot fetch from an empty training dataset")
+        raise last_exception
 
     def read_video_images(self, source):
         # read video images from the source
@@ -663,6 +675,9 @@ class LazySupervisedDataset(Dataset):
                         self.data_args.image_processor,
                         model_type=self.model_type,
                         prepare_geometry=prepare_geometry,
+                        depth_supervision_enabled=(
+                            self.depth_supervision_enabled and is_current_frame
+                        ),
                     )
                     image.append(ret["pixel_values"])
                     grid_thw.append(ret["image_grid_thw"])

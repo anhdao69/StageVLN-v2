@@ -6,28 +6,96 @@
 
 import torch
 from PIL import Image
+import decord
 from torchvision import transforms as TF
-import copy
+import numpy as np
 
 
-GEOMETRY_ENCODER_PATCH_SIZE = 14
+def load_and_preprocess_images_square(image_path_list, target_size=1024):
+    """
+    Load and preprocess images by center padding to square and resizing to target size.
+    Also returns the position information of original pixels after transformation.
 
+    Args:
+        image_path_list (list): List of paths to image files
+        target_size (int, optional): Target size for both width and height. Defaults to 518.
 
-def _load_rgb_image(image_path):
-    if isinstance(image_path, str):
+    Returns:
+        tuple: (
+            torch.Tensor: Batched tensor of preprocessed images with shape (N, 3, target_size, target_size),
+            torch.Tensor: Array of shape (N, 5) containing [x1, y1, x2, y2, width, height] for each image
+        )
+
+    Raises:
+        ValueError: If the input list is empty
+    """
+    # Check for empty list
+    if len(image_path_list) == 0:
+        raise ValueError("At least 1 image is required")
+
+    images = []
+    original_coords = []  # Renamed from position_info to be more descriptive
+    to_tensor = TF.ToTensor()
+
+    for image_path in image_path_list:
+        # Open image
         img = Image.open(image_path)
-    elif isinstance(image_path, Image.Image):
-        img = image_path
-    else:
-        raise NotImplementedError(f"Unsupported image type: {type(image_path)}")
 
-    if img.mode == "RGBA":
-        background = Image.new("RGBA", img.size, (255, 255, 255, 255))
-        img = Image.alpha_composite(background, img)
-    return img.convert("RGB")
+        # If there's an alpha channel, blend onto white background
+        if img.mode == "RGBA":
+            background = Image.new("RGBA", img.size, (255, 255, 255, 255))
+            img = Image.alpha_composite(background, img)
+
+        # Convert to RGB
+        img = img.convert("RGB")
+
+        # Get original dimensions
+        width, height = img.size
+
+        # Make the image square by padding the shorter dimension
+        max_dim = max(width, height)
+
+        # Calculate padding
+        left = (max_dim - width) // 2
+        top = (max_dim - height) // 2
+
+        # Calculate scale factor for resizing
+        scale = target_size / max_dim
+
+        # Calculate final coordinates of original image in target space
+        x1 = left * scale
+        y1 = top * scale
+        x2 = (left + width) * scale
+        y2 = (top + height) * scale
+
+        # Store original image coordinates and scale
+        original_coords.append(np.array([x1, y1, x2, y2, width, height]))
+
+        # Create a new black square image and paste original
+        square_img = Image.new("RGB", (max_dim, max_dim), (0, 0, 0))
+        square_img.paste(img, (left, top))
+
+        # Resize to target size
+        square_img = square_img.resize((target_size, target_size), Image.Resampling.BICUBIC)
+
+        # Convert to tensor
+        img_tensor = to_tensor(square_img)
+        images.append(img_tensor)
+
+    # Stack all images
+    images = torch.stack(images)
+    original_coords = torch.from_numpy(np.array(original_coords)).float()
+
+    # Add additional dimension if single image to ensure correct shape
+    if len(image_path_list) == 1:
+        if images.dim() == 3:
+            images = images.unsqueeze(0)
+            original_coords = original_coords.unsqueeze(0)
+
+    return images, original_coords
 
 
-def load_and_preprocess_images(image_path_list, mode="crop", target_size=518):
+def load_and_preprocess_images(image_path_list, mode="crop"):
     """
     A quick start function to load and preprocess images for model input.
     This assumes the images should have the same shape for easier batching, but our model can also work well with different shapes.
@@ -65,11 +133,22 @@ def load_and_preprocess_images(image_path_list, mode="crop", target_size=518):
     images = []
     shapes = set()
     to_tensor = TF.ToTensor()
+    target_size = 518
 
     # First process all images and collect their shapes
     for image_path in image_path_list:
         # Open image
-        img = _load_rgb_image(image_path)
+        img = Image.open(image_path)
+
+        # If there's an alpha channel, blend onto white background:
+        if img.mode == "RGBA":
+            # Create white background
+            background = Image.new("RGBA", img.size, (255, 255, 255, 255))
+            # Alpha composite onto the white background
+            img = Image.alpha_composite(background, img)
+
+        # Now convert to "RGB" (this step assigns white for transparent areas)
+        img = img.convert("RGB")
 
         width, height = img.size
 
@@ -77,14 +156,10 @@ def load_and_preprocess_images(image_path_list, mode="crop", target_size=518):
             # Make the largest dimension 518px while maintaining aspect ratio
             if width >= height:
                 new_width = target_size
-                new_height = (
-                    round(height * (new_width / width) / 14) * 14
-                )  # Make divisible by 14
+                new_height = round(height * (new_width / width) / 14) * 14  # Make divisible by 14
             else:
                 new_height = target_size
-                new_width = (
-                    round(width * (new_height / height) / 14) * 14
-                )  # Make divisible by 14
+                new_width = round(width * (new_height / height) / 14) * 14  # Make divisible by 14
         else:  # mode == "crop"
             # Original behavior: set width to 518px
             new_width = target_size
@@ -113,10 +188,7 @@ def load_and_preprocess_images(image_path_list, mode="crop", target_size=518):
 
                 # Pad with white (value=1.0)
                 img = torch.nn.functional.pad(
-                    img,
-                    (pad_left, pad_right, pad_top, pad_bottom),
-                    mode="constant",
-                    value=1.0,
+                    img, (pad_left, pad_right, pad_top, pad_bottom), mode="constant", value=1.0
                 )
 
         shapes.add((img.shape[1], img.shape[2]))
@@ -143,10 +215,7 @@ def load_and_preprocess_images(image_path_list, mode="crop", target_size=518):
                 pad_right = w_padding - pad_left
 
                 img = torch.nn.functional.pad(
-                    img,
-                    (pad_left, pad_right, pad_top, pad_bottom),
-                    mode="constant",
-                    value=1.0,
+                    img, (pad_left, pad_right, pad_top, pad_bottom), mode="constant", value=1.0
                 )
             padded_images.append(img)
         images = padded_images
@@ -160,53 +229,3 @@ def load_and_preprocess_images(image_path_list, mode="crop", target_size=518):
             images = images.unsqueeze(0)
 
     return images
-
-
-def prepare_image_inputs(
-    image,
-    image_processor,
-    model_type="qwen2.5vl",
-    prepare_geometry=True,
-    depth_supervision_enabled=False,
-):
-    images = load_and_preprocess_images([image])
-    merge_size: int = getattr(image_processor, "merge_size")
-    patch_size: int = getattr(image_processor, "patch_size")
-    _, height, width = images[0].shape
-
-    if width % (patch_size * merge_size) > 0:
-        width = width - (width % (patch_size * merge_size))
-    if height % (patch_size * merge_size) > 0:
-        height = height - (height % (patch_size * merge_size))
-
-    images = images[:, :, :height, :width]
-    visual_processed = image_processor(images, return_tensors="pt", do_rescale=False)
-    image_tensor = visual_processed["pixel_values"]
-    grid_thw = visual_processed["image_grid_thw"]
-
-    geometry_encoder_inputs = None
-    if prepare_geometry and model_type == "qwen3.5":
-        if depth_supervision_enabled:
-            # Dense correspondence requires the exact Qwen crop and field of
-            # view.  Reuse the tensor that produced pixel_values instead of
-            # independently reloading and anisotropically resizing the source.
-            geometry_encoder_inputs = copy.deepcopy(images[0])
-        else:
-            # Preserve the original SpatialForcing v0 teacher preprocessing
-            # byte-for-byte when depth supervision is disabled.
-            rgb_image = _load_rgb_image(image)
-            _, grid_h, grid_w = grid_thw[0].tolist()
-            geometry_width = grid_w * GEOMETRY_ENCODER_PATCH_SIZE
-            geometry_height = grid_h * GEOMETRY_ENCODER_PATCH_SIZE
-            geometry_image = rgb_image.resize(
-                (geometry_width, geometry_height), Image.Resampling.BICUBIC
-            )
-            geometry_encoder_inputs = TF.ToTensor()(geometry_image)
-    elif prepare_geometry:
-        geometry_encoder_inputs = copy.deepcopy(images[0])
-
-    return {
-        "pixel_values": image_tensor,
-        "image_grid_thw": grid_thw[0],
-        "geometry_encoder_inputs": geometry_encoder_inputs,
-    }
