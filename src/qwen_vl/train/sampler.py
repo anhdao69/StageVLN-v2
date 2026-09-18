@@ -89,6 +89,3 @@ def _get_train_sampler(
             lengths=train_dataset.modality_lengths,
         )
     return _ORIGINAL_GET_TRAIN_SAMPLER(self, train_dataset)
-
-
-Trainer._get_train_sampler = _get_train_sampler

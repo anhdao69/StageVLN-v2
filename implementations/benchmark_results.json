@@ -1,0 +1,134 @@
+{
+  "hardware": "4 NVIDIA H100 80GB HBM3",
+  "workers_per_rank": 1,
+  "cpu_threads_per_process": 1,
+  "notes": [
+    "bounded real-model smoke/stress tests; startup and filesystem cache affect throughput",
+    "no Slurm jobs submitted",
+    "no claim of exhaustive optimal ZeRO/batch search"
+  ],
+  "runs": [
+    {
+      "name": "bench_v0_b2_cpu8",
+      "micro_batch": 2,
+      "accumulation": 8,
+      "global_batch": 64,
+      "metrics": {
+        "before_init_mem_cpu": 1273856000,
+        "before_init_mem_gpu": 0,
+        "epoch": 4.0,
+        "init_mem_cpu_alloc_delta": 4096,
+        "init_mem_cpu_peaked_delta": 0,
+        "init_mem_gpu_alloc_delta": 0,
+        "init_mem_gpu_peaked_delta": 0,
+        "total_flos": 3.4357899316690944e+16,
+        "train_loss": 0.5778317414224148,
+        "train_mem_cpu_alloc_delta": 2255413248,
+        "train_mem_cpu_peaked_delta": 14894243840,
+        "train_mem_gpu_alloc_delta": 21845762560,
+        "train_mem_gpu_peaked_delta": 48200392192,
+        "train_runtime": 66.9897,
+        "train_samples_per_second": 7.643,
+        "train_steps_per_second": 0.119
+      },
+      "peak_allocated_gib_rank0": 65.23556518554688
+    },
+    {
+      "name": "stress_v0_b2",
+      "micro_batch": 2,
+      "accumulation": 8,
+      "global_batch": 64,
+      "metrics": {
+        "before_init_mem_cpu": 1275453440,
+        "before_init_mem_gpu": 0,
+        "epoch": 1.5,
+        "init_mem_cpu_alloc_delta": 4096,
+        "init_mem_cpu_peaked_delta": 0,
+        "init_mem_gpu_alloc_delta": 0,
+        "init_mem_gpu_peaked_delta": 0,
+        "total_flos": 1.321390309376e+16,
+        "train_loss": 2.1879993677139282,
+        "train_mem_cpu_alloc_delta": 2269605888,
+        "train_mem_cpu_peaked_delta": 14880354304,
+        "train_mem_gpu_alloc_delta": 21845762560,
+        "train_mem_gpu_peaked_delta": 48474656768,
+        "train_runtime": 24.3926,
+        "train_samples_per_second": 7.871,
+        "train_steps_per_second": 0.123
+      },
+      "peak_allocated_gib_rank0": 65.49099397659302,
+      "launcher_status": "Training completed; shell epilogue failed after concurrent launcher edit. Superseded by clean verify_v0_tail_export run."
+    },
+    {
+      "name": "stress_v1_b4",
+      "micro_batch": 4,
+      "accumulation": 4,
+      "global_batch": 64,
+      "metrics": {
+        "before_init_mem_cpu": 1272086528,
+        "before_init_mem_gpu": 0,
+        "epoch": 1.5,
+        "init_mem_cpu_alloc_delta": 4096,
+        "init_mem_cpu_peaked_delta": 0,
+        "init_mem_gpu_alloc_delta": 0,
+        "init_mem_gpu_peaked_delta": 0,
+        "total_flos": 7842830668005376.0,
+        "train_loss": 2.433893918991089,
+        "train_mem_cpu_alloc_delta": 2229047296,
+        "train_mem_cpu_peaked_delta": 14918520832,
+        "train_mem_gpu_alloc_delta": 21845762560,
+        "train_mem_gpu_peaked_delta": 55326104576,
+        "train_runtime": 41.42,
+        "train_samples_per_second": 4.635,
+        "train_steps_per_second": 0.072
+      },
+      "peak_allocated_gib_rank0": 71.87190198898315
+    },
+    {
+      "name": "verify_v0_tail_export",
+      "micro_batch": 2,
+      "accumulation": 8,
+      "unique_samples": 76,
+      "padded_exposures": 80,
+      "optimizer_updates": 2,
+      "metrics": {
+        "before_init_mem_cpu": 1276350464,
+        "before_init_mem_gpu": 0,
+        "epoch": 1.0,
+        "init_mem_cpu_alloc_delta": 4096,
+        "init_mem_cpu_peaked_delta": 0,
+        "init_mem_gpu_alloc_delta": 0,
+        "init_mem_gpu_peaked_delta": 0,
+        "total_flos": 5073894109085696.0,
+        "train_loss": 2.7914193868637085,
+        "train_mem_cpu_alloc_delta": 1963888640,
+        "train_mem_cpu_peaked_delta": 15183085568,
+        "train_mem_gpu_alloc_delta": 21845762560,
+        "train_mem_gpu_peaked_delta": 40106706432,
+        "train_runtime": 46.8845,
+        "train_samples_per_second": 2.73,
+        "train_steps_per_second": 0.043
+      },
+      "launcher_exit": 0,
+      "export_verified": true
+    }
+  ],
+  "rejected": [
+    {
+      "name": "bench_v0_b4",
+      "reason": "CUDA OOM without checkpointing; 76.70GiB PyTorch allocated before failed 90MiB request"
+    }
+  ],
+  "selected": {
+    "v0": {
+      "micro_batch": 2,
+      "accumulation": 8,
+      "zero": 1
+    },
+    "v1": {
+      "micro_batch": 4,
+      "accumulation": 4,
+      "zero": 1
+    }
+  }
+}

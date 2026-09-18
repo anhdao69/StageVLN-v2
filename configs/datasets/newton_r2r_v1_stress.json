@@ -1,0 +1,8 @@
+{
+  "dataset_name": "r2r_v1_sw4",
+  "annotation_path": "/groups/yshang/an221229/data/StageVLN-v2/stress_sw4.json",
+  "data_path": "/groups/yshang/an221229/data/JanusVLN_data",
+  "tag": "3d",
+  "dataset_format": "janusvln",
+  "history": "sw4"
+}

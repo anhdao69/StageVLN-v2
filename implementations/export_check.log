@@ -1,0 +1,15 @@
+{
+  "saved_template_matches_training": true,
+  "weights": [
+    {
+      "key": "model.visual.merger.linear_fc2.weight",
+      "changed_elements": 2867228,
+      "elements": 10485760
+    },
+    {
+      "key": "model.language_model.layers.3.self_attn.q_proj.weight",
+      "changed_elements": 477519,
+      "elements": 20971520
+    }
+  ]
+}

@@ -16,7 +16,7 @@ class ModelArguments:
 @dataclass
 class DataArguments:
     dataset_config: str = field(
-        default="configs/datasets/newton_r2r_uniform8.json"
+        default="configs/datasets/newton_r2r_v0.json"
     )
     max_history_frames: int = field(default=8)
     max_pixels: int = field(default=576 * 28 * 28)

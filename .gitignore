@@ -12,3 +12,6 @@ slurm_logs/
 wandb/
 slurm-*.out
 *.env
+
+.worktrees/
+.superpowers/

@@ -1,0 +1,51 @@
+{
+  "scope": "CPU specification algebra and local collector fixture; not model implementation tests",
+  "torch_version": "2.10.0+cu129",
+  "results": [
+    {
+      "test": "check_history",
+      "status": "passed",
+      "detail": "513 timesteps; exact uniform/recent/current and early-window invariants"
+    },
+    {
+      "test": "check_feature_order",
+      "status": "passed",
+      "detail": "rectangular merge-block/raster permutation round-trips"
+    },
+    {
+      "test": "check_reset_and_detach",
+      "status": "passed",
+      "detail": "selective reset trains initial slots; detach preserves value and cuts graph"
+    },
+    {
+      "test": "check_loss_partition",
+      "status": "passed",
+      "detail": "unequal action-token lengths and uneven microbatches have identical gradients"
+    },
+    {
+      "test": "check_gradient_bridge",
+      "status": "passed",
+      "detail": "8-step recurrence, shared live merger, ancestor/descendant auxiliaries; max gradient delta 2.22e-16"
+    },
+    {
+      "test": "check_causality_and_credit",
+      "status": "passed",
+      "detail": "future perturbations leave earlier states unchanged; last loss reaches first input"
+    },
+    {
+      "test": "check_delay_eligibility",
+      "status": "passed",
+      "detail": "K8/R4 within-segment off-window eligible delays are exactly 5,6,7"
+    },
+    {
+      "test": "check_global_weighting",
+      "status": "passed",
+      "detail": "global-count scaling matches union mean with unequal and empty ranks (algebra, not distributed execution)"
+    },
+    {
+      "test": "check_collector_local",
+      "status": "passed",
+      "detail": "local Git export, license inclusion, hash verification and commit-lock reuse; no network"
+    }
+  ]
+}

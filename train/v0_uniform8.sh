@@ -4,7 +4,7 @@ set -euo pipefail
 PROJECT_ROOT="${PROJECT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 cd "$PROJECT_ROOT"
 
-ENV_DIR="${ENV_DIR:-$PROJECT_ROOT/../SpatialForcing-VLN/.venv}"
+ENV_DIR="${ENV_DIR:-${VIRTUAL_ENV:-$PROJECT_ROOT/.venv}}"
 if [[ ! -f "$ENV_DIR/bin/activate" ]]; then
     echo "Missing uv environment: $ENV_DIR" >&2
     exit 1
@@ -31,19 +31,19 @@ export PATH="$CUDA_HOME/bin:$PATH"
 MODEL_PATH="${MODEL_PATH:-Qwen/Qwen3.5-4B}"
 ATTN_IMPLEMENTATION="${ATTN_IMPLEMENTATION:-flash_attention_2}"
 DEEPSPEED_CONFIG="${DEEPSPEED_CONFIG:-$PROJECT_ROOT/train/zero1.json}"
-DATASET_CONFIG="${DATASET_CONFIG:-$PROJECT_ROOT/configs/datasets/newton_r2r_uniform8.json}"
+DATASET_CONFIG="${DATASET_CONFIG:-$PROJECT_ROOT/configs/datasets/newton_r2r_v0.json}"
 default_cache_dir="$PROJECT_ROOT/cache"
 if [[ -d /lustre/fs1/groups/yshang/an221229/cache/huggingface/hub ]]; then
     default_cache_dir=/lustre/fs1/groups/yshang/an221229/cache/huggingface/hub
 fi
 CACHE_DIR="${CACHE_DIR:-${HF_HUB_CACHE:-$default_cache_dir}}"
-OUTPUT_DIR="${OUTPUT_DIR:-$PROJECT_ROOT/output/v0_uniform8}"
+OUTPUT_DIR="${OUTPUT_DIR:-/groups/yshang/an221229/checkpoints/StageVLN-v2/v0_r2r_uniform8}"
 
 NPROC_PER_NODE="${NPROC_PER_NODE:-$(nvidia-smi --list-gpus | wc -l)}"
 MASTER_ADDR="${MASTER_ADDR:-127.0.0.1}"
 MASTER_PORT="${MASTER_PORT:-29531}"
 PER_DEVICE_TRAIN_BATCH_SIZE="${PER_DEVICE_TRAIN_BATCH_SIZE:-2}"
-GRADIENT_ACCUMULATION_STEPS="${GRADIENT_ACCUMULATION_STEPS:-4}"
+GRADIENT_ACCUMULATION_STEPS="${GRADIENT_ACCUMULATION_STEPS:-8}"
 NUM_TRAIN_EPOCHS="${NUM_TRAIN_EPOCHS:-1}"
 MAX_STEPS="${MAX_STEPS:-}"
 MAX_SAMPLES="${MAX_SAMPLES:--1}"
@@ -97,7 +97,7 @@ train_args=(
     --tune_mm_mlp True
     --tune_mm_vision False
     --dataset_config "$DATASET_CONFIG"
-    --max_history_frames 8
+    --max_history_frames "${MAX_HISTORY_FRAMES:-8}"
     --max_samples "$MAX_SAMPLES"
     --shuffle True
     --sparse_action_logits "$SPARSE_ACTION_LOGITS"
@@ -141,6 +141,9 @@ if [[ -n "$MAX_STEPS" ]]; then
         exit 2
     fi
     train_args+=(--max_steps "$MAX_STEPS")
+fi
+if [[ -n "${RESUME_FROM_CHECKPOINT:-}" ]]; then
+    train_args+=(--resume_from_checkpoint "$RESUME_FROM_CHECKPOINT")
 fi
 
 echo ">>>>> Qwen3.5-4B plain SFT on $NPROC_PER_NODE GPUs"

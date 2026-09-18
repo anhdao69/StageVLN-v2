@@ -1,63 +1,80 @@
-# Qwen3.5 R2R SFT
+# Qwen3.5 R2R training: v0 and v1
 
-This repository contains one training path: plain supervised fine-tuning of
-`Qwen/Qwen3.5-4B` on JanusVLN R2R. The vision encoder is frozen; the language
-model and Qwen vision merger are trained. There is no geometry model, auxiliary
-loss, distillation, depth supervision, or inference-time modification.
+Plain supervised fine-tuning of public Qwen3.5-4B. The visual backbone is frozen;
+the vision merger and language model are trained. v0 uses up to eight uniformly
+selected preceding observations plus current. v1 uses the four immediately
+preceding observations plus current. There is no recurrent memory or geometry
+module in these training paths.
 
-Each record may contain the current observation and up to eight ordered history
-frames. The final image is the current observation. The expected actions are
-`MOVE_FORWARD`, `TURN_LEFT`, `TURN_RIGHT`, and `STOP`.
+The local R2R dataset has **631,244 states in 10,819 complete episodes**. Every
+frame/action was checked against original R2R metadata; rebuilt v0 annotations
+match every R2R record in the existing JanusVLN mixed-data JSON. v0 and v1 have
+identical targets and instructions. See [the review](implementations/review_v0_v3.md)
+and [v2 implementation plan](implementations/v2_memory_only_implementation.md).
 
-## Train
+## Prepared launchers
 
-The Newton paths are in
-[`configs/datasets/newton_r2r_uniform8.json`](configs/datasets/newton_r2r_uniform8.json).
-The launcher activates the uv environment at `../SpatialForcing-VLN/.venv`.
+**No Slurm jobs were submitted.** The scripts are ready for a later decision to
+train; the current user request is code/review only.
+
+- `train/v0_uniform8.sh` with `configs/datasets/newton_r2r_v0.json`
+- `train/v1_sw4.sh` with `configs/datasets/newton_r2r_v1.json`
+- Cluster wrappers: `train/slurm/v0_r2r.slurm`, `train/slurm/v1_r2r.slurm`
+
+The cluster wrappers request four H10080GB GPUs, 8 CPUs, one image-loading
+worker/GPU, and single-threaded CPU math. Global batch is 64; v0 uses batch2 per
+GPU and accumulation8; v1 uses batch4 and accumulation4. ZeRO-1, bf16, FA2, fused AdamW, LR1e-6 language / 1e-5
+merger, weight decay0.01, one epoch and seed42 are used. v0 batch4/GPU without
+activation checkpointing ran out of H100 memory in testing.
+
+Weights go under `/groups/yshang/an221229/checkpoints/StageVLN-v2/`. Slurm runs
+get unique job-ID directories, a pinned public checkpoint revision, a source
+snapshot, package manifest, and data/prompt protocols. Checkpoint resume must
+be explicit; an existing checkpoint directory is not resumed automatically.
+
+After successful training, each Slurm wrapper uploads the final export to its
+private `anhdao69/StageVLN-v0-r2r-uniform8` or `anhdao69/StageVLN-v1-r2r-sw4`
+repository. Intermediate optimizer checkpoints are excluded. The token is read
+from `~/.cache/stagevln/hf_token`, mode0600, never from committed source.
+No upload has been performed. The upload helper can retry independently after
+a successful training run using `--folder` and `--repo`.
+
+The generic launcher requires an explicitly selected environment (`ENV_DIR`),
+an active virtualenv, or this repository's `.venv`. The cluster wrapper selects
+the tested shared environment explicitly. Its versions are Python3.12.13,
+PyTorch2.10.0+cu129, Transformers5.3.0, Accelerate1.13.0, DeepSpeed0.16.4,
+FlashAttention2.8.3. Always set `PYTHONPATH=$PWD/src` for direct Python commands
+because that shared environment also contains another project's editable install.
+
+## Correctness changes
+
+The collator rejects overlength examples and validates image tokens per sample.
+The loss averages target tokens within each action state and normalizes using
+the actual global accumulation-window state count. It does not weight longer
+action names more heavily. Only real target-prediction positions receive
+vocabulary logits; dense/selected gradients are tested for unequal prompt lengths.
+The saved tokenizer and prompt protocol preserve the exact non-thinking prefix.
+Custom normalization weights and biases are excluded from decay.
+
+Accelerate pads the epoch tail with four repeated examples: 631,248 exposures,
+with a final update of16 rather than64. This is recorded, and normalized by the
+actual count. The future episode trainer must instead implement explicit real
+observation/label scheduling as described in the v2 plan.
+
+## Rebuild and check
 
 ```bash
-bash train/v0_uniform8.sh
+/usr/bin/python3 scripts/data/prepare_r2r.py
+export PYTHONPATH="$PWD/src"
+export ENV_DIR=/home/an221229/code/SpatialForcing-VLN/.venv
+"$ENV_DIR/bin/python" -m unittest discover -s tests -v
+"$ENV_DIR/bin/python" scripts/train/check_prompt.py
 ```
 
-The SFT defaults are:
+`prepare_r2r.py` writes the two annotation files, complete episode JSONL,
+smoke samples, and hashes under `/groups/yshang/an221229/data/StageVLN-v2/`.
+It checks contiguous frame positions and every action against original ground
+truth before publishing its outputs.
 
-- Qwen3.5-4B, bf16, TF32, and FlashAttention 2
-- language model and multimodal merger trainable; vision encoder frozen
-- batch size 2 per GPU and gradient accumulation 4 (global batch 32 on 4 GPUs)
-- language-model learning rate `1e-6` and merger learning rate `1e-5`
-- cosine schedule, one warmup step, weight decay `0.01`, fused AdamW, and ZeRO-1
-- one epoch, 12,800-token limit, and eight history frames
-
-Qwen3.5 applies multimodal RoPE before attention. The training entry point works
-around a Transformers 5.3 bug that incorrectly treats Qwen's three-axis
-position IDs as FlashAttention packed-sequence metadata. The collator also asks
-the stock Qwen loss for only the assistant-action suffix logits; ignored prompt
-and image-token logits are skipped without changing the SFT loss.
-
-Gradient checkpointing defaults to off on H100 for higher throughput. Enable it
-only if a longer example exceeds memory:
-
-```bash
-GRADIENT_CHECKPOINTING=True bash train/v0_uniform8.sh
-```
-
-For a bounded smoke run without checkpoint writes:
-
-```bash
-MAX_STEPS=1 MAX_SAMPLES=32 SAVE_STRATEGY=no SAVE_FINAL_MODEL=False \
-  bash train/v0_uniform8.sh
-```
-
-The launcher writes Hugging Face training metrics to `train_results.json` and
-prints end-to-end wall time to `train.log`. Paths and run controls can be
-overridden with `DATASET_CONFIG`, `CACHE_DIR`, `OUTPUT_DIR`, `NPROC_PER_NODE`,
-`MAX_STEPS`, and the other environment variables defined near the top of the
-launcher.
-
-On four H100 80GB GPUs, the final 20-step smoke benchmark trained 640 samples
-in 57.71 seconds: 11.09 samples/s and 2.89 seconds per global-batch-32 step,
-including warm-up. At that compute rate, 631,264 examples (19,727 steps) take
-about 15.8 hours, versus the original SDPA/ZeRO-2 estimate of 33.2 hours. This
-is a compute-throughput estimate on repeated nine-frame samples; filesystem
-load, image diversity, and trajectory-length variation can increase full-run
-wall time.
+The review distinguishes unit tests and bounded GPU checks from unrun full
+training, upload, and simulator evaluation. No navigation-quality claim is made.

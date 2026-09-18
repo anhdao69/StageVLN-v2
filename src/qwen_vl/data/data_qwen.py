@@ -197,6 +197,7 @@ class R2RSFTDataset(Dataset):
         self.records = []
         allowed_actions = {"MOVE_FORWARD", "TURN_LEFT", "TURN_RIGHT", "STOP"}
         for record in records:
+            record = copy.deepcopy(record)
             images = record.get("images")
             if not isinstance(images, list) or not images:
                 raise ValueError("Every JanusVLN record needs an ordered images list")
@@ -209,8 +210,13 @@ class R2RSFTDataset(Dataset):
                 normalize_image_path(path, self.data_root) for path in images
             ]
             conversations = record.get("conversations")
-            if not conversations:
-                raise ValueError("Every JanusVLN record needs conversations")
+            if (not isinstance(conversations, list) or len(conversations) != 2
+                or [x.get("from") for x in conversations] != ["human", "gpt"]):
+                raise ValueError("Expected one human message followed by one gpt action")
+            if conversations[0]["value"].count(IMAGE_TOKEN) != len(images):
+                raise ValueError("Image placeholder count does not match images")
+            if len(set(record["images"])) != len(images):
+                raise ValueError("Duplicate images in one observation history")
             action = conversations[-1].get("value", conversations[-1].get("content"))
             if action not in allowed_actions:
                 raise ValueError(f"Invalid R2R action: {action!r}")
@@ -274,6 +280,15 @@ class DataCollatorForSFT:
     sparse_action_logits: bool = True
 
     def __call__(self, instances: Sequence[dict]):
+        image_token_id = self.tokenizer.convert_tokens_to_ids("<|image_pad|>")
+        for item in instances:
+            if len(item["input_ids"]) > self.tokenizer.model_max_length:
+                raise ValueError("Overlength example: refusing to truncate action or image tokens")
+            if not item["labels"].ne(IGNORE_INDEX).any():
+                raise ValueError("Example has no supervised action tokens")
+            expected = sum(int(grid.prod()) // 4 for grid in item["image_grid_thw"])
+            if int(item["input_ids"].eq(image_token_id).sum()) != expected:
+                raise ValueError("Per-example image token/grid mismatch")
         input_ids = torch.nn.utils.rnn.pad_sequence(
             [item["input_ids"] for item in instances],
             batch_first=True,
@@ -284,8 +299,6 @@ class DataCollatorForSFT:
             batch_first=True,
             padding_value=IGNORE_INDEX,
         )
-        max_length = self.tokenizer.model_max_length
-        input_ids, labels = input_ids[:, :max_length], labels[:, :max_length]
         image_token_id = self.tokenizer.convert_tokens_to_ids("<|image_pad|>")
         mm_token_type_ids = torch.zeros_like(input_ids, dtype=torch.int32)
         mm_token_type_ids[input_ids == image_token_id] = 1
@@ -308,7 +321,7 @@ class DataCollatorForSFT:
         batch = {
             "input_ids": input_ids,
             "labels": labels,
-            "attention_mask": input_ids.ne(self.tokenizer.pad_token_id),
+            "attention_mask": torch.arange(input_ids.shape[1])[None, :] < torch.tensor([len(item["input_ids"]) for item in instances])[:, None],
             "mm_token_type_ids": mm_token_type_ids,
             "pixel_values": torch.cat(
                 [item["pixel_values"] for item in instances]
@@ -316,19 +329,19 @@ class DataCollatorForSFT:
             "image_grid_thw": grids,
         }
         if self.sparse_action_logits:
-            # Qwen's stock causal-LM loss accepts labels matching the returned
-            # logits rather than requiring labels to match input_ids. Keep the
-            # token immediately before the first target plus the supervised
-            # suffix. This produces exactly the same shifted-token loss while
-            # avoiding vocabulary logits for thousands of ignored image/prompt
-            # positions.
-            supervised_columns = labels.ne(IGNORE_INDEX).any(dim=0).nonzero()
-            if supervised_columns.numel() == 0:
+            # Select the union of *prediction* positions for real targets.
+            # A contiguous suffix wastes huge vocabulary logits when one row
+            # has one image and another has nine. Qwen accepts tensor indices.
+            positions = labels[:, 1:].ne(IGNORE_INDEX).any(dim=0).nonzero().flatten()
+            if positions.numel() == 0:
                 raise ValueError("Batch has no supervised assistant tokens")
-            first_target = int(supervised_columns[0].item())
-            suffix_start = max(first_target - 1, 0)
-            batch["labels"] = labels[:, suffix_start:]
-            batch["logits_to_keep"] = labels.shape[1] - suffix_start
+            # Preserve the ordinary one-shift CE interface: labels start with
+            # a dummy ignored column, and logits end with an unused column.
+            batch["labels"] = torch.cat((
+                labels.new_full((len(instances), 1), IGNORE_INDEX),
+                labels[:, positions + 1],
+            ), dim=1)
+            batch["logits_to_keep"] = torch.cat((positions, positions.new_tensor([labels.shape[1] - 1])))
         return batch
 
 

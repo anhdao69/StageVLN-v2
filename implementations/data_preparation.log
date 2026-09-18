@@ -1,0 +1,27 @@
+{
+  "episodes": 10819,
+  "states": 631244,
+  "actions": {
+    "TURN_RIGHT": 104336,
+    "MOVE_FORWARD": 404912,
+    "TURN_LEFT": 111177,
+    "STOP": 10819
+  },
+  "max_episode_length": 183,
+  "checks": [
+    "complete contiguous PNG sequence",
+    "all actions equal original train_gt",
+    "instruction from original train metadata",
+    "unique episode IDs",
+    "identical v0/v1 states and targets"
+  ],
+  "history": {
+    "uniform8": "t<=8: all; otherwise floor(i*t/8), i=0..8",
+    "sw4": "max(0,t-4)..t"
+  },
+  "files": {
+    "r2r_uniform8.json": "8f3e218bfa79e2e05a20ddc304d286b12ef372fa38b944e8e524bb11bcd97a86",
+    "r2r_sw4.json": "8f3c9335d4149387463b0d1f8aeef721cce2f3ff9e4b882d6896407110c3fdab",
+    "episodes.jsonl": "243c9bf96436ee7f3a222d7b148f9ec5c5441899d9886c7699ff00ce3a693bf7"
+  }
+}

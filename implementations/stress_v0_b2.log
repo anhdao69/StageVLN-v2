@@ -1,0 +1,56 @@
+>>>>> dataset=r2r_v0_uniform8
+>>>>> annotation=/groups/yshang/an221229/data/StageVLN-v2/stress_uniform8.json
+>>>>> data_root=/groups/yshang/an221229/data/JanusVLN_data
+>>>>> Qwen3.5-4B plain SFT on 4 GPUs
+>>>>> attention=flash_attention_2 deepspeed=zero1.json optimizer=adamw_torch_fused sparse_action_logits=True
+>>>>> micro_batch=2 gradient_accumulation=8 gradient_checkpointing=False
+[2026-09-18 17:32:35,638] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-18 17:32:35,638] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-18 17:32:35,683] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-18 17:32:35,683] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-18 17:32:35,955] [INFO] [comm.py:658:init_distributed] cdb=None
+[2026-09-18 17:32:35,955] [INFO] [comm.py:658:init_distributed] cdb=None
+[2026-09-18 17:32:35,970] [INFO] [comm.py:658:init_distributed] cdb=None
+[2026-09-18 17:32:35,970] [INFO] [comm.py:658:init_distributed] cdb=None
+[2026-09-18 17:32:35,971] [INFO] [comm.py:689:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+Loading weights:   0%|          | 0/723 [00:00<?, ?it/s]Loading weights:   0%|          | 0/723 [00:00<?, ?it/s]Loading weights: 100%|██████████| 723/723 [00:00<00:00, 12994.03it/s]
+Loading weights: 100%|██████████| 723/723 [00:00<00:00, 13119.16it/s]
+Loading weights:   0%|          | 0/723 [00:00<?, ?it/s]Loading weights:   0%|          | 0/723 [00:00<?, ?it/s]Loading weights: 100%|██████████| 723/723 [00:00<00:00, 14347.74it/s]
+Loading weights: 100%|██████████| 723/723 [00:00<00:00, 14108.04it/s]
+>>>>> vision backbone: 0/306,242,560 trainable parameters
+>>>>> vision merger: 27,271,680/27,271,680 trainable parameters
+>>>>> language model: 4,205,751,296/4,205,751,296 trainable parameters
+>>>>> lm head: 635,699,200/635,699,200 trainable parameters
+>>>>> loaded 128 R2R samples
+>>>>> loaded 128 R2R samples
+>>>>> loaded 128 R2R samples
+>>>>> loaded 128 R2R samples
+[RANK 0] Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 248046, 'pad_token_id': 248044}.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 248046, 'pad_token_id': 248044}.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 248046, 'pad_token_id': 248044}.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 248046, 'pad_token_id': 248044}.
+NCCL version 2.27.5+cuda12.9
+  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [00:13<00:26, 13.45s/it]                                             {'loss': '2.647', 'grad_norm': '1335', 'learning_rate': '0', 'epoch': '0.5'}
+ 33%|███▎      | 1/3 [00:13<00:26, 13.45s/it] 67%|██████▋   | 2/3 [00:18<00:08,  8.59s/it]                                             {'loss': '2.91', 'grad_norm': '1356', 'learning_rate': '1e-06', 'epoch': '1'}
+ 67%|██████▋   | 2/3 [00:18<00:08,  8.59s/it]100%|██████████| 3/3 [00:24<00:00,  7.29s/it]                                             {'loss': '1.008', 'grad_norm': '626.4', 'learning_rate': '5e-07', 'epoch': '1.5'}
+100%|██████████| 3/3 [00:24<00:00,  7.29s/it]                                             {'train_runtime': '24.39', 'train_samples_per_second': '7.871', 'train_steps_per_second': '0.123', 'train_loss': '2.188', 'init_mem_cpu_alloc_delta': 4096, 'init_mem_gpu_alloc_delta': 0, 'init_mem_cpu_peaked_delta': 0, 'init_mem_gpu_peaked_delta': 0, 'train_mem_cpu_alloc_delta': 2269605888, 'train_mem_gpu_alloc_delta': 21845762560, 'train_mem_cpu_peaked_delta': 14880354304, 'train_mem_gpu_peaked_delta': 48474656768, 'before_init_mem_cpu': 1275453440, 'before_init_mem_gpu': 0, 'epoch': '1.5'}
+100%|██████████| 3/3 [00:25<00:00,  7.29s/it]100%|██████████| 3/3 [00:25<00:00,  8.37s/it]
+***** train metrics *****
+  before_init_mem_cpu        =     1216MB
+  before_init_mem_gpu        =        0MB
+  epoch                      =        1.5
+  init_mem_cpu_alloc_delta   =        0MB
+  init_mem_cpu_peaked_delta  =        0MB
+  init_mem_gpu_alloc_delta   =        0MB
+  init_mem_gpu_peaked_delta  =        0MB
+  total_flos                 = 12306406GF
+  train_loss                 =      2.188
+  train_mem_cpu_alloc_delta  =     2164MB
+  train_mem_cpu_peaked_delta =    14191MB
+  train_mem_gpu_alloc_delta  =    20833MB
+  train_mem_gpu_peaked_delta =    46229MB
+  train_runtime              = 0:00:24.39
+  train_samples_per_second   =      7.871
+  train_steps_per_second     =      0.123
+train/v0_uniform8.sh: line 160: /groups/yshang/an221229/checkpoints/StageVLN-v2/stress_v0_b2/train.log: Permission denied

@@ -1,0 +1,56 @@
+>>>>> dataset=r2r_v1_sw4
+>>>>> annotation=/groups/yshang/an221229/data/StageVLN-v2/stress_sw4.json
+>>>>> data_root=/groups/yshang/an221229/data/JanusVLN_data
+>>>>> Qwen3.5-4B plain SFT on 4 GPUs
+>>>>> attention=flash_attention_2 deepspeed=zero1.json optimizer=adamw_torch_fused sparse_action_logits=True
+>>>>> micro_batch=4 gradient_accumulation=4 gradient_checkpointing=False
+[2026-09-18 17:34:34,814] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-18 17:34:34,864] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-18 17:34:34,883] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-18 17:34:34,883] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-18 17:34:35,067] [INFO] [comm.py:658:init_distributed] cdb=None
+[2026-09-18 17:34:35,067] [INFO] [comm.py:689:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[2026-09-18 17:34:35,132] [INFO] [comm.py:658:init_distributed] cdb=None
+[2026-09-18 17:34:35,173] [INFO] [comm.py:658:init_distributed] cdb=None
+[2026-09-18 17:34:35,193] [INFO] [comm.py:658:init_distributed] cdb=None
+Loading weights:   0%|          | 0/723 [00:00<?, ?it/s]Loading weights:   0%|          | 0/723 [00:00<?, ?it/s]Loading weights:   0%|          | 0/723 [00:00<?, ?it/s]Loading weights:   0%|          | 0/723 [00:00<?, ?it/s]Loading weights:  20%|█▉        | 144/723 [00:00<00:00, 875.79it/s]Loading weights:  20%|█▉        | 144/723 [00:00<00:00, 1226.46it/s]Loading weights:  24%|██▎       | 171/723 [00:00<00:00, 1685.00it/s]Loading weights:  22%|██▏       | 161/723 [00:00<00:00, 1352.69it/s]Loading weights:  32%|███▏      | 232/723 [00:00<00:01, 309.15it/s]Loading weights:  37%|███▋      | 267/723 [00:00<00:01, 281.46it/s] Loading weights:  39%|███▊      | 279/723 [00:00<00:01, 271.89it/s]Loading weights:  41%|████      | 297/723 [00:00<00:01, 282.28it/s] Loading weights:  43%|████▎     | 314/723 [00:01<00:01, 240.50it/s]Loading weights:  45%|████▌     | 328/723 [00:01<00:01, 241.51it/s]Loading weights:  47%|████▋     | 340/723 [00:01<00:01, 255.85it/s] Loading weights:  47%|████▋     | 342/723 [00:01<00:01, 207.72it/s]Loading weights:  50%|█████     | 365/723 [00:01<00:01, 205.80it/s]Loading weights:  50%|█████     | 363/723 [00:01<00:01, 237.77it/s]Loading weights:  51%|█████     | 370/723 [00:01<00:01, 233.66it/s]Loading weights:  54%|█████▎    | 387/723 [00:01<00:01, 198.58it/s]Loading weights:  56%|█████▌    | 404/723 [00:01<00:01, 236.98it/s]Loading weights:  56%|█████▋    | 407/723 [00:01<00:01, 249.76it/s]Loading weights:  58%|█████▊    | 419/723 [00:01<00:01, 263.33it/s]Loading weights: 100%|██████████| 723/723 [00:01<00:00, 486.88it/s]
+Loading weights: 100%|██████████| 723/723 [00:01<00:00, 467.89it/s]
+Loading weights: 100%|██████████| 723/723 [00:01<00:00, 492.50it/s]
+Loading weights: 100%|██████████| 723/723 [00:01<00:00, 449.98it/s]
+>>>>> vision backbone: 0/306,242,560 trainable parameters
+>>>>> vision merger: 27,271,680/27,271,680 trainable parameters
+>>>>> language model: 4,205,751,296/4,205,751,296 trainable parameters
+>>>>> lm head: 635,699,200/635,699,200 trainable parameters
+>>>>> loaded 128 R2R samples
+>>>>> loaded 128 R2R samples
+>>>>> loaded 128 R2R samples
+[RANK 0] Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+>>>>> loaded 128 R2R samples
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 248046, 'pad_token_id': 248044}.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 248046, 'pad_token_id': 248044}.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 248046, 'pad_token_id': 248044}.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 248046, 'pad_token_id': 248044}.
+NCCL version 2.27.5+cuda12.9
+  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [00:35<01:11, 35.61s/it]                                             {'loss': '2.888', 'grad_norm': '1305', 'learning_rate': '0', 'epoch': '0.5'}
+ 33%|███▎      | 1/3 [00:35<01:11, 35.61s/it] 67%|██████▋   | 2/3 [00:37<00:15, 15.94s/it]                                             {'loss': '3.103', 'grad_norm': '1310', 'learning_rate': '1e-06', 'epoch': '1'}
+ 67%|██████▋   | 2/3 [00:37<00:15, 15.94s/it]100%|██████████| 3/3 [00:41<00:00, 10.32s/it]                                             {'loss': '1.311', 'grad_norm': '653.8', 'learning_rate': '5e-07', 'epoch': '1.5'}
+100%|██████████| 3/3 [00:41<00:00, 10.32s/it]                                             {'train_runtime': '41.42', 'train_samples_per_second': '4.635', 'train_steps_per_second': '0.072', 'train_loss': '2.434', 'init_mem_cpu_alloc_delta': 4096, 'init_mem_gpu_alloc_delta': 0, 'init_mem_cpu_peaked_delta': 0, 'init_mem_gpu_peaked_delta': 0, 'train_mem_cpu_alloc_delta': 2229047296, 'train_mem_gpu_alloc_delta': 21845762560, 'train_mem_cpu_peaked_delta': 14918520832, 'train_mem_gpu_peaked_delta': 55326104576, 'before_init_mem_cpu': 1272086528, 'before_init_mem_gpu': 0, 'epoch': '1.5'}
+100%|██████████| 3/3 [00:42<00:00, 10.32s/it]100%|██████████| 3/3 [00:42<00:00, 14.06s/it]
+***** train metrics *****
+  before_init_mem_cpu        =     1213MB
+  before_init_mem_gpu        =        0MB
+  epoch                      =        1.5
+  init_mem_cpu_alloc_delta   =        0MB
+  init_mem_cpu_peaked_delta  =        0MB
+  init_mem_gpu_alloc_delta   =        0MB
+  init_mem_gpu_peaked_delta  =        0MB
+  total_flos                 =  7304205GF
+  train_loss                 =     2.4339
+  train_mem_cpu_alloc_delta  =     2125MB
+  train_mem_cpu_peaked_delta =    14227MB
+  train_mem_gpu_alloc_delta  =    20833MB
+  train_mem_gpu_peaked_delta =    52763MB
+  train_runtime              = 0:00:41.42
+  train_samples_per_second   =      4.635
+  train_steps_per_second     =      0.072
+>>>>> end-to-end wall time: 105s

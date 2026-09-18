@@ -1,0 +1,46 @@
+>>>>> dataset=r2r_v0_uniform8
+>>>>> annotation=/groups/yshang/an221229/data/StageVLN-v2/smoke_uniform8.json
+>>>>> data_root=/groups/yshang/an221229/data/JanusVLN_data
+>>>>> Qwen3.5-4B plain SFT on 4 GPUs
+>>>>> attention=flash_attention_2 deepspeed=zero1.json optimizer=adamw_torch_fused sparse_action_logits=True
+>>>>> micro_batch=2 gradient_accumulation=8 gradient_checkpointing=False
+[2026-09-18 17:22:37,938] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-18 17:22:37,938] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-18 17:22:37,938] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-18 17:22:37,939] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-18 17:22:45,399] [INFO] [comm.py:658:init_distributed] cdb=None
+[2026-09-18 17:22:45,399] [INFO] [comm.py:658:init_distributed] cdb=None
+[2026-09-18 17:22:45,400] [INFO] [comm.py:658:init_distributed] cdb=None
+[2026-09-18 17:22:45,400] [INFO] [comm.py:658:init_distributed] cdb=None
+[2026-09-18 17:22:45,400] [INFO] [comm.py:689:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+Loading weights:   0%|          | 0/723 [00:00<?, ?it/s]Loading weights:   0%|          | 0/723 [00:00<?, ?it/s]Loading weights:   0%|          | 0/723 [00:00<?, ?it/s]Loading weights:   0%|          | 0/723 [00:00<?, ?it/s]Loading weights:   6%|▌         | 40/723 [00:00<00:01, 374.50it/s]Loading weights:   6%|▌         | 43/723 [00:00<00:01, 402.37it/s]Loading weights:   8%|▊         | 58/723 [00:00<00:01, 488.05it/s]Loading weights:   9%|▊         | 62/723 [00:00<00:01, 527.85it/s]Loading weights:  12%|█▏        | 89/723 [00:00<00:01, 392.23it/s]Loading weights:  12%|█▏        | 87/723 [00:00<00:01, 348.64it/s]Loading weights:  15%|█▍        | 107/723 [00:00<00:01, 455.66it/s]Loading weights:  16%|█▌        | 115/723 [00:00<00:01, 443.79it/s]Loading weights:  19%|█▉        | 139/723 [00:00<00:01, 425.37it/s]Loading weights:  20%|█▉        | 144/723 [00:00<00:01, 421.17it/s]Loading weights:  21%|██        | 153/723 [00:00<00:01, 435.78it/s]Loading weights:  22%|██▏       | 161/723 [00:00<00:01, 445.09it/s]Loading weights:  25%|██▌       | 182/723 [00:00<00:01, 367.27it/s]Loading weights:  26%|██▌       | 187/723 [00:00<00:01, 388.87it/s]Loading weights:  27%|██▋       | 197/723 [00:00<00:01, 352.42it/s]Loading weights:  28%|██▊       | 206/723 [00:00<00:01, 365.14it/s]Loading weights:  32%|███▏      | 232/723 [00:00<00:01, 407.99it/s]Loading weights:  33%|███▎      | 235/723 [00:00<00:01, 417.83it/s]Loading weights:  38%|███▊      | 274/723 [00:00<00:00, 471.54it/s]Loading weights:  45%|████▍     | 325/723 [00:00<00:00, 608.41it/s]Loading weights:  93%|█████████▎| 674/723 [00:00<00:00, 1643.15it/s]Loading weights:  94%|█████████▍| 678/723 [00:00<00:00, 1670.59it/s]Loading weights: 100%|██████████| 723/723 [00:00<00:00, 1095.19it/s]
+Loading weights: 100%|██████████| 723/723 [00:00<00:00, 1092.62it/s]
+Loading weights: 100%|██████████| 723/723 [00:00<00:00, 1056.40it/s]
+Loading weights: 100%|██████████| 723/723 [00:00<00:00, 1055.94it/s]
+>>>>> vision backbone: 0/306,242,560 trainable parameters
+>>>>> vision merger: 27,271,680/27,271,680 trainable parameters
+>>>>> language model: 4,205,751,296/4,205,751,296 trainable parameters
+>>>>> lm head: 635,699,200/635,699,200 trainable parameters
+>>>>> loaded 128 R2R samples
+[RANK 0] Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+>>>>> loaded 128 R2R samples
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 248046, 'pad_token_id': 248044}.
+>>>>> loaded 128 R2R samples
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 248046, 'pad_token_id': 248044}.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 248046, 'pad_token_id': 248044}.
+>>>>> loaded 128 R2R samples
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 248046, 'pad_token_id': 248044}.
+NCCL version 2.27.5+cuda12.9
+  0%|          | 0/3 [00:00<?, ?it/s] 33%|███▎      | 1/3 [00:45<01:31, 45.51s/it]                                             {'loss': '1.406', 'grad_norm': '892.7', 'learning_rate': '0', 'epoch': '0.5'}
+ 33%|███▎      | 1/3 [00:45<01:31, 45.51s/it] 67%|██████▋   | 2/3 [00:49<00:21, 21.12s/it]                                             {'loss': '1.486', 'grad_norm': '912.9', 'learning_rate': '1e-06', 'epoch': '1'}
+ 67%|██████▋   | 2/3 [00:49<00:21, 21.12s/it]100%|██████████| 3/3 [00:55<00:00, 14.25s/it]                                             {'loss': '0.5194', 'grad_norm': '292.2', 'learning_rate': '5e-07', 'epoch': '1.5'}
+100%|██████████| 3/3 [00:55<00:00, 14.25s/it]                                             {'train_runtime': '55.64', 'train_samples_per_second': '3.451', 'train_steps_per_second': '0.054', 'train_loss': '1.137', 'epoch': '1.5'}
+100%|██████████| 3/3 [00:55<00:00, 14.25s/it]100%|██████████| 3/3 [00:55<00:00, 18.55s/it]
+***** train metrics *****
+  epoch                    =        1.5
+  total_flos               = 11999466GF
+  train_loss               =      1.137
+  train_runtime            = 0:00:55.63
+  train_samples_per_second =      3.451
+  train_steps_per_second   =      0.054
+>>>>> end-to-end wall time: 163s

@@ -1,0 +1,8 @@
+{
+  "dataset_name": "r2r_v0_uniform8",
+  "annotation_path": "/groups/yshang/an221229/data/StageVLN-v2/smoke_uniform8.json",
+  "data_path": "/groups/yshang/an221229/data/JanusVLN_data",
+  "tag": "3d",
+  "dataset_format": "janusvln",
+  "history": "uniform8"
+}

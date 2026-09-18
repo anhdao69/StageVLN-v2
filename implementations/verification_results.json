@@ -1,0 +1,24 @@
+{
+  "unit_tests": {
+    "passed": 8,
+    "failed": 0
+  },
+  "plan_algebra": {
+    "passed": 9,
+    "failed": 0
+  },
+  "real_tokenizer_prefix_roundtrip": "passed: 4 actions x 1/5/9 images",
+  "source_r2r_audit": "631244/631244 exact matches; 10819 episodes",
+  "gpu_v0": "passed 4 H100, b2 A8, stress and short-tail export",
+  "gpu_v1": "passed 4 H100, b4 A4, longest-instruction mixed-history stress",
+  "export": "saved/reloaded template matches; merger/language weights changed",
+  "slurm_submitted": false,
+  "hf_upload_executed": false,
+  "unrun": [
+    "full epoch",
+    "checkpoint resume",
+    "end-to-end HF upload",
+    "simulator metrics",
+    "v2/v3 implementation"
+  ]
+}

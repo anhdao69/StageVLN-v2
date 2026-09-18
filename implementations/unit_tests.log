@@ -1,0 +1,13 @@
+test_all_steps (test_history.HistoryTests.test_all_steps) ... ok
+test_recent_is_not_uniform_tail (test_history.HistoryTests.test_recent_is_not_uniform_tail) ... ok
+test_custom_norm_decay_and_merger_lr (test_optimizer.OptimizerTests.test_custom_norm_decay_and_merger_lr) ... ok
+test_selective_logits_and_labels_keep_predecessor (test_sft_correctness.AccumulationTests.test_selective_logits_and_labels_keep_predecessor) ... ok
+test_unequal_microbatches_match_global_state_mean (test_sft_correctness.AccumulationTests.test_unequal_microbatches_match_global_state_mean) ... ok
+test_overlength_target_rejected (test_sft_correctness.CorrectnessTests.test_overlength_target_rejected) ... ok
+test_per_state_loss (test_sft_correctness.CorrectnessTests.test_per_state_loss) ... ok
+test_sparse_positions_match_dense_loss_for_unequal_prompts (test_sft_correctness.SparsePositionsTests.test_sparse_positions_match_dense_loss_for_unequal_prompts) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.024s
+
+OK

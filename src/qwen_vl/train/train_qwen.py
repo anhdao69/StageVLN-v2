@@ -1,6 +1,8 @@
 """Plain supervised fine-tuning for Qwen/Qwen3.5-4B on JanusVLN R2R."""
 
 import logging
+import json
+import hashlib
 import os
 from pathlib import Path
 
@@ -10,8 +12,7 @@ import transformers
 from transformers import AutoConfig, AutoProcessor, Qwen3_5ForConditionalGeneration
 from transformers.modeling_utils import ALL_ATTENTION_FUNCTIONS
 
-import qwen_vl.train.sampler  # noqa: F401 - installs length-grouped sampling
-from qwen_vl.data.data_qwen import make_supervised_data_module
+from qwen_vl.data.data_qwen import make_supervised_data_module, QWEN3_5_NON_THINKING_CHAT_TEMPLATE
 from qwen_vl.train.argument import DataArguments, ModelArguments, TrainingArguments
 from qwen_vl.train.trainer import QwenSFTTrainer
 
@@ -129,6 +130,7 @@ def train():
         padding_side="right",
     )
     tokenizer = processor.tokenizer
+    tokenizer.chat_template = QWEN3_5_NON_THINKING_CHAT_TEMPLATE
     tokenizer.model_max_length = training_args.model_max_length
     tokenizer.padding_side = "right"
     data_args.processor = processor
@@ -142,15 +144,25 @@ def train():
     )
 
     checkpoints = list(Path(training_args.output_dir).glob("checkpoint-*"))
-    if checkpoints:
-        logging.info("Resuming from the latest checkpoint in %s", training_args.output_dir)
-    train_result = trainer.train(resume_from_checkpoint=True if checkpoints else None)
+    if checkpoints and not training_args.resume_from_checkpoint:
+        raise ValueError("Existing checkpoints require explicit --resume_from_checkpoint")
+    train_result = trainer.train(resume_from_checkpoint=training_args.resume_from_checkpoint)
     trainer.log_metrics("train", train_result.metrics)
     trainer.save_metrics("train", train_result.metrics)
     trainer.save_state()
 
     if training_args.should_save:
         processor.save_pretrained(training_args.output_dir)
+        Path(training_args.output_dir, "prompt_protocol.json").write_text(json.dumps({
+            "system": "You are a helpful assistant.",
+            "chat_template": QWEN3_5_NON_THINKING_CHAT_TEMPLATE,
+            "template_sha256": hashlib.sha256(QWEN3_5_NON_THINKING_CHAT_TEMPLATE.encode()).hexdigest(),
+            "assistant_prefix": "<|im_start|>assistant\n<think>\n\n</think>\n\n",
+            "target_suffix": "<|im_end|>\n",
+            "actions": ["MOVE_FORWARD", "TURN_LEFT", "TURN_RIGHT", "STOP"],
+            "dataset_config": data_module["train_dataset"].config,
+            "rendering": "tokenizer.apply_chat_template on text messages; expand each <image> to native vision span first",
+        }, indent=2) + "\n")
     if training_args.save_final_model:
         model.config.use_cache = True
         model.model.language_model.config.use_cache = True

@@ -1,0 +1,20 @@
+test_all_steps (test_history.HistoryTests.test_all_steps) ... ok
+test_recent_is_not_uniform_tail (test_history.HistoryTests.test_recent_is_not_uniform_tail) ... ok
+test_selective_logits_and_labels_keep_predecessor (test_sft_correctness.AccumulationTests.test_selective_logits_and_labels_keep_predecessor) ... ok
+test_unequal_microbatches_match_global_state_mean (test_sft_correctness.AccumulationTests.test_unequal_microbatches_match_global_state_mean) ... ok
+test_overlength_target_rejected (test_sft_correctness.CorrectnessTests.test_overlength_target_rejected) ... ok
+test_per_state_loss (test_sft_correctness.CorrectnessTests.test_per_state_loss) ... ok
+test_sparse_positions_match_dense_loss_for_unequal_prompts (test_sft_correctness.SparsePositionsTests.test_sparse_positions_match_dense_loss_for_unequal_prompts) ... FAIL
+
+======================================================================
+FAIL: test_sparse_positions_match_dense_loss_for_unequal_prompts (test_sft_correctness.SparsePositionsTests.test_sparse_positions_match_dense_loss_for_unequal_prompts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/lustre/fs1/home/an221229/code/StageVLN-v2/tests/test_sft_correctness.py", line 71, in test_sparse_positions_match_dense_loss_for_unequal_prompts
+    self.assertIsInstance(sparse['logits_to_keep'],torch.Tensor)
+AssertionError: 27 is not an instance of <class 'torch.Tensor'>
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.054s
+
+FAILED (failures=1)

@@ -1,19 +1,59 @@
 """Trainer support needed by plain Qwen3.5 supervised fine-tuning."""
 
+import torch
 from transformers import Trainer
-from transformers.pytorch_utils import ALL_LAYERNORM_LAYERS
-from transformers.trainer import get_parameter_names
+from qwen_vl.train.sampler import _get_train_sampler
 
 
 class QwenSFTTrainer(Trainer):
     """Give the trainable vision merger its configured learning rate."""
 
+    _get_train_sampler = _get_train_sampler
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # We normalize over action states in the entire accumulation window.
+        # Trainer must not divide again; DeepSpeed scale_wrt_gas is also False.
+        self.model_accepts_loss_kwargs = True
+
+    def _get_num_items_in_batch(self, batch_samples, device):
+        count = torch.tensor(sum(batch["labels"].shape[0] for batch in batch_samples), device=device)
+        return self.accelerator.gather(count).sum()
+
+    def compute_loss(self, model, inputs, return_outputs=False, num_items_in_batch=None):
+        inputs = dict(inputs)
+        labels = inputs.pop("labels")
+        outputs = model(**inputs)
+        logits = outputs["logits"]
+        # The collator aligns selected prediction logits with labels shifted
+        # once (dummy leading label/trailing logit). Dense labels use the same
+        # one-shift rule. Average tokens within each action state.
+        targets = labels[:, 1:]
+        valid = targets.ne(-100)
+        counts = valid.sum(-1)
+        if (counts == 0).any():
+            raise ValueError("Every action state must have supervised targets")
+        token_losses = torch.nn.functional.cross_entropy(
+            logits[:, :-1][valid].float(), targets[valid], reduction="none"
+        )
+        rows = valid.nonzero()[:, 0]
+        sums = token_losses.new_zeros(labels.shape[0]).scatter_add(0, rows, token_losses)
+        per_state = sums / counts
+        loss = per_state.mean() if num_items_in_batch is None else (
+            per_state.sum() * self.accelerator.num_processes / num_items_in_batch
+        )
+        return (loss, outputs) if return_outputs else loss
+
     def create_optimizer(self):
         if self.optimizer is not None:
             return self.optimizer
 
-        decay_names = set(get_parameter_names(self.model, ALL_LAYERNORM_LAYERS))
-        decay_names = {name for name in decay_names if not name.endswith("bias")}
+        # Exclude custom RMSNorm weights as well as standard LayerNorm/bias.
+        decay_names = {
+            name for name, parameter in self.model.named_parameters()
+            if parameter.ndim > 1 and not name.endswith("bias")
+            and "norm" not in name.lower()
+        }
         merger_names = {
             name
             for name, parameter in self.model.named_parameters()
