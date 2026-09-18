@@ -1,0 +1,7 @@
+{
+  "dataset_name": "janusvln_r2r",
+  "annotation_path": "/scratch/11528/anhdao69/data/JanusVLN_data/train_r2r.json",
+  "data_path": "/scratch/11528/anhdao69/data/JanusVLN_data",
+  "tag": "3d",
+  "dataset_format": "janusvln"
+}

@@ -1,0 +1,1197 @@
+================================================
+FILE: README.md
+================================================
+# Qwen3.5 R2R SFT
+
+This repository contains one training path: plain supervised fine-tuning of
+`Qwen/Qwen3.5-4B` on JanusVLN R2R. The vision encoder is frozen; the language
+model and Qwen vision merger are trained. There is no geometry model, auxiliary
+loss, distillation, depth supervision, or inference-time modification.
+
+Each record may contain the current observation and up to eight ordered history
+frames. The final image is the current observation. The expected actions are
+`MOVE_FORWARD`, `TURN_LEFT`, `TURN_RIGHT`, and `STOP`.
+
+## Train
+
+The Newton paths are in
+[`configs/datasets/newton_r2r_uniform8.json`](configs/datasets/newton_r2r_uniform8.json).
+The launcher activates the uv environment at `../SpatialForcing-VLN/.venv`.
+
+```bash
+bash train/v0_uniform8.sh
+```
+
+The defaults retained from the previous SFT recipe are:
+
+- Qwen3.5-4B, bf16, TF32, and PyTorch SDPA
+- language model and multimodal merger trainable; vision encoder frozen
+- batch size 1 per GPU and gradient accumulation 8
+- language-model learning rate `1e-6` and merger learning rate `1e-5`
+- cosine schedule, one warmup step, weight decay `0.01`, and ZeRO-2
+- one epoch, 12,800-token limit, and eight history frames
+
+Gradient checkpointing defaults to off on H100 for higher throughput. Enable it
+only if a longer example exceeds memory:
+
+```bash
+GRADIENT_CHECKPOINTING=True bash train/v0_uniform8.sh
+```
+
+For a bounded smoke run without checkpoint writes:
+
+```bash
+MAX_STEPS=1 MAX_SAMPLES=32 SAVE_STRATEGY=no SAVE_FINAL_MODEL=False \
+  bash train/v0_uniform8.sh
+```
+
+The launcher writes Hugging Face training metrics to `train_results.json` and
+prints end-to-end wall time to `train.log`. Paths and run controls can be
+overridden with `DATASET_CONFIG`, `CACHE_DIR`, `OUTPUT_DIR`, `NPROC_PER_NODE`,
+`MAX_STEPS`, and the other environment variables defined near the top of the
+launcher.
+
+On four H100 80GB GPUs, a two-step benchmark at the default global batch size
+of 32 took 12.11 seconds of trainer time (6.06 seconds/step). With 631,264 R2R
+examples (19,727 steps), that projects to about 33.2 hours for one epoch. This
+is a throughput estimate; filesystem load and trajectory-length variation can
+change the full-run wall time.
+
+
+
+================================================
+FILE: LICENSE
+================================================
+Copyright 2026 SpatialStack Team
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      "License" shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      "Licensor" shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      "Legal Entity" shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      "control" means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      "You" (or "Your") shall mean an individual or Legal Entity
+      exercising permissions granted by this License.
+
+      "Source" form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      "Object" form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.
+
+      "Work" shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).
+
+      "Derivative Works" shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original work of authorship. For the purposes
+      of this License, Derivative Works shall not include works that remain
+      separable from, or merely link (or bind by name) to the interfaces of,
+      the Work and Derivative Works thereof.
+
+      "Contribution" shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. For the purposes of this definition, "submitted"
+      means any form of electronic, verbal, or written communication sent
+      to the Licensor or its representatives, including but not limited to
+      communication on electronic mailing lists, source code control systems,
+      and issue tracking systems that are managed by, or on behalf of, the
+      Licensor for the purpose of discussing and improving the Work, but
+      excluding communication that is conspicuously marked or otherwise
+      designated in writing by the copyright owner as "Not a Contribution."
+
+      "Contributor" shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:
+
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a "NOTICE" text file as part of its
+          distribution, then any Derivative Works that You distribute must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the License. You may add Your own attribution
+          notices within Derivative Works that You distribute, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the License.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.
+
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.
+
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
+
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf of
+      any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.
+
+   END OF TERMS AND CONDITIONS
+
+   APPENDIX: How to apply the Apache License to your work.
+
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets "[]"
+      replaced with your own identifying information. (Don't include
+      the brackets!) The text should be enclosed in the appropriate
+      comment syntax for the file format. We also recommend that a
+      file or class name and description of purpose be included on the
+      same "printed page" as the copyright notice for easier
+      identification within third-party archives.
+
+   Copyright [yyyy] [name of copyright owner]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+
+
+================================================
+FILE: setup.py
+================================================
+from setuptools import find_namespace_packages, setup
+
+
+setup(
+    name="qwen35-vln-sft",
+    version="0.1.0",
+    packages=find_namespace_packages("src"),
+    package_dir={"": "src"},
+    install_requires=[
+        "accelerate==1.13.0",
+        "deepspeed==0.16.4",
+        "pillow",
+        "safetensors>=0.5.0",
+        "transformers==5.3.0",
+    ],
+    extras_require={"dev": ["pytest>=9.0"]},
+    description="Plain Qwen3.5-4B SFT for JanusVLN R2R",
+    python_requires=">=3.12,<3.13",
+)
+
+
+
+================================================
+FILE: configs/datasets/newton_r2r_uniform8.json
+================================================
+{
+  "dataset_name": "janusvln_r2r",
+  "annotation_path": "/scratch/11528/anhdao69/data/JanusVLN_data/train_r2r.json",
+  "data_path": "/scratch/11528/anhdao69/data/JanusVLN_data",
+  "tag": "3d",
+  "dataset_format": "janusvln"
+}
+
+
+
+================================================
+FILE: src/qwen_vl/__init__.py
+================================================
+[Empty file]
+
+
+================================================
+FILE: src/qwen_vl/data/__init__.py
+================================================
+"""Data utilities for Qwen3.5 R2R supervised fine-tuning."""
+
+
+
+================================================
+FILE: src/qwen_vl/data/data_qwen.py
+================================================
+"""JanusVLN R2R data path for plain Qwen3.5 supervised fine-tuning."""
+
+import copy
+import itertools
+import json
+import os
+import random
+from collections.abc import Sequence
+from dataclasses import dataclass
+from pathlib import Path
+
+import torch
+import transformers
+from PIL import Image
+from torch.utils.data import Dataset
+
+IGNORE_INDEX = -100
+IMAGE_TOKEN = "<image>"
+
+QWEN3_5_NON_THINKING_CHAT_TEMPLATE = (
+    "{% for message in messages %}"
+    "{{ '<|im_start|>' + message['role'] + '\\n' }}"
+    "{% if message['role'] == 'assistant' %}"
+    "{{ '<think>\\n\\n</think>\\n\\n' + message['content'] }}"
+    "{% else %}{{ message['content'] }}{% endif %}"
+    "{{ '<|im_end|>' + '\\n' }}"
+    "{% endfor %}"
+    "{% if add_generation_prompt %}"
+    "{{ '<|im_start|>assistant\\n<think>\\n\\n</think>\\n\\n' }}"
+    "{% endif %}"
+)
+
+
+def read_json_array(path, max_samples=-1):
+    """Read all records, or stream only the prefix needed by a smoke run."""
+    if max_samples < 0:
+        with open(path, encoding="utf-8") as handle:
+            return json.load(handle)
+    if max_samples == 0:
+        return []
+
+    decoder = json.JSONDecoder()
+    records, buffer, position = [], "", 0
+    with open(path, encoding="utf-8") as handle:
+        eof = False
+        while len(records) < max_samples:
+            while position >= len(buffer) and not eof:
+                chunk = handle.read(1024 * 1024)
+                if chunk:
+                    buffer += chunk
+                else:
+                    eof = True
+            while position < len(buffer) and (
+                buffer[position].isspace() or buffer[position] in "[,"
+            ):
+                position += 1
+            if position >= len(buffer) or buffer[position] == "]":
+                break
+            try:
+                record, position = decoder.raw_decode(buffer, position)
+            except json.JSONDecodeError:
+                if eof:
+                    raise
+                chunk = handle.read(1024 * 1024)
+                if chunk:
+                    buffer += chunk
+                else:
+                    eof = True
+                continue
+            records.append(record)
+            if position > 1024 * 1024:
+                buffer, position = buffer[position:], 0
+    return records
+
+
+def load_dataset_config(path):
+    with Path(path).expanduser().open(encoding="utf-8") as handle:
+        config = json.load(handle)
+    if not isinstance(config, dict):
+        raise ValueError("dataset_config must contain one dataset object")
+    required = {
+        "dataset_name",
+        "annotation_path",
+        "data_path",
+        "tag",
+        "dataset_format",
+    }
+    missing = required - config.keys()
+    if missing:
+        raise ValueError(f"dataset_config is missing: {', '.join(sorted(missing))}")
+    if config["dataset_format"] != "janusvln":
+        raise ValueError("Only dataset_format='janusvln' is supported")
+    config["annotation_path"] = os.path.expandvars(
+        os.path.expanduser(config["annotation_path"])
+    )
+    config["data_path"] = os.path.expandvars(os.path.expanduser(config["data_path"]))
+    return config
+
+
+def normalize_image_path(image_path, dataset_root):
+    root = Path(dataset_root).expanduser().resolve()
+    path = Path(image_path).expanduser()
+    if not path.is_absolute():
+        relative = path
+    else:
+        try:
+            relative = path.resolve().relative_to(root)
+        except ValueError:
+            marker = next(
+                (part for part in ("R2R-CE-640x480", "R2R") if part in path.parts),
+                None,
+            )
+            if marker is None:
+                raise ValueError(f"Image path is outside the dataset root: {path}")
+            relative = Path(*path.parts[path.parts.index(marker) :])
+    if ".." in relative.parts:
+        raise ValueError(f"Image path escapes the dataset root: {image_path}")
+    return relative.as_posix()
+
+
+def _apply_chat_template(tokenizer, messages):
+    encoded = tokenizer.apply_chat_template(
+        messages,
+        tokenize=True,
+        add_generation_prompt=False,
+    )
+    return list(encoded["input_ids"] if hasattr(encoded, "keys") else encoded)
+
+
+def _assistant_prefix_length(tokenizer):
+    empty = _apply_chat_template(tokenizer, [{"role": "assistant", "content": ""}])
+    closing = tokenizer.encode("<|im_end|>\n", add_special_tokens=False)
+    return max(0, len(empty) - len(closing))
+
+
+def tokenize_conversation(conversations, tokenizer, grid_token_counts):
+    roles = {"human": "user", "gpt": "assistant"}
+    input_ids = _apply_chat_template(
+        tokenizer,
+        [{"role": "system", "content": "You are a helpful assistant."}],
+    )
+    labels = [IGNORE_INDEX] * len(input_ids)
+    assistant_prefix = _assistant_prefix_length(tokenizer)
+    grid_index = 0
+
+    for message in conversations:
+        role = roles.get(message.get("from", message.get("role")))
+        content = message.get("value", message.get("content"))
+        if role not in {"user", "assistant"} or not isinstance(content, str):
+            raise ValueError(f"Invalid conversation message: {message}")
+        if role == "user" and IMAGE_TOKEN in content:
+            pieces = content.split(IMAGE_TOKEN)
+            rebuilt = []
+            for piece in pieces[:-1]:
+                if grid_index >= len(grid_token_counts):
+                    raise ValueError("Conversation has more <image> tags than images")
+                rebuilt.extend(
+                    (
+                        piece,
+                        "<|vision_start|>",
+                        "<|image_pad|>" * grid_token_counts[grid_index],
+                        "<|vision_end|>",
+                    )
+                )
+                grid_index += 1
+            rebuilt.append(pieces[-1])
+            content = "".join(rebuilt)
+
+        encoded = _apply_chat_template(
+            tokenizer, [{"role": role, "content": content}]
+        )
+        input_ids.extend(encoded)
+        if role == "assistant":
+            target = encoded.copy()
+            target[:assistant_prefix] = [IGNORE_INDEX] * min(
+                assistant_prefix, len(target)
+            )
+            labels.extend(target)
+        else:
+            labels.extend([IGNORE_INDEX] * len(encoded))
+
+    if grid_index != len(grid_token_counts):
+        raise ValueError(
+            f"Conversation has {grid_index} <image> tags for "
+            f"{len(grid_token_counts)} images"
+        )
+    return torch.tensor(input_ids), torch.tensor(labels)
+
+
+class R2RSFTDataset(Dataset):
+    def __init__(self, tokenizer, data_args):
+        self.config = load_dataset_config(data_args.dataset_config)
+        self.data_root = self.config["data_path"]
+        records = read_json_array(
+            self.config["annotation_path"], data_args.max_samples
+        )
+        self.records = []
+        allowed_actions = {"MOVE_FORWARD", "TURN_LEFT", "TURN_RIGHT", "STOP"}
+        for record in records:
+            images = record.get("images")
+            if not isinstance(images, list) or not images:
+                raise ValueError("Every JanusVLN record needs an ordered images list")
+            if len(images) > data_args.max_history_frames + 1:
+                raise ValueError(
+                    f"Record has {len(images) - 1} history frames; "
+                    f"the configured maximum is {data_args.max_history_frames}"
+                )
+            record["images"] = [
+                normalize_image_path(path, self.data_root) for path in images
+            ]
+            conversations = record.get("conversations")
+            if not conversations:
+                raise ValueError("Every JanusVLN record needs conversations")
+            action = conversations[-1].get("value", conversations[-1].get("content"))
+            if action not in allowed_actions:
+                raise ValueError(f"Invalid R2R action: {action!r}")
+            self.records.append(record)
+
+        if data_args.shuffle:
+            random.shuffle(self.records)
+        if not self.records:
+            raise ValueError("The training dataset is empty")
+
+        self.tokenizer = copy.deepcopy(tokenizer)
+        self.tokenizer.chat_template = QWEN3_5_NON_THINKING_CHAT_TEMPLATE
+        self.image_processor = data_args.processor.image_processor
+        self.image_processor.max_pixels = data_args.max_pixels
+        self.image_processor.min_pixels = data_args.min_pixels
+        self.image_processor.size["longest_edge"] = data_args.max_pixels
+        self.image_processor.size["shortest_edge"] = data_args.min_pixels
+        print(f">>>>> loaded {len(self.records):,} R2R samples")
+
+    def __len__(self):
+        return len(self.records)
+
+    @property
+    def modality_lengths(self):
+        return [
+            len(record["images"]) * 252
+            + sum(
+                len(message.get("value", message.get("content", "")).split())
+                for message in record["conversations"]
+            )
+            for record in self.records
+        ]
+
+    def __getitem__(self, index):
+        record = self.records[index]
+        images = []
+        for relative_path in record["images"]:
+            image_path = os.path.join(self.data_root, relative_path)
+            with Image.open(image_path) as image:
+                images.append(image.convert("RGB"))
+        processed = self.image_processor.preprocess(images, return_tensors="pt")
+        pixel_values = processed["pixel_values"]
+        grids = list(processed["image_grid_thw"])
+
+        merge_size = self.image_processor.merge_size
+        token_counts = [int(grid.prod().item()) // merge_size**2 for grid in grids]
+        input_ids, labels = tokenize_conversation(
+            record["conversations"], self.tokenizer, token_counts
+        )
+        return {
+            "input_ids": input_ids,
+            "labels": labels,
+            "pixel_values": pixel_values,
+            "image_grid_thw": grids,
+        }
+
+
+@dataclass
+class DataCollatorForSFT:
+    tokenizer: transformers.PreTrainedTokenizer
+
+    def __call__(self, instances: Sequence[dict]):
+        input_ids = torch.nn.utils.rnn.pad_sequence(
+            [item["input_ids"] for item in instances],
+            batch_first=True,
+            padding_value=self.tokenizer.pad_token_id,
+        )
+        labels = torch.nn.utils.rnn.pad_sequence(
+            [item["labels"] for item in instances],
+            batch_first=True,
+            padding_value=IGNORE_INDEX,
+        )
+        max_length = self.tokenizer.model_max_length
+        input_ids, labels = input_ids[:, :max_length], labels[:, :max_length]
+        image_token_id = self.tokenizer.convert_tokens_to_ids("<|image_pad|>")
+        mm_token_type_ids = torch.zeros_like(input_ids, dtype=torch.int32)
+        mm_token_type_ids[input_ids == image_token_id] = 1
+
+        grids = torch.stack(
+            list(
+                itertools.chain.from_iterable(
+                    item["image_grid_thw"] for item in instances
+                )
+            )
+        )
+        expected_tokens = int((grids.prod(dim=-1) // 4).sum().item())
+        actual_tokens = int((input_ids == image_token_id).sum().item())
+        if actual_tokens != expected_tokens:
+            raise ValueError(
+                "Image tokens were truncated or incorrectly encoded: "
+                f"actual={actual_tokens}, expected={expected_tokens}"
+            )
+
+        return {
+            "input_ids": input_ids,
+            "labels": labels,
+            "attention_mask": input_ids.ne(self.tokenizer.pad_token_id),
+            "mm_token_type_ids": mm_token_type_ids,
+            "pixel_values": torch.cat(
+                [item["pixel_values"] for item in instances]
+            ),
+            "image_grid_thw": grids,
+        }
+
+
+def make_supervised_data_module(tokenizer, data_args):
+    dataset = R2RSFTDataset(tokenizer, data_args)
+    return {
+        "train_dataset": dataset,
+        "eval_dataset": None,
+        "data_collator": DataCollatorForSFT(tokenizer),
+    }
+
+
+
+================================================
+FILE: src/qwen_vl/train/argument.py
+================================================
+from dataclasses import dataclass, field
+from typing import Optional
+
+import transformers
+
+
+@dataclass
+class ModelArguments:
+    model_name_or_path: str = field(default="Qwen/Qwen3.5-4B")
+    attn_implementation: str = field(default="sdpa")
+    tune_mm_llm: bool = field(default=True)
+    tune_mm_mlp: bool = field(default=True)
+    tune_mm_vision: bool = field(default=False)
+
+
+@dataclass
+class DataArguments:
+    dataset_config: str = field(
+        default="configs/datasets/newton_r2r_uniform8.json"
+    )
+    max_history_frames: int = field(default=8)
+    max_pixels: int = field(default=576 * 28 * 28)
+    min_pixels: int = field(default=16 * 28 * 28)
+    max_samples: int = field(default=-1)
+    shuffle: bool = field(default=True)
+
+
+@dataclass
+class TrainingArguments(transformers.TrainingArguments):
+    cache_dir: Optional[str] = field(default=None)
+    optim: str = field(default="adamw_torch")
+    model_max_length: int = field(default=12_800)
+    mm_projector_lr: Optional[float] = field(default=1e-5)
+    group_by_modality_length: bool = field(default=True)
+    save_final_model: bool = field(default=True)
+
+
+
+================================================
+FILE: src/qwen_vl/train/sampler.py
+================================================
+"""Length-aware sampling used by the JanusVLN training recipe."""
+
+from typing import Optional
+
+import torch
+from torch.utils.data import Dataset, Sampler
+from transformers import Trainer
+from transformers.trainer import has_length
+
+
+_ORIGINAL_GET_TRAIN_SAMPLER = Trainer._get_train_sampler
+
+
+def _split_to_even_chunks(indices, lengths, num_chunks):
+    if len(indices) % num_chunks:
+        return [indices[index::num_chunks] for index in range(num_chunks)]
+
+    entries_per_chunk = len(indices) // num_chunks
+    chunks = [[] for _ in range(num_chunks)]
+    chunk_lengths = [0 for _ in range(num_chunks)]
+    for index in indices:
+        target = chunk_lengths.index(min(chunk_lengths))
+        chunks[target].append(index)
+        chunk_lengths[target] += lengths[index]
+        if len(chunks[target]) == entries_per_chunk:
+            chunk_lengths[target] = float("inf")
+    return chunks
+
+
+def _length_grouped_indices(lengths, batch_size, world_size, generator=None):
+    """Shuffle length-sorted megabatches and balance them across workers."""
+    random_order = torch.randperm(len(lengths), generator=generator)
+    megabatch_size = world_size * batch_size
+    megabatches = [
+        random_order[offset : offset + megabatch_size].tolist()
+        for offset in range(0, len(lengths), megabatch_size)
+    ]
+    megabatches = [
+        sorted(megabatch, key=lambda index: lengths[index], reverse=True)
+        for megabatch in megabatches
+    ]
+    balanced = [
+        _split_to_even_chunks(megabatch, lengths, world_size)
+        for megabatch in megabatches
+    ]
+    return [index for megabatch in balanced for chunk in megabatch for index in chunk]
+
+
+class LengthGroupedSampler(Sampler):
+    def __init__(
+        self,
+        batch_size: int,
+        world_size: int,
+        lengths,
+        generator=None,
+    ):
+        if lengths is None:
+            raise ValueError("Lengths must be provided")
+        self.batch_size = batch_size
+        self.world_size = world_size
+        self.lengths = lengths
+        self.generator = generator
+
+    def __len__(self):
+        return len(self.lengths)
+
+    def __iter__(self):
+        return iter(
+            _length_grouped_indices(
+                self.lengths,
+                self.batch_size,
+                self.world_size,
+                generator=self.generator,
+            )
+        )
+
+
+def _get_train_sampler(
+    self,
+    train_dataset: Optional[Dataset] = None,
+) -> Optional[Sampler]:
+    train_dataset = train_dataset if train_dataset is not None else self.train_dataset
+    if train_dataset is None or not has_length(train_dataset):
+        return None
+    if getattr(self.args, "group_by_modality_length", False):
+        return LengthGroupedSampler(
+            batch_size=self.args.train_batch_size,
+            world_size=self.args.world_size * self.args.gradient_accumulation_steps,
+            lengths=train_dataset.modality_lengths,
+        )
+    return _ORIGINAL_GET_TRAIN_SAMPLER(self, train_dataset)
+
+
+Trainer._get_train_sampler = _get_train_sampler
+
+
+
+================================================
+FILE: src/qwen_vl/train/train_qwen.py
+================================================
+"""Plain supervised fine-tuning for Qwen/Qwen3.5-4B on JanusVLN R2R."""
+
+import logging
+import os
+from pathlib import Path
+
+import torch
+import torch.distributed as dist
+import transformers
+from transformers import AutoConfig, AutoProcessor, Qwen3_5ForConditionalGeneration
+
+import qwen_vl.train.sampler  # noqa: F401 - installs length-grouped sampling
+from qwen_vl.data.data_qwen import make_supervised_data_module
+from qwen_vl.train.argument import DataArguments, ModelArguments, TrainingArguments
+from qwen_vl.train.trainer import QwenSFTTrainer
+
+
+def _model_parts(model):
+    return (
+        model.model.visual,
+        model.model.visual.merger,
+        model.model.language_model,
+        model.lm_head,
+    )
+
+
+def _set_trainable_modules(model, model_args):
+    vision, merger, language_model, lm_head = _model_parts(model)
+    vision.requires_grad_(model_args.tune_mm_vision)
+    merger.requires_grad_(model_args.tune_mm_mlp)
+    language_model.requires_grad_(model_args.tune_mm_llm)
+    lm_head.requires_grad_(model_args.tune_mm_llm)
+
+
+def _print_trainable_summary(model):
+    if dist.is_available() and dist.is_initialized() and dist.get_rank() != 0:
+        return
+    vision, merger, language_model, lm_head = _model_parts(model)
+    vision_trainable = sum(
+        p.numel() for p in vision.parameters() if p.requires_grad
+    ) - sum(p.numel() for p in merger.parameters() if p.requires_grad)
+    vision_total = sum(p.numel() for p in vision.parameters()) - sum(
+        p.numel() for p in merger.parameters()
+    )
+    print(
+        f">>>>> vision backbone: {vision_trainable:,}/{vision_total:,} "
+        "trainable parameters"
+    )
+    for name, module in (
+        ("vision merger", merger),
+        ("language model", language_model),
+        ("lm head", lm_head),
+    ):
+        trainable = sum(p.numel() for p in module.parameters() if p.requires_grad)
+        total = sum(p.numel() for p in module.parameters())
+        print(f">>>>> {name}: {trainable:,}/{total:,} trainable parameters")
+
+
+def _save_model(trainer, output_dir):
+    if trainer.deepspeed:
+        torch.cuda.synchronize()
+        trainer.save_model(output_dir)
+        return
+    if trainer.args.should_save:
+        state_dict = {
+            name: value.cpu() for name, value in trainer.model.state_dict().items()
+        }
+        trainer._save(output_dir, state_dict=state_dict)
+
+
+def train():
+    parser = transformers.HfArgumentParser(
+        (ModelArguments, DataArguments, TrainingArguments)
+    )
+    model_args, data_args, training_args = parser.parse_args_into_dataclasses()
+    transformers.set_seed(training_args.seed)
+    os.makedirs(training_args.output_dir, exist_ok=True)
+
+    config = AutoConfig.from_pretrained(
+        model_args.model_name_or_path,
+        cache_dir=training_args.cache_dir,
+    )
+    if config.model_type not in {"qwen3_5", "qwen3_5_vl"}:
+        raise ValueError(
+            f"Expected a Qwen3.5 model, got model_type={config.model_type!r}"
+        )
+
+    model = Qwen3_5ForConditionalGeneration.from_pretrained(
+        model_args.model_name_or_path,
+        config=config,
+        cache_dir=training_args.cache_dir,
+        attn_implementation=model_args.attn_implementation,
+        dtype=torch.bfloat16 if training_args.bf16 else None,
+    )
+    model.config.use_cache = False
+    model.model.language_model.config.use_cache = False
+    _set_trainable_modules(model, model_args)
+    _print_trainable_summary(model)
+
+    processor = AutoProcessor.from_pretrained(
+        model_args.model_name_or_path,
+        cache_dir=training_args.cache_dir,
+        padding_side="right",
+    )
+    tokenizer = processor.tokenizer
+    tokenizer.model_max_length = training_args.model_max_length
+    tokenizer.padding_side = "right"
+    data_args.processor = processor
+
+    data_module = make_supervised_data_module(tokenizer, data_args)
+    trainer = QwenSFTTrainer(
+        model=model,
+        processing_class=tokenizer,
+        args=training_args,
+        **data_module,
+    )
+
+    checkpoints = list(Path(training_args.output_dir).glob("checkpoint-*"))
+    if checkpoints:
+        logging.info("Resuming from the latest checkpoint in %s", training_args.output_dir)
+    train_result = trainer.train(resume_from_checkpoint=True if checkpoints else None)
+    trainer.log_metrics("train", train_result.metrics)
+    trainer.save_metrics("train", train_result.metrics)
+    trainer.save_state()
+
+    if training_args.should_save:
+        processor.save_pretrained(training_args.output_dir)
+    if training_args.save_final_model:
+        model.config.use_cache = True
+        model.model.language_model.config.use_cache = True
+        _save_model(trainer, training_args.output_dir)
+
+    if dist.is_available() and dist.is_initialized():
+        dist.destroy_process_group()
+
+
+if __name__ == "__main__":
+    train()
+
+
+
+================================================
+FILE: src/qwen_vl/train/trainer.py
+================================================
+"""Trainer support needed by plain Qwen3.5 supervised fine-tuning."""
+
+from transformers import Trainer
+from transformers.pytorch_utils import ALL_LAYERNORM_LAYERS
+from transformers.trainer import get_parameter_names
+
+
+class QwenSFTTrainer(Trainer):
+    """Give the trainable vision merger its configured learning rate."""
+
+    def create_optimizer(self):
+        if self.optimizer is not None:
+            return self.optimizer
+
+        decay_names = set(get_parameter_names(self.model, ALL_LAYERNORM_LAYERS))
+        decay_names = {name for name in decay_names if not name.endswith("bias")}
+        merger_names = {
+            name
+            for name, parameter in self.model.named_parameters()
+            if parameter.requires_grad and ".visual.merger." in name
+        }
+
+        grouped_parameters = []
+        for is_merger, learning_rate in (
+            (False, self.args.learning_rate),
+            (True, self.args.mm_projector_lr),
+        ):
+            for use_decay in (True, False):
+                parameters = [
+                    parameter
+                    for name, parameter in self.model.named_parameters()
+                    if parameter.requires_grad
+                    and (name in merger_names) is is_merger
+                    and (name in decay_names) is use_decay
+                ]
+                if parameters:
+                    grouped_parameters.append(
+                        {
+                            "params": parameters,
+                            "weight_decay": (
+                                self.args.weight_decay if use_decay else 0.0
+                            ),
+                            "lr": learning_rate,
+                        }
+                    )
+
+        assigned = [
+            id(parameter)
+            for group in grouped_parameters
+            for parameter in group["params"]
+        ]
+        expected = {
+            id(parameter)
+            for parameter in self.model.parameters()
+            if parameter.requires_grad
+        }
+        if len(assigned) != len(set(assigned)) or set(assigned) != expected:
+            raise RuntimeError("Optimizer groups do not exactly cover trainable parameters")
+
+        optimizer_class, optimizer_kwargs = self.get_optimizer_cls_and_kwargs(
+            self.args
+        )
+        self.optimizer = optimizer_class(grouped_parameters, **optimizer_kwargs)
+        return self.optimizer
+
+
+
+================================================
+FILE: train/v0_uniform8.sh
+================================================
+#!/usr/bin/env bash
+set -euo pipefail
+
+PROJECT_ROOT="${PROJECT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
+cd "$PROJECT_ROOT"
+
+ENV_DIR="${ENV_DIR:-$PROJECT_ROOT/../SpatialForcing-VLN/.venv}"
+if [[ ! -f "$ENV_DIR/bin/activate" ]]; then
+    echo "Missing uv environment: $ENV_DIR" >&2
+    exit 1
+fi
+# shellcheck disable=SC1091
+source "$ENV_DIR/bin/activate"
+export PYTHONPATH="$PROJECT_ROOT/src${PYTHONPATH:+:$PYTHONPATH}"
+
+# DeepSpeed checks for a CUDA toolkit at import time. Prefer an already loaded
+# toolkit, then derive it from nvcc, with the local H100 cluster as a fallback.
+if [[ -z "${CUDA_HOME:-}" ]]; then
+    if command -v nvcc >/dev/null 2>&1; then
+        CUDA_HOME="$(cd "$(dirname "$(command -v nvcc)")/.." && pwd)"
+    elif [[ -x /apps/cuda/cuda-12.6.0/bin/nvcc ]]; then
+        CUDA_HOME=/apps/cuda/cuda-12.6.0
+    else
+        echo "CUDA_HOME is unset and nvcc was not found; load a CUDA toolkit" >&2
+        exit 1
+    fi
+    export CUDA_HOME
+fi
+export PATH="$CUDA_HOME/bin:$PATH"
+
+MODEL_PATH="${MODEL_PATH:-Qwen/Qwen3.5-4B}"
+ATTN_IMPLEMENTATION="${ATTN_IMPLEMENTATION:-sdpa}"
+DATASET_CONFIG="${DATASET_CONFIG:-$PROJECT_ROOT/configs/datasets/newton_r2r_uniform8.json}"
+default_cache_dir="$PROJECT_ROOT/cache"
+if [[ -d /lustre/fs1/groups/yshang/an221229/cache/huggingface/hub ]]; then
+    default_cache_dir=/lustre/fs1/groups/yshang/an221229/cache/huggingface/hub
+fi
+CACHE_DIR="${CACHE_DIR:-${HF_HUB_CACHE:-$default_cache_dir}}"
+OUTPUT_DIR="${OUTPUT_DIR:-$PROJECT_ROOT/output/v0_uniform8}"
+
+NPROC_PER_NODE="${NPROC_PER_NODE:-$(nvidia-smi --list-gpus | wc -l)}"
+MASTER_ADDR="${MASTER_ADDR:-127.0.0.1}"
+MASTER_PORT="${MASTER_PORT:-29531}"
+PER_DEVICE_TRAIN_BATCH_SIZE="${PER_DEVICE_TRAIN_BATCH_SIZE:-1}"
+GRADIENT_ACCUMULATION_STEPS="${GRADIENT_ACCUMULATION_STEPS:-8}"
+NUM_TRAIN_EPOCHS="${NUM_TRAIN_EPOCHS:-1}"
+MAX_STEPS="${MAX_STEPS:-}"
+MAX_SAMPLES="${MAX_SAMPLES:--1}"
+LEARNING_RATE="${LEARNING_RATE:-1e-6}"
+MM_PROJECTOR_LR="${MM_PROJECTOR_LR:-1e-5}"
+WARMUP_STEPS="${WARMUP_STEPS:-1}"
+LOGGING_STEPS="${LOGGING_STEPS:-1}"
+allocated_cpus="${SLURM_CPUS_PER_TASK:-$((NPROC_PER_NODE * 5))}"
+default_workers=$((allocated_cpus / NPROC_PER_NODE - 1))
+(( default_workers < 0 )) && default_workers=0
+DATALOADER_NUM_WORKERS="${DATALOADER_NUM_WORKERS:-$default_workers}"
+GRADIENT_CHECKPOINTING="${GRADIENT_CHECKPOINTING:-False}"
+SAVE_STRATEGY="${SAVE_STRATEGY:-steps}"
+SAVE_STEPS="${SAVE_STEPS:-1000}"
+SAVE_TOTAL_LIMIT="${SAVE_TOTAL_LIMIT:-10}"
+SAVE_FINAL_MODEL="${SAVE_FINAL_MODEL:-True}"
+
+LOCAL_TMPDIR="${SLURM_TMPDIR:-/tmp/$USER/qwen35-sft-${SLURM_JOB_ID:-manual}}"
+mkdir -p "$OUTPUT_DIR" "$CACHE_DIR" "$LOCAL_TMPDIR/triton-cache"
+export TMPDIR="$LOCAL_TMPDIR"
+export TRITON_CACHE_DIR="$LOCAL_TMPDIR/triton-cache"
+export TOKENIZERS_PARALLELISM=false
+export NCCL_DEBUG="${NCCL_DEBUG:-WARN}"
+export NCCL_NVLS_ENABLE="${NCCL_NVLS_ENABLE:-0}"
+export PYTORCH_ALLOC_CONF="${PYTORCH_ALLOC_CONF:-expandable_segments:True}"
+
+python - "$DATASET_CONFIG" <<'PY'
+import json
+import os
+import sys
+
+with open(sys.argv[1], encoding="utf-8") as handle:
+    config = json.load(handle)
+for key in ("annotation_path", "data_path"):
+    path = os.path.expandvars(os.path.expanduser(config[key]))
+    predicate = os.path.isfile if key == "annotation_path" else os.path.isdir
+    if not predicate(path):
+        raise SystemExit(f"Dataset {key} does not exist: {path}")
+print(f">>>>> dataset={config['dataset_name']}")
+print(f">>>>> annotation={config['annotation_path']}")
+print(f">>>>> data_root={config['data_path']}")
+PY
+
+train_args=(
+    --model_name_or_path "$MODEL_PATH"
+    --attn_implementation "$ATTN_IMPLEMENTATION"
+    --tune_mm_llm True
+    --tune_mm_mlp True
+    --tune_mm_vision False
+    --dataset_config "$DATASET_CONFIG"
+    --max_history_frames 8
+    --max_samples "$MAX_SAMPLES"
+    --shuffle True
+    --output_dir "$OUTPUT_DIR"
+    --cache_dir "$CACHE_DIR"
+    --bf16 True
+    --tf32 True
+    --per_device_train_batch_size "$PER_DEVICE_TRAIN_BATCH_SIZE"
+    --gradient_accumulation_steps "$GRADIENT_ACCUMULATION_STEPS"
+    --learning_rate "$LEARNING_RATE"
+    --mm_projector_lr "$MM_PROJECTOR_LR"
+    --optim adamw_torch
+    --model_max_length 12800
+    --max_pixels $((576*28*28))
+    --min_pixels $((16*28*28))
+    --num_train_epochs "$NUM_TRAIN_EPOCHS"
+    --lr_scheduler_type cosine
+    --warmup_steps "$WARMUP_STEPS"
+    --weight_decay 0.01
+    --logging_steps "$LOGGING_STEPS"
+    --save_strategy "$SAVE_STRATEGY"
+    --save_steps "$SAVE_STEPS"
+    --save_total_limit "$SAVE_TOTAL_LIMIT"
+    --save_final_model "$SAVE_FINAL_MODEL"
+    --deepspeed "$PROJECT_ROOT/train/zero2.json"
+    --gradient_checkpointing "$GRADIENT_CHECKPOINTING"
+    --dataloader_num_workers "$DATALOADER_NUM_WORKERS"
+    --group_by_modality_length True
+    --ddp_find_unused_parameters False
+    --seed 42
+    --report_to none
+)
+
+if (( DATALOADER_NUM_WORKERS > 0 )); then
+    train_args+=(--dataloader_persistent_workers True --dataloader_prefetch_factor 4)
+fi
+if [[ -n "$MAX_STEPS" ]]; then
+    if ! [[ "$MAX_STEPS" =~ ^[1-9][0-9]*$ ]]; then
+        echo "MAX_STEPS must be a positive integer" >&2
+        exit 2
+    fi
+    train_args+=(--max_steps "$MAX_STEPS")
+fi
+
+echo ">>>>> Qwen3.5-4B plain SFT on $NPROC_PER_NODE GPUs"
+echo ">>>>> gradient_accumulation=$GRADIENT_ACCUMULATION_STEPS gradient_checkpointing=$GRADIENT_CHECKPOINTING"
+start_seconds=$SECONDS
+python -m torch.distributed.run \
+    --nproc_per_node="$NPROC_PER_NODE" \
+    --master_addr="$MASTER_ADDR" \
+    --master_port="$MASTER_PORT" \
+    -m qwen_vl.train.train_qwen \
+    "${train_args[@]}" \
+    2>&1 | tee -a "$OUTPUT_DIR/train.log"
+elapsed_seconds=$((SECONDS - start_seconds))
+echo ">>>>> end-to-end wall time: ${elapsed_seconds}s" | tee -a "$OUTPUT_DIR/train.log"
+
+
+
+================================================
+FILE: train/zero2.json
+================================================
+{
+  "bf16": {
+    "enabled": "auto"
+  },
+  "train_micro_batch_size_per_gpu": "auto",
+  "train_batch_size": "auto",
+  "gradient_accumulation_steps": "auto",
+  "zero_optimization": {
+    "stage": 2,
+    "overlap_comm": true,
+    "contiguous_gradients": true,
+    "reduce_bucket_size": 50000000,
+    "allgather_bucket_size": 50000000,
+    "round_robin_gradients": true
+  }
+}
+
+

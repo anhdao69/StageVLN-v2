@@ -1,0 +1,70 @@
+{
+  "input_sha256": "fe75940929969f9370b6b80a7f6c81d57d2caae55c5304a1c262f3826003f214",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2213,
+      "sha256": "41d9058462d2f8650b3046bb4f2b110be67dbfc1a51daf97a7bc0f876d5058aa"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 11915,
+      "sha256": "e43150faa61d7a613f0800e9558ab2e20e8801dacfa6f94f100d657c33a23981"
+    },
+    {
+      "path": "setup.py",
+      "bytes": 493,
+      "sha256": "45cfd4f722229eead3939ad48b570b7289b29d138c243839099fef7a52295f98"
+    },
+    {
+      "path": "configs/datasets/newton_r2r_uniform8.json",
+      "bytes": 227,
+      "sha256": "4caa679b3f535002672a0ba0eb2a1565a7536c5be414f3c6fed2da077bac7a58"
+    },
+    {
+      "path": "src/qwen_vl/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/qwen_vl/data/__init__.py",
+      "bytes": 61,
+      "sha256": "bde5ddc22a4a6bdd770ad2f33654de2f132c817b2a0cfe25779a6c597d2a433f"
+    },
+    {
+      "path": "src/qwen_vl/data/data_qwen.py",
+      "bytes": 12005,
+      "sha256": "616c1fbbebf6a10247957ca27cc9d12873bb8c1ca38eae20a6df1711a056d133"
+    },
+    {
+      "path": "src/qwen_vl/train/argument.py",
+      "bytes": 1121,
+      "sha256": "61cb96b3f4ac1744ce906b9009a11190111e9866348a64649f3002c1c74cf036"
+    },
+    {
+      "path": "src/qwen_vl/train/sampler.py",
+      "bytes": 3041,
+      "sha256": "4affe2eafd35eb92661563096cef36b0711f0f02a755c16566ff2950486a1d87"
+    },
+    {
+      "path": "src/qwen_vl/train/train_qwen.py",
+      "bytes": 4835,
+      "sha256": "9c56525741d088731dc8f18740b236ecee260ae645a0fd966dbad304eca1f5fb"
+    },
+    {
+      "path": "src/qwen_vl/train/trainer.py",
+      "bytes": 2414,
+      "sha256": "4a74d2e7c4b7294a8df0d6807e6c46c408f0cd54a3c2620520ec41b31a2d4736"
+    },
+    {
+      "path": "train/v0_uniform8.sh",
+      "bytes": 5736,
+      "sha256": "91cf9ab50a999807000a0451951a788d639fedf6c332e1f50ce9caee2546d1fb"
+    },
+    {
+      "path": "train/zero2.json",
+      "bytes": 372,
+      "sha256": "c4beef71ab577eab6497fc8e93a9efa2f8df7ddcc86f929baa4fbfc3961d47fe"
+    }
+  ]
+}

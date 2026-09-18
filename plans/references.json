@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "inspected_date": "2026-09-18",
+  "repositories": [
+    {
+      "key": "transformers",
+      "url": "https://github.com/huggingface/transformers.git",
+      "ref": "v5.3.0",
+      "files": [
+        "src/transformers/models/qwen3_5/modeling_qwen3_5.py",
+        "src/transformers/models/qwen3_vl/processing_qwen3_vl.py",
+        "src/transformers/models/qwen2_vl/image_processing_qwen2_vl.py",
+        "src/transformers/loss/loss_utils.py"
+      ]
+    },
+    {
+      "key": "muVLA",
+      "url": "https://github.com/CognitiveAISystems/muVLA.git",
+      "ref": "main",
+      "files": [
+        "README.md",
+        "SETUP.md",
+        "prismatic/models/memory.py",
+        "vla-scripts/finetune.py",
+        "prismatic/vla/datasets/libero_episodic_dataset.py",
+        "prismatic/extern/hf/modeling_prismatic.py",
+        "prismatic/models/memory_diagnostics.py"
+      ]
+    },
+    {
+      "key": "vpwem",
+      "url": "https://github.com/HarryLui98/code_vpwem.git",
+      "ref": "main",
+      "files": [
+        "README.md",
+        "cleandiffuser/nn_memory/qformer_memory.py",
+        "pipelines/longmemdpptp_robomimic_image_emb.py"
+      ]
+    },
+    {
+      "key": "janusvln",
+      "url": "https://github.com/MIV-XJTU/JanusVLN.git",
+      "ref": "main",
+      "files": [
+        "create_data/create_data.py"
+      ]
+    },
+    {
+      "key": "vggt",
+      "url": "https://github.com/facebookresearch/vggt.git",
+      "ref": "main",
+      "files": [
+        "README.md",
+        "vggt/models/vggt.py",
+        "vggt/models/aggregator.py"
+      ]
+    }
+  ],
+  "metadata": [
+    {
+      "key": "qwen_metadata",
+      "files": [
+        {
+          "path": "config.json",
+          "url": "https://huggingface.co/Qwen/Qwen3.5-4B/raw/main/config.json"
+        },
+        {
+          "path": "preprocessor_config.json",
+          "url": "https://huggingface.co/Qwen/Qwen3.5-4B/raw/main/preprocessor_config.json"
+        },
+        {
+          "path": "chat_template.jinja",
+          "url": "https://huggingface.co/Qwen/Qwen3.5-4B/raw/main/chat_template.jinja"
+        }
+      ]
+    }
+  ]
+}

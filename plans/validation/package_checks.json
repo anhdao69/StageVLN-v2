@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "root_markdown_documents": 17,
+  "required_deliverables_present": 20,
+  "checked_relative_markdown_links": 40,
+  "input_source_files": 13,
+  "input_bundle_sha256": "fe75940929969f9370b6b80a7f6c81d57d2caae55c5304a1c262f3826003f214",
+  "syntax_checked_utilities": 2,
+  "passed_cpu_algebra_and_local_fixture_checks": 9,
+  "reference_identifiers": [
+    "REF-AUTOGRAD",
+    "REF-EFF",
+    "REF-JANUS",
+    "REF-MUDATA",
+    "REF-MUMEM",
+    "REF-MUTRAIN",
+    "REF-QCFG",
+    "REF-QINPUT",
+    "REF-QVISION",
+    "REF-VGAGG",
+    "REF-VGMODEL",
+    "REF-VPPIPE",
+    "REF-VPQ"
+  ],
+  "errors": [],
+  "limits": "No real Qwen/VGGT/data/GPU/simulator or external-network collector execution tested."
+}
