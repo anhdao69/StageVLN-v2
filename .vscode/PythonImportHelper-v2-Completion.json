@@ -1,0 +1,3477 @@
+[
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "argparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "pathlib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "SimpleNamespace",
+        "importPath": "types",
+        "description": "types",
+        "isExtraImport": true,
+        "detail": "types",
+        "documentation": {}
+    },
+    {
+        "label": "SimpleNamespace",
+        "importPath": "types",
+        "description": "types",
+        "isExtraImport": true,
+        "detail": "types",
+        "documentation": {}
+    },
+    {
+        "label": "SimpleNamespace",
+        "importPath": "types",
+        "description": "types",
+        "isExtraImport": true,
+        "detail": "types",
+        "documentation": {}
+    },
+    {
+        "label": "SimpleNamespace",
+        "importPath": "types",
+        "description": "types",
+        "isExtraImport": true,
+        "detail": "types",
+        "documentation": {}
+    },
+    {
+        "label": "MethodType",
+        "importPath": "types",
+        "description": "types",
+        "isExtraImport": true,
+        "detail": "types",
+        "documentation": {}
+    },
+    {
+        "label": "SimpleNamespace",
+        "importPath": "types",
+        "description": "types",
+        "isExtraImport": true,
+        "detail": "types",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "torch",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch",
+        "description": "torch",
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "Tensor",
+        "importPath": "torch",
+        "description": "torch",
+        "isExtraImport": true,
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "Tensor",
+        "importPath": "torch",
+        "description": "torch",
+        "isExtraImport": true,
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "nn",
+        "importPath": "torch",
+        "description": "torch",
+        "isExtraImport": true,
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "nn",
+        "importPath": "torch",
+        "description": "torch",
+        "isExtraImport": true,
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "Tensor",
+        "importPath": "torch",
+        "description": "torch",
+        "isExtraImport": true,
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "nn",
+        "importPath": "torch",
+        "description": "torch",
+        "isExtraImport": true,
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "Tensor",
+        "importPath": "torch",
+        "description": "torch",
+        "isExtraImport": true,
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "nn",
+        "importPath": "torch",
+        "description": "torch",
+        "isExtraImport": true,
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "Tensor",
+        "importPath": "torch",
+        "description": "torch",
+        "isExtraImport": true,
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "nn",
+        "importPath": "torch",
+        "description": "torch",
+        "isExtraImport": true,
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "Tensor",
+        "importPath": "torch",
+        "description": "torch",
+        "isExtraImport": true,
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "Tensor",
+        "importPath": "torch",
+        "description": "torch",
+        "isExtraImport": true,
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "nn",
+        "importPath": "torch",
+        "description": "torch",
+        "isExtraImport": true,
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "ImageDraw",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "transformers",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "transformers",
+        "description": "transformers",
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoConfig",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoProcessor",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoTokenizer",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoProcessor",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoTokenizer",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoConfig",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoProcessor",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoTokenizer",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoProcessor",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoTokenizer",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "Qwen3_5ForConditionalGeneration",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "Trainer",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoConfig",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoProcessor",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "set_seed",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "Trainer",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "make_supervised_data_module",
+        "importPath": "qwen_vl.data.data_qwen",
+        "description": "qwen_vl.data.data_qwen",
+        "isExtraImport": true,
+        "detail": "qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "make_supervised_data_module",
+        "importPath": "qwen_vl.data.data_qwen",
+        "description": "qwen_vl.data.data_qwen",
+        "isExtraImport": true,
+        "detail": "qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "make_supervised_data_module",
+        "importPath": "qwen_vl.data.data_qwen",
+        "description": "qwen_vl.data.data_qwen",
+        "isExtraImport": true,
+        "detail": "qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "make_supervised_data_module",
+        "importPath": "qwen_vl.data.data_qwen",
+        "description": "qwen_vl.data.data_qwen",
+        "isExtraImport": true,
+        "detail": "qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "make_supervised_data_module",
+        "importPath": "qwen_vl.data.data_qwen",
+        "description": "qwen_vl.data.data_qwen",
+        "isExtraImport": true,
+        "detail": "qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "LazySupervisedDataset",
+        "importPath": "qwen_vl.data.data_qwen",
+        "description": "qwen_vl.data.data_qwen",
+        "isExtraImport": true,
+        "detail": "qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "build_current_image_token_mask",
+        "importPath": "qwen_vl.data.data_qwen",
+        "description": "qwen_vl.data.data_qwen",
+        "isExtraImport": true,
+        "detail": "qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "normalize_janusvln_image_path",
+        "importPath": "qwen_vl.data.data_qwen",
+        "description": "qwen_vl.data.data_qwen",
+        "isExtraImport": true,
+        "detail": "qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "read_json_array",
+        "importPath": "qwen_vl.data.data_qwen",
+        "description": "qwen_vl.data.data_qwen",
+        "isExtraImport": true,
+        "detail": "qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "finite_depth_statistics",
+        "importPath": "qwen_vl.model.depth_supervision",
+        "description": "qwen_vl.model.depth_supervision",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "GeoVRDepthHead",
+        "importPath": "qwen_vl.model.depth_supervision",
+        "description": "qwen_vl.model.depth_supervision",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "compute_geovr_depth_loss",
+        "importPath": "qwen_vl.model.depth_supervision",
+        "description": "qwen_vl.model.depth_supervision",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "create_normalized_uv_grid",
+        "importPath": "qwen_vl.model.depth_supervision",
+        "description": "qwen_vl.model.depth_supervision",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "filter_by_quantile",
+        "importPath": "qwen_vl.model.depth_supervision",
+        "description": "qwen_vl.model.depth_supervision",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "Qwen3_5ForConditionalGenerationWithSpatialForcing",
+        "importPath": "qwen_vl.model.spatial_forcing",
+        "description": "qwen_vl.model.spatial_forcing",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.spatial_forcing",
+        "documentation": {}
+    },
+    {
+        "label": "Qwen3_5ForConditionalGenerationWithSpatialForcing",
+        "importPath": "qwen_vl.model.spatial_forcing",
+        "description": "qwen_vl.model.spatial_forcing",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.spatial_forcing",
+        "documentation": {}
+    },
+    {
+        "label": "Qwen3_5ForConditionalGenerationWithSpatialForcing",
+        "importPath": "qwen_vl.model.spatial_forcing",
+        "description": "qwen_vl.model.spatial_forcing",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.spatial_forcing",
+        "documentation": {}
+    },
+    {
+        "label": "SpatialForcingProjector",
+        "importPath": "qwen_vl.model.spatial_forcing",
+        "description": "qwen_vl.model.spatial_forcing",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.spatial_forcing",
+        "documentation": {}
+    },
+    {
+        "label": "add_vggt_position_embedding",
+        "importPath": "qwen_vl.model.spatial_forcing",
+        "description": "qwen_vl.model.spatial_forcing",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.spatial_forcing",
+        "documentation": {}
+    },
+    {
+        "label": "create_aspect_ratio_uv_grid",
+        "importPath": "qwen_vl.model.spatial_forcing",
+        "description": "qwen_vl.model.spatial_forcing",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.spatial_forcing",
+        "documentation": {}
+    },
+    {
+        "label": "position_grid_to_sincos_embedding",
+        "importPath": "qwen_vl.model.spatial_forcing",
+        "description": "qwen_vl.model.spatial_forcing",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.spatial_forcing",
+        "documentation": {}
+    },
+    {
+        "label": "resize_teacher_spatial_grid",
+        "importPath": "qwen_vl.model.spatial_forcing",
+        "description": "qwen_vl.model.spatial_forcing",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.spatial_forcing",
+        "documentation": {}
+    },
+    {
+        "label": "spatial_forcing_cosine_loss",
+        "importPath": "qwen_vl.model.spatial_forcing",
+        "description": "qwen_vl.model.spatial_forcing",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.spatial_forcing",
+        "documentation": {}
+    },
+    {
+        "label": "copy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "copy",
+        "description": "copy",
+        "detail": "copy",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "itertools",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "itertools",
+        "description": "itertools",
+        "detail": "itertools",
+        "documentation": {}
+    },
+    {
+        "label": "repeat",
+        "importPath": "itertools",
+        "description": "itertools",
+        "isExtraImport": true,
+        "detail": "itertools",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "collections.abc",
+        "description": "collections.abc",
+        "isExtraImport": true,
+        "detail": "collections.abc",
+        "documentation": {}
+    },
+    {
+        "label": "dataclass",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "dataclass",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "dataclass",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "dataclass",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "field",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dataset",
+        "importPath": "torch.utils.data",
+        "description": "torch.utils.data",
+        "isExtraImport": true,
+        "detail": "torch.utils.data",
+        "documentation": {}
+    },
+    {
+        "label": "Dataset",
+        "importPath": "torch.utils.data",
+        "description": "torch.utils.data",
+        "isExtraImport": true,
+        "detail": "torch.utils.data",
+        "documentation": {}
+    },
+    {
+        "label": "Sampler",
+        "importPath": "torch.utils.data",
+        "description": "torch.utils.data",
+        "isExtraImport": true,
+        "detail": "torch.utils.data",
+        "documentation": {}
+    },
+    {
+        "label": "decord",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "decord",
+        "description": "decord",
+        "detail": "decord",
+        "documentation": {}
+    },
+    {
+        "label": "VideoReader",
+        "importPath": "decord",
+        "description": "decord",
+        "isExtraImport": true,
+        "detail": "decord",
+        "documentation": {}
+    },
+    {
+        "label": "transforms",
+        "importPath": "torchvision",
+        "description": "torchvision",
+        "isExtraImport": true,
+        "detail": "torchvision",
+        "documentation": {}
+    },
+    {
+        "label": "transforms",
+        "importPath": "torchvision",
+        "description": "torchvision",
+        "isExtraImport": true,
+        "detail": "torchvision",
+        "documentation": {}
+    },
+    {
+        "label": "ABC",
+        "importPath": "abc",
+        "description": "abc",
+        "isExtraImport": true,
+        "detail": "abc",
+        "documentation": {}
+    },
+    {
+        "label": "abstractmethod",
+        "importPath": "abc",
+        "description": "abc",
+        "isExtraImport": true,
+        "detail": "abc",
+        "documentation": {}
+    },
+    {
+        "label": "torch.nn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch.nn",
+        "description": "torch.nn",
+        "detail": "torch.nn",
+        "documentation": {}
+    },
+    {
+        "label": "nullcontext",
+        "importPath": "contextlib",
+        "description": "contextlib",
+        "isExtraImport": true,
+        "detail": "contextlib",
+        "documentation": {}
+    },
+    {
+        "label": "torch.nn.functional",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch.nn.functional",
+        "description": "torch.nn.functional",
+        "detail": "torch.nn.functional",
+        "documentation": {}
+    },
+    {
+        "label": "rearrange",
+        "importPath": "einops",
+        "description": "einops",
+        "isExtraImport": true,
+        "detail": "einops",
+        "documentation": {}
+    },
+    {
+        "label": "repeat",
+        "importPath": "einops",
+        "description": "einops",
+        "isExtraImport": true,
+        "detail": "einops",
+        "documentation": {}
+    },
+    {
+        "label": "math",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "math",
+        "description": "math",
+        "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "partial",
+        "importPath": "functools",
+        "description": "functools",
+        "isExtraImport": true,
+        "detail": "functools",
+        "documentation": {}
+    },
+    {
+        "label": "partial",
+        "importPath": "functools",
+        "description": "functools",
+        "isExtraImport": true,
+        "detail": "functools",
+        "documentation": {}
+    },
+    {
+        "label": "collections",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "collections",
+        "description": "collections",
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "Mlp",
+        "importPath": "qwen_vl.model.vggt.layers",
+        "description": "qwen_vl.model.vggt.layers",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.vggt.layers",
+        "documentation": {}
+    },
+    {
+        "label": "PatchEmbed",
+        "importPath": "qwen_vl.model.vggt.layers",
+        "description": "qwen_vl.model.vggt.layers",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.vggt.layers",
+        "documentation": {}
+    },
+    {
+        "label": "Block",
+        "importPath": "qwen_vl.model.vggt.layers.block",
+        "description": "qwen_vl.model.vggt.layers.block",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.vggt.layers.block",
+        "documentation": {}
+    },
+    {
+        "label": "Block",
+        "importPath": "qwen_vl.model.vggt.layers.block",
+        "description": "qwen_vl.model.vggt.layers.block",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.vggt.layers.block",
+        "documentation": {}
+    },
+    {
+        "label": "activate_pose",
+        "importPath": "qwen_vl.model.vggt.heads.head_act",
+        "description": "qwen_vl.model.vggt.heads.head_act",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.vggt.heads.head_act",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "warnings",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "warnings",
+        "description": "warnings",
+        "detail": "warnings",
+        "documentation": {}
+    },
+    {
+        "label": "checkpoint",
+        "importPath": "torch.utils.checkpoint",
+        "description": "torch.utils.checkpoint",
+        "isExtraImport": true,
+        "detail": "torch.utils.checkpoint",
+        "documentation": {}
+    },
+    {
+        "label": "checkpoint",
+        "importPath": "torch.utils.checkpoint",
+        "description": "torch.utils.checkpoint",
+        "isExtraImport": true,
+        "detail": "torch.utils.checkpoint",
+        "documentation": {}
+    },
+    {
+        "label": "trunc_normal_",
+        "importPath": "torch.nn.init",
+        "description": "torch.nn.init",
+        "isExtraImport": true,
+        "detail": "torch.nn.init",
+        "documentation": {}
+    },
+    {
+        "label": "RotaryPositionEmbedding2D",
+        "importPath": "qwen_vl.model.vggt.layers.rope",
+        "description": "qwen_vl.model.vggt.layers.rope",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.vggt.layers.rope",
+        "documentation": {}
+    },
+    {
+        "label": "PositionGetter",
+        "importPath": "qwen_vl.model.vggt.layers.rope",
+        "description": "qwen_vl.model.vggt.layers.rope",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.vggt.layers.rope",
+        "documentation": {}
+    },
+    {
+        "label": "vit_small",
+        "importPath": "qwen_vl.model.vggt.layers.vision_transformer",
+        "description": "qwen_vl.model.vggt.layers.vision_transformer",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.vggt.layers.vision_transformer",
+        "documentation": {}
+    },
+    {
+        "label": "vit_base",
+        "importPath": "qwen_vl.model.vggt.layers.vision_transformer",
+        "description": "qwen_vl.model.vggt.layers.vision_transformer",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.vggt.layers.vision_transformer",
+        "documentation": {}
+    },
+    {
+        "label": "vit_large",
+        "importPath": "qwen_vl.model.vggt.layers.vision_transformer",
+        "description": "qwen_vl.model.vggt.layers.vision_transformer",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.vggt.layers.vision_transformer",
+        "documentation": {}
+    },
+    {
+        "label": "vit_giant2",
+        "importPath": "qwen_vl.model.vggt.layers.vision_transformer",
+        "description": "qwen_vl.model.vggt.layers.vision_transformer",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.vggt.layers.vision_transformer",
+        "documentation": {}
+    },
+    {
+        "label": "PyTorchModelHubMixin",
+        "importPath": "huggingface_hub",
+        "description": "huggingface_hub",
+        "isExtraImport": true,
+        "detail": "huggingface_hub",
+        "documentation": {}
+    },
+    {
+        "label": "Aggregator",
+        "importPath": "qwen_vl.model.vggt.models.aggregator",
+        "description": "qwen_vl.model.vggt.models.aggregator",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.vggt.models.aggregator",
+        "documentation": {}
+    },
+    {
+        "label": "apply_distortion",
+        "importPath": "vggt.dependency.distortion",
+        "description": "vggt.dependency.distortion",
+        "isExtraImport": true,
+        "detail": "vggt.dependency.distortion",
+        "documentation": {}
+    },
+    {
+        "label": "iterative_undistortion",
+        "importPath": "vggt.dependency.distortion",
+        "description": "vggt.dependency.distortion",
+        "isExtraImport": true,
+        "detail": "vggt.dependency.distortion",
+        "documentation": {}
+    },
+    {
+        "label": "single_undistortion",
+        "importPath": "vggt.dependency.distortion",
+        "description": "vggt.dependency.distortion",
+        "isExtraImport": true,
+        "detail": "vggt.dependency.distortion",
+        "documentation": {}
+    },
+    {
+        "label": "Cache",
+        "importPath": "transformers.cache_utils",
+        "description": "transformers.cache_utils",
+        "isExtraImport": true,
+        "detail": "transformers.cache_utils",
+        "documentation": {}
+    },
+    {
+        "label": "Qwen3_5CausalLMOutputWithPast",
+        "importPath": "transformers.models.qwen3_5.modeling_qwen3_5",
+        "description": "transformers.models.qwen3_5.modeling_qwen3_5",
+        "isExtraImport": true,
+        "detail": "transformers.models.qwen3_5.modeling_qwen3_5",
+        "documentation": {}
+    },
+    {
+        "label": "Qwen3_5ForConditionalGeneration",
+        "importPath": "transformers.models.qwen3_5.modeling_qwen3_5",
+        "description": "transformers.models.qwen3_5.modeling_qwen3_5",
+        "isExtraImport": true,
+        "detail": "transformers.models.qwen3_5.modeling_qwen3_5",
+        "documentation": {}
+    },
+    {
+        "label": "Qwen3_5TextModel",
+        "importPath": "transformers.models.qwen3_5.modeling_qwen3_5",
+        "description": "transformers.models.qwen3_5.modeling_qwen3_5",
+        "isExtraImport": true,
+        "detail": "transformers.models.qwen3_5.modeling_qwen3_5",
+        "documentation": {}
+    },
+    {
+        "label": "Qwen3_5VisionModel",
+        "importPath": "transformers.models.qwen3_5.modeling_qwen3_5",
+        "description": "transformers.models.qwen3_5.modeling_qwen3_5",
+        "isExtraImport": true,
+        "detail": "transformers.models.qwen3_5.modeling_qwen3_5",
+        "documentation": {}
+    },
+    {
+        "label": "has_length",
+        "importPath": "transformers.trainer",
+        "description": "transformers.trainer",
+        "isExtraImport": true,
+        "detail": "transformers.trainer",
+        "documentation": {}
+    },
+    {
+        "label": "get_parameter_names",
+        "importPath": "transformers.trainer",
+        "description": "transformers.trainer",
+        "isExtraImport": true,
+        "detail": "transformers.trainer",
+        "documentation": {}
+    },
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "qwen_vl.train.sampler",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "qwen_vl.train.sampler",
+        "description": "qwen_vl.train.sampler",
+        "detail": "qwen_vl.train.sampler",
+        "documentation": {}
+    },
+    {
+        "label": "SpatialForcingTrainer",
+        "importPath": "qwen_vl.train.trainer",
+        "description": "qwen_vl.train.trainer",
+        "isExtraImport": true,
+        "detail": "qwen_vl.train.trainer",
+        "documentation": {}
+    },
+    {
+        "label": "SpatialForcingTrainer",
+        "importPath": "qwen_vl.train.trainer",
+        "description": "qwen_vl.train.trainer",
+        "isExtraImport": true,
+        "detail": "qwen_vl.train.trainer",
+        "documentation": {}
+    },
+    {
+        "label": "ModelArguments",
+        "importPath": "qwen_vl.train.argument",
+        "description": "qwen_vl.train.argument",
+        "isExtraImport": true,
+        "detail": "qwen_vl.train.argument",
+        "documentation": {}
+    },
+    {
+        "label": "DataArguments",
+        "importPath": "qwen_vl.train.argument",
+        "description": "qwen_vl.train.argument",
+        "isExtraImport": true,
+        "detail": "qwen_vl.train.argument",
+        "documentation": {}
+    },
+    {
+        "label": "TrainingArguments",
+        "importPath": "qwen_vl.train.argument",
+        "description": "qwen_vl.train.argument",
+        "isExtraImport": true,
+        "detail": "qwen_vl.train.argument",
+        "documentation": {}
+    },
+    {
+        "label": "TrainingArguments",
+        "importPath": "qwen_vl.train.argument",
+        "description": "qwen_vl.train.argument",
+        "isExtraImport": true,
+        "detail": "qwen_vl.train.argument",
+        "documentation": {}
+    },
+    {
+        "label": "cached_file",
+        "importPath": "transformers.utils.hub",
+        "description": "transformers.utils.hub",
+        "isExtraImport": true,
+        "detail": "transformers.utils.hub",
+        "documentation": {}
+    },
+    {
+        "label": "ALL_LAYERNORM_LAYERS",
+        "importPath": "transformers.pytorch_utils",
+        "description": "transformers.pytorch_utils",
+        "isExtraImport": true,
+        "detail": "transformers.pytorch_utils",
+        "documentation": {}
+    },
+    {
+        "label": "data_qwen",
+        "importPath": "qwen_vl.data",
+        "description": "qwen_vl.data",
+        "isExtraImport": true,
+        "detail": "qwen_vl.data",
+        "documentation": {}
+    },
+    {
+        "label": "data_list",
+        "importPath": "qwen_vl.data",
+        "description": "qwen_vl.data",
+        "isExtraImport": true,
+        "detail": "qwen_vl.data",
+        "documentation": {}
+    },
+    {
+        "label": "pytest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytest",
+        "description": "pytest",
+        "detail": "pytest",
+        "documentation": {}
+    },
+    {
+        "label": "prepare_image_inputs",
+        "importPath": "qwen_vl.data.utils",
+        "description": "qwen_vl.data.utils",
+        "isExtraImport": true,
+        "detail": "qwen_vl.data.utils",
+        "documentation": {}
+    },
+    {
+        "label": "VGGTEncoder",
+        "importPath": "qwen_vl.model.geometry_encoders.vggt_encoder",
+        "description": "qwen_vl.model.geometry_encoders.vggt_encoder",
+        "isExtraImport": true,
+        "detail": "qwen_vl.model.geometry_encoders.vggt_encoder",
+        "documentation": {}
+    },
+    {
+        "label": "find_namespace_packages",
+        "importPath": "setuptools",
+        "description": "setuptools",
+        "isExtraImport": true,
+        "detail": "setuptools",
+        "documentation": {}
+    },
+    {
+        "label": "setup",
+        "importPath": "setuptools",
+        "description": "setuptools",
+        "isExtraImport": true,
+        "detail": "setuptools",
+        "documentation": {}
+    },
+    {
+        "label": "parse_args",
+        "kind": 2,
+        "importPath": "scripts.validation.validate_depth_supervision",
+        "description": "scripts.validation.validate_depth_supervision",
+        "peekOfCode": "def parse_args():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--model-path\", required=True)\n    parser.add_argument(\"--teacher-path\", required=True)\n    parser.add_argument(\"--dataset-config\", required=True)\n    parser.add_argument(\"--dataset-use\", required=True)\n    parser.add_argument(\"--output-dir\", required=True)\n    parser.add_argument(\"--cache-dir\", default=None)\n    parser.add_argument(\"--max-samples\", type=int, default=100)\n    parser.add_argument(\"--start-index\", type=int, default=0)",
+        "detail": "scripts.validation.validate_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "move_batch_to_device",
+        "kind": 2,
+        "importPath": "scripts.validation.validate_depth_supervision",
+        "description": "scripts.validation.validate_depth_supervision",
+        "peekOfCode": "def move_batch_to_device(batch, device):\n    moved = {}\n    for key, value in batch.items():\n        if isinstance(value, torch.Tensor):\n            moved[key] = value.to(device)\n        elif isinstance(value, list) and all(\n            isinstance(item, torch.Tensor) for item in value\n        ):\n            moved[key] = [item.to(device) for item in value]\n        else:",
+        "detail": "scripts.validation.validate_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "colorize",
+        "kind": 2,
+        "importPath": "scripts.validation.validate_depth_supervision",
+        "description": "scripts.validation.validate_depth_supervision",
+        "peekOfCode": "def colorize(values, *, minimum=None, maximum=None):\n    values = values.detach().float().cpu().numpy()\n    finite = np.isfinite(values)\n    if minimum is None:\n        minimum = float(np.nanpercentile(values[finite], 1)) if finite.any() else 0.0\n    if maximum is None:\n        maximum = float(np.nanpercentile(values[finite], 99)) if finite.any() else 1.0\n    scale = max(maximum - minimum, 1e-8)\n    normalized = np.clip((values - minimum) / scale, 0.0, 1.0)\n    normalized[~finite] = 0.0",
+        "detail": "scripts.validation.validate_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "render_panel",
+        "kind": 2,
+        "importPath": "scripts.validation.validate_depth_supervision",
+        "description": "scripts.validation.validate_depth_supervision",
+        "peekOfCode": "def render_panel(path, rgb, teacher, prediction):\n    rgb = (\n        rgb.detach()\n        .float()\n        .clamp(0, 1)\n        .permute(1, 2, 0)\n        .cpu()\n        .numpy()\n        * 255\n    ).astype(np.uint8)",
+        "detail": "scripts.validation.validate_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "scripts.validation.validate_depth_supervision",
+        "description": "scripts.validation.validate_depth_supervision",
+        "peekOfCode": "def main():\n    args = parse_args()\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n    config = AutoConfig.from_pretrained(args.model_path, cache_dir=args.cache_dir)\n    config.use_geometry_encoder = False\n    config.use_geometry_fusion = False\n    config.spatial_forcing_enabled = True\n    config.sf_loss_weight = 0.3\n    config.sf_student_layer = 24",
+        "detail": "scripts.validation.validate_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "parse_args",
+        "kind": 2,
+        "importPath": "scripts.validation.validate_spatial_forcing_data",
+        "description": "scripts.validation.validate_spatial_forcing_data",
+        "peekOfCode": "def parse_args():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--model-path\", required=True)\n    dataset = parser.add_mutually_exclusive_group(required=True)\n    dataset.add_argument(\"--dataset-config\")\n    dataset.add_argument(\"--data-root\")\n    parser.add_argument(\"--dataset-use\", default=\"janusvln_r2r\")\n    parser.add_argument(\"--cache-dir\", default=None)\n    return parser.parse_args()\ndef main():",
+        "detail": "scripts.validation.validate_spatial_forcing_data",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "scripts.validation.validate_spatial_forcing_data",
+        "description": "scripts.validation.validate_spatial_forcing_data",
+        "peekOfCode": "def main():\n    args = parse_args()\n    processor = AutoProcessor.from_pretrained(\n        args.model_path,\n        cache_dir=args.cache_dir,\n        padding_side=\"right\",\n    )\n    tokenizer = AutoTokenizer.from_pretrained(\n        args.model_path,\n        cache_dir=args.cache_dir,",
+        "detail": "scripts.validation.validate_spatial_forcing_data",
+        "documentation": {}
+    },
+    {
+        "label": "parse_args",
+        "kind": 2,
+        "importPath": "scripts.validation.validate_spatial_forcing_forward",
+        "description": "scripts.validation.validate_spatial_forcing_forward",
+        "peekOfCode": "def parse_args():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--model-path\", required=True)\n    parser.add_argument(\"--teacher-path\", required=True)\n    parser.add_argument(\"--data-root\", required=True)\n    parser.add_argument(\"--cache-dir\", default=None)\n    parser.add_argument(\n        \"--use-vggt-pe\",\n        action=argparse.BooleanOptionalAction,\n        default=False,",
+        "detail": "scripts.validation.validate_spatial_forcing_forward",
+        "documentation": {}
+    },
+    {
+        "label": "move_batch_to_device",
+        "kind": 2,
+        "importPath": "scripts.validation.validate_spatial_forcing_forward",
+        "description": "scripts.validation.validate_spatial_forcing_forward",
+        "peekOfCode": "def move_batch_to_device(batch, device):\n    moved = {}\n    for key, value in batch.items():\n        if isinstance(value, torch.Tensor):\n            moved[key] = value.to(device)\n        elif isinstance(value, list) and all(\n            isinstance(item, torch.Tensor) for item in value\n        ):\n            moved[key] = [item.to(device) for item in value]\n        else:",
+        "detail": "scripts.validation.validate_spatial_forcing_forward",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "scripts.validation.validate_spatial_forcing_forward",
+        "description": "scripts.validation.validate_spatial_forcing_forward",
+        "peekOfCode": "def main():\n    args = parse_args()\n    config = AutoConfig.from_pretrained(args.model_path, cache_dir=args.cache_dir)\n    config.use_geometry_encoder = False\n    config.use_geometry_fusion = False\n    config.spatial_forcing_enabled = True\n    config.sf_loss_weight = 0.3\n    config.sf_student_layer = 24\n    config.sf_teacher_layer = 23\n    config.sf_use_vggt_pe = args.use_vggt_pe",
+        "detail": "scripts.validation.validate_spatial_forcing_forward",
+        "documentation": {}
+    },
+    {
+        "label": "parse_args",
+        "kind": 2,
+        "importPath": "scripts.validation.validate_spatial_forcing_inference",
+        "description": "scripts.validation.validate_spatial_forcing_inference",
+        "peekOfCode": "def parse_args():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--checkpoint\", required=True)\n    parser.add_argument(\"--data-root\", default=None)\n    parser.add_argument(\"--dataset-config\", default=None)\n    parser.add_argument(\"--dataset-use\", default=\"janusvln_r2r\")\n    parser.add_argument(\"--sample-index\", type=int, default=0)\n    return parser.parse_args()\ndef main():\n    args = parse_args()",
+        "detail": "scripts.validation.validate_spatial_forcing_inference",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "scripts.validation.validate_spatial_forcing_inference",
+        "description": "scripts.validation.validate_spatial_forcing_inference",
+        "peekOfCode": "def main():\n    args = parse_args()\n    model = (\n        Qwen3_5ForConditionalGeneration.from_pretrained(\n            args.checkpoint,\n            dtype=torch.bfloat16,\n        )\n        .eval()\n        .cuda()\n    )",
+        "detail": "scripts.validation.validate_spatial_forcing_inference",
+        "documentation": {}
+    },
+    {
+        "label": "LazySupervisedDataset",
+        "kind": 6,
+        "importPath": "src.qwen_vl.data.data_qwen",
+        "description": "src.qwen_vl.data.data_qwen",
+        "peekOfCode": "class LazySupervisedDataset(Dataset):\n    \"\"\"Dataset for supervised fine-tuning.\"\"\"\n    def __init__(self, tokenizer: transformers.PreTrainedTokenizer, data_args):\n        super(LazySupervisedDataset, self).__init__()\n        dataset = data_args.dataset_use.split(\",\") if data_args.dataset_use else []\n        dataset_list = data_list(\n            dataset,\n            dataset_config=getattr(data_args, \"dataset_config\", None),\n            janusvln_data_root=getattr(data_args, \"janusvln_data_root\", None),\n        )",
+        "detail": "src.qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "DataCollatorForSupervisedDataset",
+        "kind": 6,
+        "importPath": "src.qwen_vl.data.data_qwen",
+        "description": "src.qwen_vl.data.data_qwen",
+        "peekOfCode": "class DataCollatorForSupervisedDataset(object):\n    \"\"\"Collate examples for supervised fine-tuning.\"\"\"\n    tokenizer: transformers.PreTrainedTokenizer\n    spatial_merge_size: int = 2\n    def __call__(self, instances: Sequence[Dict]) -> Dict[str, torch.Tensor]:\n        input_ids, labels, position_ids = tuple(\n            [instance[key] for instance in instances]\n            for key in (\"input_ids\", \"labels\", \"position_ids\")\n        )\n        input_ids = torch.nn.utils.rnn.pad_sequence(",
+        "detail": "src.qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "FlattenedDataCollatorForSupervisedDataset",
+        "kind": 6,
+        "importPath": "src.qwen_vl.data.data_qwen",
+        "description": "src.qwen_vl.data.data_qwen",
+        "peekOfCode": "class FlattenedDataCollatorForSupervisedDataset(DataCollatorForSupervisedDataset):\n    \"\"\"Collate examples into packed sequence with multi-modal support.\"\"\"\n    tokenizer: transformers.PreTrainedTokenizer\n    def __call__(self, instances: Sequence[Dict]) -> Dict[str, torch.Tensor]:\n        input_ids, labels, position_ids = tuple(\n            [instance[key] for instance in instances]\n            for key in (\"input_ids\", \"labels\", \"position_ids\")\n        )\n        seq_lens = torch.tensor(\n            [0] + [len(seq) for seq in input_ids], dtype=torch.int32",
+        "detail": "src.qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "rank0_print",
+        "kind": 2,
+        "importPath": "src.qwen_vl.data.data_qwen",
+        "description": "src.qwen_vl.data.data_qwen",
+        "peekOfCode": "def rank0_print(*args):\n    if local_rank == 0:\n        print(*args)\ndef read_jsonl(path, max_samples: int = -1):\n    with open(path, \"r\") as f:\n        # return [json.loads(line) for line in f]\n        ret = []\n        for line in f:\n            ret.append(json.loads(line))\n            if max_samples != -1 and len(ret) >= max_samples:",
+        "detail": "src.qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "read_jsonl",
+        "kind": 2,
+        "importPath": "src.qwen_vl.data.data_qwen",
+        "description": "src.qwen_vl.data.data_qwen",
+        "peekOfCode": "def read_jsonl(path, max_samples: int = -1):\n    with open(path, \"r\") as f:\n        # return [json.loads(line) for line in f]\n        ret = []\n        for line in f:\n            ret.append(json.loads(line))\n            if max_samples != -1 and len(ret) >= max_samples:\n                break\n    return ret\ndef read_json_array(path: str, max_samples: int = -1):",
+        "detail": "src.qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "read_json_array",
+        "kind": 2,
+        "importPath": "src.qwen_vl.data.data_qwen",
+        "description": "src.qwen_vl.data.data_qwen",
+        "peekOfCode": "def read_json_array(path: str, max_samples: int = -1):\n    \"\"\"Read a JSON array, without loading a multi-GB file for smoke tests.\"\"\"\n    if max_samples < 0:\n        with open(path, \"r\", encoding=\"utf-8\") as handle:\n            return json.load(handle)\n    if max_samples == 0:\n        return []\n    decoder = json.JSONDecoder()\n    records = []\n    buffer = \"\"",
+        "detail": "src.qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "normalize_janusvln_image_path",
+        "kind": 2,
+        "importPath": "src.qwen_vl.data.data_qwen",
+        "description": "src.qwen_vl.data.data_qwen",
+        "peekOfCode": "def normalize_janusvln_image_path(image_path: str, dataset_root: str) -> str:\n    \"\"\"Return a dataset-root-relative JanusVLN image path.\"\"\"\n    root = Path(dataset_root).expanduser().resolve()\n    path = Path(image_path).expanduser()\n    if not path.is_absolute():\n        relative_path = path\n    else:\n        try:\n            relative_path = path.resolve().relative_to(root)\n        except ValueError:",
+        "detail": "src.qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "build_current_image_token_mask",
+        "kind": 2,
+        "importPath": "src.qwen_vl.data.data_qwen",
+        "description": "src.qwen_vl.data.data_qwen",
+        "peekOfCode": "def build_current_image_token_mask(\n    input_ids: torch.Tensor,\n    *,\n    image_token_id: int,\n    vision_start_token_id: int,\n    vision_end_token_id: int,\n    expected_token_count: int,\n) -> torch.Tensor:\n    \"\"\"Select the image-pad tokens belonging to the final/current image.\"\"\"\n    if input_ids.ndim != 1:",
+        "detail": "src.qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "preprocess_qwen_2_visual",
+        "kind": 2,
+        "importPath": "src.qwen_vl.data.data_qwen",
+        "description": "src.qwen_vl.data.data_qwen",
+        "peekOfCode": "def preprocess_qwen_2_visual(\n    sources,\n    tokenizer: transformers.PreTrainedTokenizer,\n    grid_thw: List = [],\n    visual_type: str = \"image\",\n    model_type: str = \"qwen2.5vl\",\n) -> Dict:\n    roles = {\"human\": \"user\", \"gpt\": \"assistant\"}\n    system_message = \"You are a helpful assistant.\"\n    if visual_type not in [\"image\", \"video\"]:",
+        "detail": "src.qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "pad_and_cat",
+        "kind": 2,
+        "importPath": "src.qwen_vl.data.data_qwen",
+        "description": "src.qwen_vl.data.data_qwen",
+        "peekOfCode": "def pad_and_cat(tensor_list):\n    max_length = max(tensor.shape[2] for tensor in tensor_list)\n    padded_tensors = []\n    for tensor in tensor_list:\n        pad_length = max_length - tensor.shape[2]\n        padded_tensor = torch.nn.functional.pad(tensor, (0, pad_length), \"constant\", 1)\n        padded_tensors.append(padded_tensor)\n    stacked_tensor = torch.cat(padded_tensors, dim=1)\n    return stacked_tensor\n@dataclass",
+        "detail": "src.qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "make_supervised_data_module",
+        "kind": 2,
+        "importPath": "src.qwen_vl.data.data_qwen",
+        "description": "src.qwen_vl.data.data_qwen",
+        "peekOfCode": "def make_supervised_data_module(\n    tokenizer: transformers.PreTrainedTokenizer, data_args\n) -> Dict:\n    \"\"\"Make dataset and collator for supervised fine-tuning.\"\"\"\n    train_dataset = LazySupervisedDataset(tokenizer=tokenizer, data_args=data_args)\n    if data_args.data_flatten:\n        data_collator = FlattenedDataCollatorForSupervisedDataset(\n            tokenizer=tokenizer,\n            spatial_merge_size=data_args.image_processor.merge_size,\n        )",
+        "detail": "src.qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "IGNORE_INDEX",
+        "kind": 5,
+        "importPath": "src.qwen_vl.data.data_qwen",
+        "description": "src.qwen_vl.data.data_qwen",
+        "peekOfCode": "IGNORE_INDEX = -100\nIMAGE_TOKEN_INDEX = 151655\nVIDEO_TOKEN_INDEX = 151656\nDEFAULT_IMAGE_TOKEN = \"<image>\"\nDEFAULT_VIDEO_TOKEN = \"<video>\"\nQWEN_TRAIN_CHAT_TEMPLATE = (\n    \"{% for message in messages %}\"\n    \"{{'<|im_start|>' + message['role'] + '\\n' + message['content'] + '<|im_end|>' + '\\n'}}\"\n    \"{% endfor %}\"\n    \"{% if add_generation_prompt %}{{ '<|im_start|>assistant\\n' }}{% endif %}\"",
+        "detail": "src.qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "IMAGE_TOKEN_INDEX",
+        "kind": 5,
+        "importPath": "src.qwen_vl.data.data_qwen",
+        "description": "src.qwen_vl.data.data_qwen",
+        "peekOfCode": "IMAGE_TOKEN_INDEX = 151655\nVIDEO_TOKEN_INDEX = 151656\nDEFAULT_IMAGE_TOKEN = \"<image>\"\nDEFAULT_VIDEO_TOKEN = \"<video>\"\nQWEN_TRAIN_CHAT_TEMPLATE = (\n    \"{% for message in messages %}\"\n    \"{{'<|im_start|>' + message['role'] + '\\n' + message['content'] + '<|im_end|>' + '\\n'}}\"\n    \"{% endfor %}\"\n    \"{% if add_generation_prompt %}{{ '<|im_start|>assistant\\n' }}{% endif %}\"\n)",
+        "detail": "src.qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "VIDEO_TOKEN_INDEX",
+        "kind": 5,
+        "importPath": "src.qwen_vl.data.data_qwen",
+        "description": "src.qwen_vl.data.data_qwen",
+        "peekOfCode": "VIDEO_TOKEN_INDEX = 151656\nDEFAULT_IMAGE_TOKEN = \"<image>\"\nDEFAULT_VIDEO_TOKEN = \"<video>\"\nQWEN_TRAIN_CHAT_TEMPLATE = (\n    \"{% for message in messages %}\"\n    \"{{'<|im_start|>' + message['role'] + '\\n' + message['content'] + '<|im_end|>' + '\\n'}}\"\n    \"{% endfor %}\"\n    \"{% if add_generation_prompt %}{{ '<|im_start|>assistant\\n' }}{% endif %}\"\n)\nQWEN3_5_NON_THINKING_CHAT_TEMPLATE = (",
+        "detail": "src.qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_IMAGE_TOKEN",
+        "kind": 5,
+        "importPath": "src.qwen_vl.data.data_qwen",
+        "description": "src.qwen_vl.data.data_qwen",
+        "peekOfCode": "DEFAULT_IMAGE_TOKEN = \"<image>\"\nDEFAULT_VIDEO_TOKEN = \"<video>\"\nQWEN_TRAIN_CHAT_TEMPLATE = (\n    \"{% for message in messages %}\"\n    \"{{'<|im_start|>' + message['role'] + '\\n' + message['content'] + '<|im_end|>' + '\\n'}}\"\n    \"{% endfor %}\"\n    \"{% if add_generation_prompt %}{{ '<|im_start|>assistant\\n' }}{% endif %}\"\n)\nQWEN3_5_NON_THINKING_CHAT_TEMPLATE = (\n    \"{% for message in messages %}\"",
+        "detail": "src.qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_VIDEO_TOKEN",
+        "kind": 5,
+        "importPath": "src.qwen_vl.data.data_qwen",
+        "description": "src.qwen_vl.data.data_qwen",
+        "peekOfCode": "DEFAULT_VIDEO_TOKEN = \"<video>\"\nQWEN_TRAIN_CHAT_TEMPLATE = (\n    \"{% for message in messages %}\"\n    \"{{'<|im_start|>' + message['role'] + '\\n' + message['content'] + '<|im_end|>' + '\\n'}}\"\n    \"{% endfor %}\"\n    \"{% if add_generation_prompt %}{{ '<|im_start|>assistant\\n' }}{% endif %}\"\n)\nQWEN3_5_NON_THINKING_CHAT_TEMPLATE = (\n    \"{% for message in messages %}\"\n    \"{{ '<|im_start|>' + message['role'] + '\\n' }}\"",
+        "detail": "src.qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "QWEN_TRAIN_CHAT_TEMPLATE",
+        "kind": 5,
+        "importPath": "src.qwen_vl.data.data_qwen",
+        "description": "src.qwen_vl.data.data_qwen",
+        "peekOfCode": "QWEN_TRAIN_CHAT_TEMPLATE = (\n    \"{% for message in messages %}\"\n    \"{{'<|im_start|>' + message['role'] + '\\n' + message['content'] + '<|im_end|>' + '\\n'}}\"\n    \"{% endfor %}\"\n    \"{% if add_generation_prompt %}{{ '<|im_start|>assistant\\n' }}{% endif %}\"\n)\nQWEN3_5_NON_THINKING_CHAT_TEMPLATE = (\n    \"{% for message in messages %}\"\n    \"{{ '<|im_start|>' + message['role'] + '\\n' }}\"\n    \"{% if message['role'] == 'assistant' %}{{ '<think>\\n\\n</think>\\n\\n' + message['content'] }}{% else %}{{ message['content'] }}{% endif %}\"",
+        "detail": "src.qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "QWEN3_5_NON_THINKING_CHAT_TEMPLATE",
+        "kind": 5,
+        "importPath": "src.qwen_vl.data.data_qwen",
+        "description": "src.qwen_vl.data.data_qwen",
+        "peekOfCode": "QWEN3_5_NON_THINKING_CHAT_TEMPLATE = (\n    \"{% for message in messages %}\"\n    \"{{ '<|im_start|>' + message['role'] + '\\n' }}\"\n    \"{% if message['role'] == 'assistant' %}{{ '<think>\\n\\n</think>\\n\\n' + message['content'] }}{% else %}{{ message['content'] }}{% endif %}\"\n    \"{{ '<|im_end|>' + '\\n' }}\"\n    \"{% endfor %}\"\n    \"{% if add_generation_prompt %}{{ '<|im_start|>assistant\\n<think>\\n\\n</think>\\n\\n' }}{% endif %}\"\n)\nlocal_rank = None\ndef rank0_print(*args):",
+        "detail": "src.qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "local_rank",
+        "kind": 5,
+        "importPath": "src.qwen_vl.data.data_qwen",
+        "description": "src.qwen_vl.data.data_qwen",
+        "peekOfCode": "local_rank = None\ndef rank0_print(*args):\n    if local_rank == 0:\n        print(*args)\ndef read_jsonl(path, max_samples: int = -1):\n    with open(path, \"r\") as f:\n        # return [json.loads(line) for line in f]\n        ret = []\n        for line in f:\n            ret.append(json.loads(line))",
+        "detail": "src.qwen_vl.data.data_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "get_rope_index_25",
+        "kind": 2,
+        "importPath": "src.qwen_vl.data.rope2d",
+        "description": "src.qwen_vl.data.rope2d",
+        "peekOfCode": "def get_rope_index_25(\n    spatial_merge_size: Optional[int] = 2,\n    input_ids: Optional[torch.LongTensor] = None,\n    image_grid_thw: Optional[torch.LongTensor] = None,\n    video_grid_thw: Optional[torch.LongTensor] = None,\n    second_per_grid_ts: Optional[torch.Tensor] = None,\n    attention_mask: Optional[torch.Tensor] = None,\n) -> Tuple[torch.Tensor, torch.Tensor]:\n    \"\"\"\n    Calculate the 3D rope index based on image and video's temporal, height and width in LLM.",
+        "detail": "src.qwen_vl.data.rope2d",
+        "documentation": {}
+    },
+    {
+        "label": "get_rope_index_2",
+        "kind": 2,
+        "importPath": "src.qwen_vl.data.rope2d",
+        "description": "src.qwen_vl.data.rope2d",
+        "peekOfCode": "def get_rope_index_2(\n    spatial_merge_size: Optional[int] = 2,\n    input_ids: Optional[torch.LongTensor] = None,\n    image_grid_thw: Optional[torch.LongTensor] = None,\n    video_grid_thw: Optional[torch.LongTensor] = None,\n    second_per_grid_ts: Optional[torch.Tensor] = None,\n    attention_mask: Optional[torch.Tensor] = None,\n) -> Tuple[torch.Tensor, torch.Tensor]:\n    \"\"\"\n    Calculate the 3D rope index based on image and video's temporal, height and width in LLM.",
+        "detail": "src.qwen_vl.data.rope2d",
+        "documentation": {}
+    },
+    {
+        "label": "get_rope_index_35",
+        "kind": 2,
+        "importPath": "src.qwen_vl.data.rope2d",
+        "description": "src.qwen_vl.data.rope2d",
+        "peekOfCode": "def get_rope_index_35(\n    spatial_merge_size: Optional[int] = 2,\n    input_ids: Optional[torch.LongTensor] = None,\n    image_grid_thw: Optional[torch.LongTensor] = None,\n    video_grid_thw: Optional[torch.LongTensor] = None,\n    second_per_grid_ts: Optional[torch.Tensor] = None,\n    attention_mask: Optional[torch.Tensor] = None,\n) -> Tuple[torch.Tensor, torch.Tensor]:\n    del second_per_grid_ts\n    image_token_id = 248056",
+        "detail": "src.qwen_vl.data.rope2d",
+        "documentation": {}
+    },
+    {
+        "label": "load_and_preprocess_images",
+        "kind": 2,
+        "importPath": "src.qwen_vl.data.utils",
+        "description": "src.qwen_vl.data.utils",
+        "peekOfCode": "def load_and_preprocess_images(image_path_list, mode=\"crop\", target_size=518):\n    \"\"\"\n    A quick start function to load and preprocess images for model input.\n    This assumes the images should have the same shape for easier batching, but our model can also work well with different shapes.\n    Args:\n        image_path_list (list): List of paths to image files\n        mode (str, optional): Preprocessing mode, either \"crop\" or \"pad\".\n                             - \"crop\" (default): Sets width to 518px and center crops height if needed.\n                             - \"pad\": Preserves all pixels by making the largest dimension 518px\n                               and padding the smaller dimension to reach a square shape.",
+        "detail": "src.qwen_vl.data.utils",
+        "documentation": {}
+    },
+    {
+        "label": "prepare_image_inputs",
+        "kind": 2,
+        "importPath": "src.qwen_vl.data.utils",
+        "description": "src.qwen_vl.data.utils",
+        "peekOfCode": "def prepare_image_inputs(\n    image,\n    image_processor,\n    model_type=\"qwen2.5vl\",\n    prepare_geometry=True,\n    depth_supervision_enabled=False,\n):\n    images = load_and_preprocess_images([image])\n    merge_size: int = getattr(image_processor, \"merge_size\")\n    patch_size: int = getattr(image_processor, \"patch_size\")",
+        "detail": "src.qwen_vl.data.utils",
+        "documentation": {}
+    },
+    {
+        "label": "GEOMETRY_ENCODER_PATCH_SIZE",
+        "kind": 5,
+        "importPath": "src.qwen_vl.data.utils",
+        "description": "src.qwen_vl.data.utils",
+        "peekOfCode": "GEOMETRY_ENCODER_PATCH_SIZE = 14\ndef _load_rgb_image(image_path):\n    if isinstance(image_path, str):\n        img = Image.open(image_path)\n    elif isinstance(image_path, Image.Image):\n        img = image_path\n    else:\n        raise NotImplementedError(f\"Unsupported image type: {type(image_path)}\")\n    if img.mode == \"RGBA\":\n        background = Image.new(\"RGBA\", img.size, (255, 255, 255, 255))",
+        "detail": "src.qwen_vl.data.utils",
+        "documentation": {}
+    },
+    {
+        "label": "GeometryEncoderConfig",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.geometry_encoders.base",
+        "description": "src.qwen_vl.model.geometry_encoders.base",
+        "peekOfCode": "class GeometryEncoderConfig:\n    \"\"\"Configuration for geometry encoders.\"\"\"\n    encoder_type: str = \"vggt\"  # \"vggt\", \"pi3\", etc.\n    model_path: Optional[str] = None\n    reference_frame: str = \"first\"  # \"first\" or \"last\"\n    feature_dim: int = 2048  # Will be overridden by encoder's get_feature_dim()\n    freeze_encoder: bool = True\n    # Encoder-specific configs\n    encoder_kwargs: Dict[str, Any] = None\n    def __post_init__(self):",
+        "detail": "src.qwen_vl.model.geometry_encoders.base",
+        "documentation": {}
+    },
+    {
+        "label": "BaseGeometryEncoder",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.geometry_encoders.base",
+        "description": "src.qwen_vl.model.geometry_encoders.base",
+        "peekOfCode": "class BaseGeometryEncoder(ABC, nn.Module):\n    \"\"\"Base class for geometry encoders like VGGT, Pi3, etc.\"\"\"\n    def __init__(self, config: GeometryEncoderConfig):\n        super().__init__()\n        self.config = config\n        self.reference_frame = config.reference_frame\n        self.freeze_encoder = config.freeze_encoder\n    @abstractmethod\n    def encode(self, images: torch.Tensor) -> torch.Tensor:\n        \"\"\"",
+        "detail": "src.qwen_vl.model.geometry_encoders.base",
+        "documentation": {}
+    },
+    {
+        "label": "create_geometry_encoder",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.geometry_encoders.factory",
+        "description": "src.qwen_vl.model.geometry_encoders.factory",
+        "peekOfCode": "def create_geometry_encoder(\n    encoder_type: str,\n    model_path: Optional[str] = None,\n    reference_frame: str = \"first\",\n    freeze_encoder: bool = True,\n    **encoder_kwargs,\n) -> BaseGeometryEncoder:\n    \"\"\"\n    Factory function to create geometry encoders.\n    Args:",
+        "detail": "src.qwen_vl.model.geometry_encoders.factory",
+        "documentation": {}
+    },
+    {
+        "label": "get_available_encoders",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.geometry_encoders.factory",
+        "description": "src.qwen_vl.model.geometry_encoders.factory",
+        "peekOfCode": "def get_available_encoders():\n    \"\"\"Get list of available encoder types.\"\"\"\n    return [\"vggt\"]",
+        "detail": "src.qwen_vl.model.geometry_encoders.factory",
+        "documentation": {}
+    },
+    {
+        "label": "VGGTEncoder",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.geometry_encoders.vggt_encoder",
+        "description": "src.qwen_vl.model.geometry_encoders.vggt_encoder",
+        "peekOfCode": "class VGGTEncoder(BaseGeometryEncoder):\n    \"\"\"VGGT geometry encoder wrapper.\"\"\"\n    def __init__(self, config: GeometryEncoderConfig):\n        super().__init__(config)\n        self.enable_depth = bool(config.encoder_kwargs.get(\"enable_depth\", False))\n        # Lazy import to avoid circular dependencies\n        from ..vggt.models.vggt import VGGT\n        # Initialize VGGT model\n        self.vggt = VGGT(\n            enable_camera=False,",
+        "detail": "src.qwen_vl.model.geometry_encoders.vggt_encoder",
+        "documentation": {}
+    },
+    {
+        "label": "BaseTrackerPredictor",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.heads.track_modules.base_track_predictor",
+        "description": "src.qwen_vl.model.vggt.heads.track_modules.base_track_predictor",
+        "peekOfCode": "class BaseTrackerPredictor(nn.Module):\n    def __init__(\n        self,\n        stride=1,\n        corr_levels=5,\n        corr_radius=4,\n        latent_dim=128,\n        hidden_size=384,\n        use_spaceatt=True,\n        depth=6,",
+        "detail": "src.qwen_vl.model.vggt.heads.track_modules.base_track_predictor",
+        "documentation": {}
+    },
+    {
+        "label": "EfficientUpdateFormer",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.heads.track_modules.blocks",
+        "description": "src.qwen_vl.model.vggt.heads.track_modules.blocks",
+        "peekOfCode": "class EfficientUpdateFormer(nn.Module):\n    \"\"\"\n    Transformer model that updates track estimates.\n    \"\"\"\n    def __init__(\n        self,\n        space_depth=6,\n        time_depth=6,\n        input_dim=320,\n        hidden_size=384,",
+        "detail": "src.qwen_vl.model.vggt.heads.track_modules.blocks",
+        "documentation": {}
+    },
+    {
+        "label": "CorrBlock",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.heads.track_modules.blocks",
+        "description": "src.qwen_vl.model.vggt.heads.track_modules.blocks",
+        "peekOfCode": "class CorrBlock:\n    def __init__(self, fmaps, num_levels=4, radius=4, multiple_track_feats=False, padding_mode=\"zeros\"):\n        \"\"\"\n        Build a pyramid of feature maps from the input.\n        fmaps: Tensor (B, S, C, H, W)\n        num_levels: number of pyramid levels (each downsampled by factor 2)\n        radius: search radius for sampling correlation\n        multiple_track_feats: if True, split the target features per pyramid level\n        padding_mode: passed to grid_sample / bilinear_sampler\n        \"\"\"",
+        "detail": "src.qwen_vl.model.vggt.heads.track_modules.blocks",
+        "documentation": {}
+    },
+    {
+        "label": "compute_corr_level",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.heads.track_modules.blocks",
+        "description": "src.qwen_vl.model.vggt.heads.track_modules.blocks",
+        "peekOfCode": "def compute_corr_level(fmap1, fmap2s, C):\n    # fmap1: (B, S, N, C)\n    # fmap2s: (B, S, C, H*W)\n    corrs = torch.matmul(fmap1, fmap2s)  # (B, S, N, H*W)\n    corrs = corrs.view(fmap1.shape[0], fmap1.shape[1], fmap1.shape[2], -1)  # (B, S, N, H*W)\n    return corrs / math.sqrt(C)",
+        "detail": "src.qwen_vl.model.vggt.heads.track_modules.blocks",
+        "documentation": {}
+    },
+    {
+        "label": "ResidualBlock",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "description": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "peekOfCode": "class ResidualBlock(nn.Module):\n    \"\"\"\n    ResidualBlock: construct a block of two conv layers with residual connections\n    \"\"\"\n    def __init__(self, in_planes, planes, norm_fn=\"group\", stride=1, kernel_size=3):\n        super(ResidualBlock, self).__init__()\n        self.conv1 = nn.Conv2d(\n            in_planes, planes, kernel_size=kernel_size, padding=1, stride=stride, padding_mode=\"zeros\"\n        )\n        self.conv2 = nn.Conv2d(planes, planes, kernel_size=kernel_size, padding=1, padding_mode=\"zeros\")",
+        "detail": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "documentation": {}
+    },
+    {
+        "label": "Mlp",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "description": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "peekOfCode": "class Mlp(nn.Module):\n    \"\"\"MLP as used in Vision Transformer, MLP-Mixer and related networks\"\"\"\n    def __init__(\n        self,\n        in_features,\n        hidden_features=None,\n        out_features=None,\n        act_layer=nn.GELU,\n        norm_layer=None,\n        bias=True,",
+        "detail": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "documentation": {}
+    },
+    {
+        "label": "AttnBlock",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "description": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "peekOfCode": "class AttnBlock(nn.Module):\n    def __init__(\n        self,\n        hidden_size,\n        num_heads,\n        attn_class: Callable[..., nn.Module] = nn.MultiheadAttention,\n        mlp_ratio=4.0,\n        **block_kwargs,\n    ):\n        \"\"\"",
+        "detail": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "documentation": {}
+    },
+    {
+        "label": "CrossAttnBlock",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "description": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "peekOfCode": "class CrossAttnBlock(nn.Module):\n    def __init__(self, hidden_size, context_dim, num_heads=1, mlp_ratio=4.0, **block_kwargs):\n        \"\"\"\n        Cross attention block\n        \"\"\"\n        super().__init__()\n        self.norm1 = nn.LayerNorm(hidden_size)\n        self.norm_context = nn.LayerNorm(hidden_size)\n        self.norm2 = nn.LayerNorm(hidden_size)\n        self.cross_attn = nn.MultiheadAttention(",
+        "detail": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "documentation": {}
+    },
+    {
+        "label": "exists",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "description": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "peekOfCode": "def exists(val):\n    return val is not None\ndef default(val, d):\n    return val if exists(val) else d\nto_2tuple = _ntuple(2)\nclass ResidualBlock(nn.Module):\n    \"\"\"\n    ResidualBlock: construct a block of two conv layers with residual connections\n    \"\"\"\n    def __init__(self, in_planes, planes, norm_fn=\"group\", stride=1, kernel_size=3):",
+        "detail": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "documentation": {}
+    },
+    {
+        "label": "default",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "description": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "peekOfCode": "def default(val, d):\n    return val if exists(val) else d\nto_2tuple = _ntuple(2)\nclass ResidualBlock(nn.Module):\n    \"\"\"\n    ResidualBlock: construct a block of two conv layers with residual connections\n    \"\"\"\n    def __init__(self, in_planes, planes, norm_fn=\"group\", stride=1, kernel_size=3):\n        super(ResidualBlock, self).__init__()\n        self.conv1 = nn.Conv2d(",
+        "detail": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "documentation": {}
+    },
+    {
+        "label": "to_2tuple",
+        "kind": 5,
+        "importPath": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "description": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "peekOfCode": "to_2tuple = _ntuple(2)\nclass ResidualBlock(nn.Module):\n    \"\"\"\n    ResidualBlock: construct a block of two conv layers with residual connections\n    \"\"\"\n    def __init__(self, in_planes, planes, norm_fn=\"group\", stride=1, kernel_size=3):\n        super(ResidualBlock, self).__init__()\n        self.conv1 = nn.Conv2d(\n            in_planes, planes, kernel_size=kernel_size, padding=1, stride=stride, padding_mode=\"zeros\"\n        )",
+        "detail": "src.qwen_vl.model.vggt.heads.track_modules.modules",
+        "documentation": {}
+    },
+    {
+        "label": "get_2d_sincos_pos_embed",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.heads.track_modules.utils",
+        "description": "src.qwen_vl.model.vggt.heads.track_modules.utils",
+        "peekOfCode": "def get_2d_sincos_pos_embed(embed_dim: int, grid_size: Union[int, Tuple[int, int]], return_grid=False) -> torch.Tensor:\n    \"\"\"\n    This function initializes a grid and generates a 2D positional embedding using sine and cosine functions.\n    It is a wrapper of get_2d_sincos_pos_embed_from_grid.\n    Args:\n    - embed_dim: The embedding dimension.\n    - grid_size: The grid size.\n    Returns:\n    - pos_embed: The generated 2D positional embedding.\n    \"\"\"",
+        "detail": "src.qwen_vl.model.vggt.heads.track_modules.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_2d_sincos_pos_embed_from_grid",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.heads.track_modules.utils",
+        "description": "src.qwen_vl.model.vggt.heads.track_modules.utils",
+        "peekOfCode": "def get_2d_sincos_pos_embed_from_grid(embed_dim: int, grid: torch.Tensor) -> torch.Tensor:\n    \"\"\"\n    This function generates a 2D positional embedding from a given grid using sine and cosine functions.\n    Args:\n    - embed_dim: The embedding dimension.\n    - grid: The grid to generate the embedding from.\n    Returns:\n    - emb: The generated 2D positional embedding.\n    \"\"\"\n    assert embed_dim % 2 == 0",
+        "detail": "src.qwen_vl.model.vggt.heads.track_modules.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_1d_sincos_pos_embed_from_grid",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.heads.track_modules.utils",
+        "description": "src.qwen_vl.model.vggt.heads.track_modules.utils",
+        "peekOfCode": "def get_1d_sincos_pos_embed_from_grid(embed_dim: int, pos: torch.Tensor) -> torch.Tensor:\n    \"\"\"\n    This function generates a 1D positional embedding from a given grid using sine and cosine functions.\n    Args:\n    - embed_dim: The embedding dimension.\n    - pos: The position to generate the embedding from.\n    Returns:\n    - emb: The generated 1D positional embedding.\n    \"\"\"\n    assert embed_dim % 2 == 0",
+        "detail": "src.qwen_vl.model.vggt.heads.track_modules.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_2d_embedding",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.heads.track_modules.utils",
+        "description": "src.qwen_vl.model.vggt.heads.track_modules.utils",
+        "peekOfCode": "def get_2d_embedding(xy: torch.Tensor, C: int, cat_coords: bool = True) -> torch.Tensor:\n    \"\"\"\n    This function generates a 2D positional embedding from given coordinates using sine and cosine functions.\n    Args:\n    - xy: The coordinates to generate the embedding from.\n    - C: The size of the embedding.\n    - cat_coords: A flag to indicate whether to concatenate the original coordinates to the embedding.\n    Returns:\n    - pe: The generated 2D positional embedding.\n    \"\"\"",
+        "detail": "src.qwen_vl.model.vggt.heads.track_modules.utils",
+        "documentation": {}
+    },
+    {
+        "label": "bilinear_sampler",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.heads.track_modules.utils",
+        "description": "src.qwen_vl.model.vggt.heads.track_modules.utils",
+        "peekOfCode": "def bilinear_sampler(input, coords, align_corners=True, padding_mode=\"border\"):\n    r\"\"\"Sample a tensor using bilinear interpolation\n    `bilinear_sampler(input, coords)` samples a tensor :attr:`input` at\n    coordinates :attr:`coords` using bilinear interpolation. It is the same\n    as `torch.nn.functional.grid_sample()` but with a different coordinate\n    convention.\n    The input tensor is assumed to be of shape :math:`(B, C, H, W)`, where\n    :math:`B` is the batch size, :math:`C` is the number of channels,\n    :math:`H` is the height of the image, and :math:`W` is the width of the\n    image. The tensor :attr:`coords` of shape :math:`(B, H_o, W_o, 2)` is",
+        "detail": "src.qwen_vl.model.vggt.heads.track_modules.utils",
+        "documentation": {}
+    },
+    {
+        "label": "sample_features4d",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.heads.track_modules.utils",
+        "description": "src.qwen_vl.model.vggt.heads.track_modules.utils",
+        "peekOfCode": "def sample_features4d(input, coords):\n    r\"\"\"Sample spatial features\n    `sample_features4d(input, coords)` samples the spatial features\n    :attr:`input` represented by a 4D tensor :math:`(B, C, H, W)`.\n    The field is sampled at coordinates :attr:`coords` using bilinear\n    interpolation. :attr:`coords` is assumed to be of shape :math:`(B, R,\n    2)`, where each sample has the format :math:`(x_i, y_i)`. This uses the\n    same convention as :func:`bilinear_sampler` with `align_corners=True`.\n    The output tensor has one feature per point, and has shape :math:`(B,\n    R, C)`.",
+        "detail": "src.qwen_vl.model.vggt.heads.track_modules.utils",
+        "documentation": {}
+    },
+    {
+        "label": "CameraHead",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.heads.camera_head",
+        "description": "src.qwen_vl.model.vggt.heads.camera_head",
+        "peekOfCode": "class CameraHead(nn.Module):\n    \"\"\"\n    CameraHead predicts camera parameters from token representations using iterative refinement.\n    It applies a series of transformer blocks (the \"trunk\") to dedicated camera tokens.\n    \"\"\"\n    def __init__(\n        self,\n        dim_in: int = 2048,\n        trunk_depth: int = 4,\n        pose_encoding_type: str = \"absT_quaR_FoV\",",
+        "detail": "src.qwen_vl.model.vggt.heads.camera_head",
+        "documentation": {}
+    },
+    {
+        "label": "modulate",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.heads.camera_head",
+        "description": "src.qwen_vl.model.vggt.heads.camera_head",
+        "peekOfCode": "def modulate(x: torch.Tensor, shift: torch.Tensor, scale: torch.Tensor) -> torch.Tensor:\n    \"\"\"\n    Modulate the input tensor using scaling and shifting parameters.\n    \"\"\"\n    # modified from https://github.com/facebookresearch/DiT/blob/796c29e532f47bba17c5b9c5eb39b9354b8b7c64/models.py#L19\n    return x * (1 + scale) + shift",
+        "detail": "src.qwen_vl.model.vggt.heads.camera_head",
+        "documentation": {}
+    },
+    {
+        "label": "DPTHead",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.heads.dpt_head",
+        "description": "src.qwen_vl.model.vggt.heads.dpt_head",
+        "peekOfCode": "class DPTHead(nn.Module):\n    \"\"\"\n    DPT  Head for dense prediction tasks.\n    This implementation follows the architecture described in \"Vision Transformers for Dense Prediction\"\n    (https://arxiv.org/abs/2103.13413). The DPT head processes features from a vision transformer\n    backbone and produces dense predictions by fusing multi-scale features.\n    Args:\n        dim_in (int): Input dimension (channels).\n        patch_size (int, optional): Patch size. Default is 14.\n        output_dim (int, optional): Number of output channels. Default is 4.",
+        "detail": "src.qwen_vl.model.vggt.heads.dpt_head",
+        "documentation": {}
+    },
+    {
+        "label": "ResidualConvUnit",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.heads.dpt_head",
+        "description": "src.qwen_vl.model.vggt.heads.dpt_head",
+        "peekOfCode": "class ResidualConvUnit(nn.Module):\n    \"\"\"Residual convolution module.\"\"\"\n    def __init__(self, features, activation, bn, groups=1):\n        \"\"\"Init.\n        Args:\n            features (int): number of features\n        \"\"\"\n        super().__init__()\n        self.bn = bn\n        self.groups = groups",
+        "detail": "src.qwen_vl.model.vggt.heads.dpt_head",
+        "documentation": {}
+    },
+    {
+        "label": "FeatureFusionBlock",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.heads.dpt_head",
+        "description": "src.qwen_vl.model.vggt.heads.dpt_head",
+        "peekOfCode": "class FeatureFusionBlock(nn.Module):\n    \"\"\"Feature fusion block.\"\"\"\n    def __init__(\n        self,\n        features,\n        activation,\n        deconv=False,\n        bn=False,\n        expand=False,\n        align_corners=True,",
+        "detail": "src.qwen_vl.model.vggt.heads.dpt_head",
+        "documentation": {}
+    },
+    {
+        "label": "custom_interpolate",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.heads.dpt_head",
+        "description": "src.qwen_vl.model.vggt.heads.dpt_head",
+        "peekOfCode": "def custom_interpolate(\n    x: torch.Tensor,\n    size: Tuple[int, int] = None,\n    scale_factor: float = None,\n    mode: str = \"bilinear\",\n    align_corners: bool = True,\n) -> torch.Tensor:\n    \"\"\"\n    Custom interpolate to avoid INT_MAX issues in nn.functional.interpolate.\n    \"\"\"",
+        "detail": "src.qwen_vl.model.vggt.heads.dpt_head",
+        "documentation": {}
+    },
+    {
+        "label": "activate_pose",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.heads.head_act",
+        "description": "src.qwen_vl.model.vggt.heads.head_act",
+        "peekOfCode": "def activate_pose(pred_pose_enc, trans_act=\"linear\", quat_act=\"linear\", fl_act=\"linear\"):\n    \"\"\"\n    Activate pose parameters with specified activation functions.\n    Args:\n        pred_pose_enc: Tensor containing encoded pose parameters [translation, quaternion, focal length]\n        trans_act: Activation type for translation component\n        quat_act: Activation type for quaternion component\n        fl_act: Activation type for focal length component\n    Returns:\n        Activated pose parameters tensor",
+        "detail": "src.qwen_vl.model.vggt.heads.head_act",
+        "documentation": {}
+    },
+    {
+        "label": "base_pose_act",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.heads.head_act",
+        "description": "src.qwen_vl.model.vggt.heads.head_act",
+        "peekOfCode": "def base_pose_act(pose_enc, act_type=\"linear\"):\n    \"\"\"\n    Apply basic activation function to pose parameters.\n    Args:\n        pose_enc: Tensor containing encoded pose parameters\n        act_type: Activation type (\"linear\", \"inv_log\", \"exp\", \"relu\")\n    Returns:\n        Activated pose parameters\n    \"\"\"\n    if act_type == \"linear\":",
+        "detail": "src.qwen_vl.model.vggt.heads.head_act",
+        "documentation": {}
+    },
+    {
+        "label": "activate_head",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.heads.head_act",
+        "description": "src.qwen_vl.model.vggt.heads.head_act",
+        "peekOfCode": "def activate_head(out, activation=\"norm_exp\", conf_activation=\"expp1\"):\n    \"\"\"\n    Process network output to extract 3D points and confidence values.\n    Args:\n        out: Network output tensor (B, C, H, W)\n        activation: Activation type for 3D points\n        conf_activation: Activation type for confidence values\n    Returns:\n        Tuple of (3D points tensor, confidence tensor)\n    \"\"\"",
+        "detail": "src.qwen_vl.model.vggt.heads.head_act",
+        "documentation": {}
+    },
+    {
+        "label": "inverse_log_transform",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.heads.head_act",
+        "description": "src.qwen_vl.model.vggt.heads.head_act",
+        "peekOfCode": "def inverse_log_transform(y):\n    \"\"\"\n    Apply inverse log transform: sign(y) * (exp(|y|) - 1)\n    Args:\n        y: Input tensor\n    Returns:\n        Transformed tensor\n    \"\"\"\n    return torch.sign(y) * (torch.expm1(torch.abs(y)))",
+        "detail": "src.qwen_vl.model.vggt.heads.head_act",
+        "documentation": {}
+    },
+    {
+        "label": "TrackHead",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.heads.track_head",
+        "description": "src.qwen_vl.model.vggt.heads.track_head",
+        "peekOfCode": "class TrackHead(nn.Module):\n    \"\"\"\n    Track head that uses DPT head to process tokens and BaseTrackerPredictor for tracking.\n    The tracking is performed iteratively, refining predictions over multiple iterations.\n    \"\"\"\n    def __init__(\n        self,\n        dim_in,\n        patch_size=14,\n        features=128,",
+        "detail": "src.qwen_vl.model.vggt.heads.track_head",
+        "documentation": {}
+    },
+    {
+        "label": "position_grid_to_embed",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.heads.utils",
+        "description": "src.qwen_vl.model.vggt.heads.utils",
+        "peekOfCode": "def position_grid_to_embed(pos_grid: torch.Tensor, embed_dim: int, omega_0: float = 100) -> torch.Tensor:\n    \"\"\"\n    Convert 2D position grid (HxWx2) to sinusoidal embeddings (HxWxC)\n    Args:\n        pos_grid: Tensor of shape (H, W, 2) containing 2D coordinates\n        embed_dim: Output channel dimension for embeddings\n    Returns:\n        Tensor of shape (H, W, embed_dim) with positional embeddings\n    \"\"\"\n    H, W, grid_dim = pos_grid.shape",
+        "detail": "src.qwen_vl.model.vggt.heads.utils",
+        "documentation": {}
+    },
+    {
+        "label": "make_sincos_pos_embed",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.heads.utils",
+        "description": "src.qwen_vl.model.vggt.heads.utils",
+        "peekOfCode": "def make_sincos_pos_embed(embed_dim: int, pos: torch.Tensor, omega_0: float = 100) -> torch.Tensor:\n    \"\"\"\n    This function generates a 1D positional embedding from a given grid using sine and cosine functions.\n    Args:\n    - embed_dim: The embedding dimension.\n    - pos: The position to generate the embedding from.\n    Returns:\n    - emb: The generated 1D positional embedding.\n    \"\"\"\n    assert embed_dim % 2 == 0",
+        "detail": "src.qwen_vl.model.vggt.heads.utils",
+        "documentation": {}
+    },
+    {
+        "label": "create_uv_grid",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.heads.utils",
+        "description": "src.qwen_vl.model.vggt.heads.utils",
+        "peekOfCode": "def create_uv_grid(\n    width: int, height: int, aspect_ratio: float = None, dtype: torch.dtype = None, device: torch.device = None\n) -> torch.Tensor:\n    \"\"\"\n    Create a normalized UV grid of shape (width, height, 2).\n    The grid spans horizontally and vertically according to an aspect ratio,\n    ensuring the top-left corner is at (-x_span, -y_span) and the bottom-right\n    corner is at (x_span, y_span), normalized by the diagonal of the plane.\n    Args:\n        width (int): Number of points horizontally.",
+        "detail": "src.qwen_vl.model.vggt.heads.utils",
+        "documentation": {}
+    },
+    {
+        "label": "Attention",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.layers.attention",
+        "description": "src.qwen_vl.model.vggt.layers.attention",
+        "peekOfCode": "class Attention(nn.Module):\n    def __init__(\n        self,\n        dim: int,\n        num_heads: int = 8,\n        qkv_bias: bool = True,\n        proj_bias: bool = True,\n        attn_drop: float = 0.0,\n        proj_drop: float = 0.0,\n        norm_layer: nn.Module = nn.LayerNorm,",
+        "detail": "src.qwen_vl.model.vggt.layers.attention",
+        "documentation": {}
+    },
+    {
+        "label": "MemEffAttention",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.layers.attention",
+        "description": "src.qwen_vl.model.vggt.layers.attention",
+        "peekOfCode": "class MemEffAttention(Attention):\n    def forward(self, x: Tensor, attn_bias=None, pos=None) -> Tensor:\n        assert pos is None\n        if not XFORMERS_AVAILABLE:\n            if attn_bias is not None:\n                raise AssertionError(\"xFormers is required for using nested tensors\")\n            return super().forward(x)\n        B, N, C = x.shape\n        qkv = self.qkv(x).reshape(B, N, 3, self.num_heads, C // self.num_heads)\n        q, k, v = unbind(qkv, 2)",
+        "detail": "src.qwen_vl.model.vggt.layers.attention",
+        "documentation": {}
+    },
+    {
+        "label": "XFORMERS_AVAILABLE",
+        "kind": 5,
+        "importPath": "src.qwen_vl.model.vggt.layers.attention",
+        "description": "src.qwen_vl.model.vggt.layers.attention",
+        "peekOfCode": "XFORMERS_AVAILABLE = False\nclass Attention(nn.Module):\n    def __init__(\n        self,\n        dim: int,\n        num_heads: int = 8,\n        qkv_bias: bool = True,\n        proj_bias: bool = True,\n        attn_drop: float = 0.0,\n        proj_drop: float = 0.0,",
+        "detail": "src.qwen_vl.model.vggt.layers.attention",
+        "documentation": {}
+    },
+    {
+        "label": "Block",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.layers.block",
+        "description": "src.qwen_vl.model.vggt.layers.block",
+        "peekOfCode": "class Block(nn.Module):\n    def __init__(\n        self,\n        dim: int,\n        num_heads: int,\n        mlp_ratio: float = 4.0,\n        qkv_bias: bool = True,\n        proj_bias: bool = True,\n        ffn_bias: bool = True,\n        drop: float = 0.0,",
+        "detail": "src.qwen_vl.model.vggt.layers.block",
+        "documentation": {}
+    },
+    {
+        "label": "NestedTensorBlock",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.layers.block",
+        "description": "src.qwen_vl.model.vggt.layers.block",
+        "peekOfCode": "class NestedTensorBlock(Block):\n    def forward_nested(self, x_list: List[Tensor]) -> List[Tensor]:\n        \"\"\"\n        x_list contains a list of tensors to nest together and run\n        \"\"\"\n        assert isinstance(self.attn, MemEffAttention)\n        if self.training and self.sample_drop_ratio > 0.0:\n            def attn_residual_func(x: Tensor, attn_bias=None) -> Tensor:\n                return self.attn(self.norm1(x), attn_bias=attn_bias)\n            def ffn_residual_func(x: Tensor, attn_bias=None) -> Tensor:",
+        "detail": "src.qwen_vl.model.vggt.layers.block",
+        "documentation": {}
+    },
+    {
+        "label": "drop_add_residual_stochastic_depth",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.layers.block",
+        "description": "src.qwen_vl.model.vggt.layers.block",
+        "peekOfCode": "def drop_add_residual_stochastic_depth(\n    x: Tensor, residual_func: Callable[[Tensor], Tensor], sample_drop_ratio: float = 0.0, pos=None\n) -> Tensor:\n    # 1) extract subset using permutation\n    b, n, d = x.shape\n    sample_subset_size = max(int(b * (1 - sample_drop_ratio)), 1)\n    brange = (torch.randperm(b, device=x.device))[:sample_subset_size]\n    x_subset = x[brange]\n    # 2) apply residual_func to get residual\n    if pos is not None:",
+        "detail": "src.qwen_vl.model.vggt.layers.block",
+        "documentation": {}
+    },
+    {
+        "label": "get_branges_scales",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.layers.block",
+        "description": "src.qwen_vl.model.vggt.layers.block",
+        "peekOfCode": "def get_branges_scales(x, sample_drop_ratio=0.0):\n    b, n, d = x.shape\n    sample_subset_size = max(int(b * (1 - sample_drop_ratio)), 1)\n    brange = (torch.randperm(b, device=x.device))[:sample_subset_size]\n    residual_scale_factor = b / sample_subset_size\n    return brange, residual_scale_factor\ndef add_residual(x, brange, residual, residual_scale_factor, scaling_vector=None):\n    if scaling_vector is None:\n        x_flat = x.flatten(1)\n        residual = residual.flatten(1)",
+        "detail": "src.qwen_vl.model.vggt.layers.block",
+        "documentation": {}
+    },
+    {
+        "label": "add_residual",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.layers.block",
+        "description": "src.qwen_vl.model.vggt.layers.block",
+        "peekOfCode": "def add_residual(x, brange, residual, residual_scale_factor, scaling_vector=None):\n    if scaling_vector is None:\n        x_flat = x.flatten(1)\n        residual = residual.flatten(1)\n        x_plus_residual = torch.index_add(x_flat, 0, brange, residual.to(dtype=x.dtype), alpha=residual_scale_factor)\n    else:\n        x_plus_residual = scaled_index_add(\n            x, brange, residual.to(dtype=x.dtype), scaling=scaling_vector, alpha=residual_scale_factor\n        )\n    return x_plus_residual",
+        "detail": "src.qwen_vl.model.vggt.layers.block",
+        "documentation": {}
+    },
+    {
+        "label": "get_attn_bias_and_cat",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.layers.block",
+        "description": "src.qwen_vl.model.vggt.layers.block",
+        "peekOfCode": "def get_attn_bias_and_cat(x_list, branges=None):\n    \"\"\"\n    this will perform the index select, cat the tensors, and provide the attn_bias from cache\n    \"\"\"\n    batch_sizes = [b.shape[0] for b in branges] if branges is not None else [x.shape[0] for x in x_list]\n    all_shapes = tuple((b, x.shape[1]) for b, x in zip(batch_sizes, x_list))\n    if all_shapes not in attn_bias_cache.keys():\n        seqlens = []\n        for b, x in zip(batch_sizes, x_list):\n            for _ in range(b):",
+        "detail": "src.qwen_vl.model.vggt.layers.block",
+        "documentation": {}
+    },
+    {
+        "label": "drop_add_residual_stochastic_depth_list",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.layers.block",
+        "description": "src.qwen_vl.model.vggt.layers.block",
+        "peekOfCode": "def drop_add_residual_stochastic_depth_list(\n    x_list: List[Tensor],\n    residual_func: Callable[[Tensor, Any], Tensor],\n    sample_drop_ratio: float = 0.0,\n    scaling_vector=None,\n) -> Tensor:\n    # 1) generate random set of indices for dropping samples in the batch\n    branges_scales = [get_branges_scales(x, sample_drop_ratio=sample_drop_ratio) for x in x_list]\n    branges = [s[0] for s in branges_scales]\n    residual_scale_factors = [s[1] for s in branges_scales]",
+        "detail": "src.qwen_vl.model.vggt.layers.block",
+        "documentation": {}
+    },
+    {
+        "label": "XFORMERS_AVAILABLE",
+        "kind": 5,
+        "importPath": "src.qwen_vl.model.vggt.layers.block",
+        "description": "src.qwen_vl.model.vggt.layers.block",
+        "peekOfCode": "XFORMERS_AVAILABLE = False\nclass Block(nn.Module):\n    def __init__(\n        self,\n        dim: int,\n        num_heads: int,\n        mlp_ratio: float = 4.0,\n        qkv_bias: bool = True,\n        proj_bias: bool = True,\n        ffn_bias: bool = True,",
+        "detail": "src.qwen_vl.model.vggt.layers.block",
+        "documentation": {}
+    },
+    {
+        "label": "DropPath",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.layers.drop_path",
+        "description": "src.qwen_vl.model.vggt.layers.drop_path",
+        "peekOfCode": "class DropPath(nn.Module):\n    \"\"\"Drop paths (Stochastic Depth) per sample (when applied in main path of residual blocks).\"\"\"\n    def __init__(self, drop_prob=None):\n        super(DropPath, self).__init__()\n        self.drop_prob = drop_prob\n    def forward(self, x):\n        return drop_path(x, self.drop_prob, self.training)",
+        "detail": "src.qwen_vl.model.vggt.layers.drop_path",
+        "documentation": {}
+    },
+    {
+        "label": "drop_path",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.layers.drop_path",
+        "description": "src.qwen_vl.model.vggt.layers.drop_path",
+        "peekOfCode": "def drop_path(x, drop_prob: float = 0.0, training: bool = False):\n    if drop_prob == 0.0 or not training:\n        return x\n    keep_prob = 1 - drop_prob\n    shape = (x.shape[0],) + (1,) * (x.ndim - 1)  # work with diff dim tensors, not just 2D ConvNets\n    random_tensor = x.new_empty(shape).bernoulli_(keep_prob)\n    if keep_prob > 0.0:\n        random_tensor.div_(keep_prob)\n    output = x * random_tensor\n    return output",
+        "detail": "src.qwen_vl.model.vggt.layers.drop_path",
+        "documentation": {}
+    },
+    {
+        "label": "LayerScale",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.layers.layer_scale",
+        "description": "src.qwen_vl.model.vggt.layers.layer_scale",
+        "peekOfCode": "class LayerScale(nn.Module):\n    def __init__(self, dim: int, init_values: Union[float, Tensor] = 1e-5, inplace: bool = False) -> None:\n        super().__init__()\n        self.inplace = inplace\n        self.gamma = nn.Parameter(init_values * torch.ones(dim))\n    def forward(self, x: Tensor) -> Tensor:\n        return x.mul_(self.gamma) if self.inplace else x * self.gamma",
+        "detail": "src.qwen_vl.model.vggt.layers.layer_scale",
+        "documentation": {}
+    },
+    {
+        "label": "Mlp",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.layers.mlp",
+        "description": "src.qwen_vl.model.vggt.layers.mlp",
+        "peekOfCode": "class Mlp(nn.Module):\n    def __init__(\n        self,\n        in_features: int,\n        hidden_features: Optional[int] = None,\n        out_features: Optional[int] = None,\n        act_layer: Callable[..., nn.Module] = nn.GELU,\n        drop: float = 0.0,\n        bias: bool = True,\n    ) -> None:",
+        "detail": "src.qwen_vl.model.vggt.layers.mlp",
+        "documentation": {}
+    },
+    {
+        "label": "PatchEmbed",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.layers.patch_embed",
+        "description": "src.qwen_vl.model.vggt.layers.patch_embed",
+        "peekOfCode": "class PatchEmbed(nn.Module):\n    \"\"\"\n    2D image to patch embedding: (B,C,H,W) -> (B,N,D)\n    Args:\n        img_size: Image size.\n        patch_size: Patch token size.\n        in_chans: Number of input image channels.\n        embed_dim: Number of linear projection output channels.\n        norm_layer: Normalization layer.\n    \"\"\"",
+        "detail": "src.qwen_vl.model.vggt.layers.patch_embed",
+        "documentation": {}
+    },
+    {
+        "label": "make_2tuple",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.layers.patch_embed",
+        "description": "src.qwen_vl.model.vggt.layers.patch_embed",
+        "peekOfCode": "def make_2tuple(x):\n    if isinstance(x, tuple):\n        assert len(x) == 2\n        return x\n    assert isinstance(x, int)\n    return (x, x)\nclass PatchEmbed(nn.Module):\n    \"\"\"\n    2D image to patch embedding: (B,C,H,W) -> (B,N,D)\n    Args:",
+        "detail": "src.qwen_vl.model.vggt.layers.patch_embed",
+        "documentation": {}
+    },
+    {
+        "label": "PositionGetter",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.layers.rope",
+        "description": "src.qwen_vl.model.vggt.layers.rope",
+        "peekOfCode": "class PositionGetter:\n    \"\"\"Generates and caches 2D spatial positions for patches in a grid.\n    This class efficiently manages the generation of spatial coordinates for patches\n    in a 2D grid, caching results to avoid redundant computations.\n    Attributes:\n        position_cache: Dictionary storing precomputed position tensors for different\n            grid dimensions.\n    \"\"\"\n    def __init__(self):\n        \"\"\"Initializes the position generator with an empty cache.\"\"\"",
+        "detail": "src.qwen_vl.model.vggt.layers.rope",
+        "documentation": {}
+    },
+    {
+        "label": "RotaryPositionEmbedding2D",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.layers.rope",
+        "description": "src.qwen_vl.model.vggt.layers.rope",
+        "peekOfCode": "class RotaryPositionEmbedding2D(nn.Module):\n    \"\"\"2D Rotary Position Embedding implementation.\n    This module applies rotary position embeddings to input tokens based on their\n    2D spatial positions. It handles the position-dependent rotation of features\n    separately for vertical and horizontal dimensions.\n    Args:\n        frequency: Base frequency for the position embeddings. Default: 100.0\n        scaling_factor: Scaling factor for frequency computation. Default: 1.0\n    Attributes:\n        base_frequency: Base frequency for computing position embeddings.",
+        "detail": "src.qwen_vl.model.vggt.layers.rope",
+        "documentation": {}
+    },
+    {
+        "label": "SwiGLUFFN",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.layers.swiglu_ffn",
+        "description": "src.qwen_vl.model.vggt.layers.swiglu_ffn",
+        "peekOfCode": "class SwiGLUFFN(nn.Module):\n    def __init__(\n        self,\n        in_features: int,\n        hidden_features: Optional[int] = None,\n        out_features: Optional[int] = None,\n        act_layer: Callable[..., nn.Module] = None,\n        drop: float = 0.0,\n        bias: bool = True,\n    ) -> None:",
+        "detail": "src.qwen_vl.model.vggt.layers.swiglu_ffn",
+        "documentation": {}
+    },
+    {
+        "label": "SwiGLUFFNFused",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.layers.swiglu_ffn",
+        "description": "src.qwen_vl.model.vggt.layers.swiglu_ffn",
+        "peekOfCode": "class SwiGLUFFNFused(SwiGLU):\n    def __init__(\n        self,\n        in_features: int,\n        hidden_features: Optional[int] = None,\n        out_features: Optional[int] = None,\n        act_layer: Callable[..., nn.Module] = None,\n        drop: float = 0.0,\n        bias: bool = True,\n    ) -> None:",
+        "detail": "src.qwen_vl.model.vggt.layers.swiglu_ffn",
+        "documentation": {}
+    },
+    {
+        "label": "XFORMERS_ENABLED",
+        "kind": 5,
+        "importPath": "src.qwen_vl.model.vggt.layers.swiglu_ffn",
+        "description": "src.qwen_vl.model.vggt.layers.swiglu_ffn",
+        "peekOfCode": "XFORMERS_ENABLED = os.environ.get(\"XFORMERS_DISABLED\") is None\n# try:\n#     if XFORMERS_ENABLED:\n#         from xformers.ops import SwiGLU\n#         XFORMERS_AVAILABLE = True\n#         warnings.warn(\"xFormers is available (SwiGLU)\")\n#     else:\n#         warnings.warn(\"xFormers is disabled (SwiGLU)\")\n#         raise ImportError\n# except ImportError:",
+        "detail": "src.qwen_vl.model.vggt.layers.swiglu_ffn",
+        "documentation": {}
+    },
+    {
+        "label": "SwiGLU",
+        "kind": 5,
+        "importPath": "src.qwen_vl.model.vggt.layers.swiglu_ffn",
+        "description": "src.qwen_vl.model.vggt.layers.swiglu_ffn",
+        "peekOfCode": "SwiGLU = SwiGLUFFN\nXFORMERS_AVAILABLE = False\n# warnings.warn(\"xFormers is not available (SwiGLU)\")\nclass SwiGLUFFNFused(SwiGLU):\n    def __init__(\n        self,\n        in_features: int,\n        hidden_features: Optional[int] = None,\n        out_features: Optional[int] = None,\n        act_layer: Callable[..., nn.Module] = None,",
+        "detail": "src.qwen_vl.model.vggt.layers.swiglu_ffn",
+        "documentation": {}
+    },
+    {
+        "label": "XFORMERS_AVAILABLE",
+        "kind": 5,
+        "importPath": "src.qwen_vl.model.vggt.layers.swiglu_ffn",
+        "description": "src.qwen_vl.model.vggt.layers.swiglu_ffn",
+        "peekOfCode": "XFORMERS_AVAILABLE = False\n# warnings.warn(\"xFormers is not available (SwiGLU)\")\nclass SwiGLUFFNFused(SwiGLU):\n    def __init__(\n        self,\n        in_features: int,\n        hidden_features: Optional[int] = None,\n        out_features: Optional[int] = None,\n        act_layer: Callable[..., nn.Module] = None,\n        drop: float = 0.0,",
+        "detail": "src.qwen_vl.model.vggt.layers.swiglu_ffn",
+        "documentation": {}
+    },
+    {
+        "label": "BlockChunk",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "description": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "peekOfCode": "class BlockChunk(nn.ModuleList):\n    def forward(self, x):\n        for b in self:\n            x = b(x)\n        return x\nclass DinoVisionTransformer(nn.Module):\n    def __init__(\n        self,\n        img_size=224,\n        patch_size=16,",
+        "detail": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "documentation": {}
+    },
+    {
+        "label": "DinoVisionTransformer",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "description": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "peekOfCode": "class DinoVisionTransformer(nn.Module):\n    def __init__(\n        self,\n        img_size=224,\n        patch_size=16,\n        in_chans=3,\n        embed_dim=768,\n        depth=12,\n        num_heads=12,\n        mlp_ratio=4.0,",
+        "detail": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "documentation": {}
+    },
+    {
+        "label": "named_apply",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "description": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "peekOfCode": "def named_apply(fn: Callable, module: nn.Module, name=\"\", depth_first=True, include_root=False) -> nn.Module:\n    if not depth_first and include_root:\n        fn(module=module, name=name)\n    for child_name, child_module in module.named_children():\n        child_name = \".\".join((name, child_name)) if name else child_name\n        named_apply(fn=fn, module=child_module, name=child_name, depth_first=depth_first, include_root=True)\n    if depth_first and include_root:\n        fn(module=module, name=name)\n    return module\nclass BlockChunk(nn.ModuleList):",
+        "detail": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "documentation": {}
+    },
+    {
+        "label": "init_weights_vit_timm",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "description": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "peekOfCode": "def init_weights_vit_timm(module: nn.Module, name: str = \"\"):\n    \"\"\"ViT weight initialization, original timm impl (for reproducibility)\"\"\"\n    if isinstance(module, nn.Linear):\n        trunc_normal_(module.weight, std=0.02)\n        if module.bias is not None:\n            nn.init.zeros_(module.bias)\ndef vit_small(patch_size=16, num_register_tokens=0, **kwargs):\n    model = DinoVisionTransformer(\n        patch_size=patch_size,\n        embed_dim=384,",
+        "detail": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "documentation": {}
+    },
+    {
+        "label": "vit_small",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "description": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "peekOfCode": "def vit_small(patch_size=16, num_register_tokens=0, **kwargs):\n    model = DinoVisionTransformer(\n        patch_size=patch_size,\n        embed_dim=384,\n        depth=12,\n        num_heads=6,\n        mlp_ratio=4,\n        block_fn=partial(Block, attn_class=MemEffAttention),\n        num_register_tokens=num_register_tokens,\n        **kwargs,",
+        "detail": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "documentation": {}
+    },
+    {
+        "label": "vit_base",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "description": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "peekOfCode": "def vit_base(patch_size=16, num_register_tokens=0, **kwargs):\n    model = DinoVisionTransformer(\n        patch_size=patch_size,\n        embed_dim=768,\n        depth=12,\n        num_heads=12,\n        mlp_ratio=4,\n        block_fn=partial(Block, attn_class=MemEffAttention),\n        num_register_tokens=num_register_tokens,\n        **kwargs,",
+        "detail": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "documentation": {}
+    },
+    {
+        "label": "vit_large",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "description": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "peekOfCode": "def vit_large(patch_size=16, num_register_tokens=0, **kwargs):\n    model = DinoVisionTransformer(\n        patch_size=patch_size,\n        embed_dim=1024,\n        depth=24,\n        num_heads=16,\n        mlp_ratio=4,\n        block_fn=partial(Block, attn_class=MemEffAttention),\n        num_register_tokens=num_register_tokens,\n        **kwargs,",
+        "detail": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "documentation": {}
+    },
+    {
+        "label": "vit_giant2",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "description": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "peekOfCode": "def vit_giant2(patch_size=16, num_register_tokens=0, **kwargs):\n    \"\"\"\n    Close to ViT-giant, with embed-dim 1536 and 24 heads => embed-dim per head 64\n    \"\"\"\n    model = DinoVisionTransformer(\n        patch_size=patch_size,\n        embed_dim=1536,\n        depth=40,\n        num_heads=24,\n        mlp_ratio=4,",
+        "detail": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "description": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "peekOfCode": "logger = logging.getLogger(\"dinov2\")\ndef named_apply(fn: Callable, module: nn.Module, name=\"\", depth_first=True, include_root=False) -> nn.Module:\n    if not depth_first and include_root:\n        fn(module=module, name=name)\n    for child_name, child_module in module.named_children():\n        child_name = \".\".join((name, child_name)) if name else child_name\n        named_apply(fn=fn, module=child_module, name=child_name, depth_first=depth_first, include_root=True)\n    if depth_first and include_root:\n        fn(module=module, name=name)\n    return module",
+        "detail": "src.qwen_vl.model.vggt.layers.vision_transformer",
+        "documentation": {}
+    },
+    {
+        "label": "Aggregator",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.models.aggregator",
+        "description": "src.qwen_vl.model.vggt.models.aggregator",
+        "peekOfCode": "class Aggregator(nn.Module):\n    \"\"\"\n    The Aggregator applies alternating-attention over input frames,\n    as described in VGGT: Visual Geometry Grounded Transformer.\n    Remember to set model.train() to enable gradient checkpointing to reduce memory usage.\n    Args:\n        img_size (int): Image size in pixels.\n        patch_size (int): Size of each patch for PatchEmbed.\n        embed_dim (int): Dimension of the token embeddings.\n        depth (int): Number of blocks.",
+        "detail": "src.qwen_vl.model.vggt.models.aggregator",
+        "documentation": {}
+    },
+    {
+        "label": "slice_expand_and_flatten",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.models.aggregator",
+        "description": "src.qwen_vl.model.vggt.models.aggregator",
+        "peekOfCode": "def slice_expand_and_flatten(token_tensor, B, S):\n    \"\"\"\n    Processes specialized tokens with shape (1, 2, X, C) for multi-frame processing:\n    1) Uses the first position (index=0) for the first frame only\n    2) Uses the second position (index=1) for all remaining frames (S-1 frames)\n    3) Expands both to match batch size B\n    4) Concatenates to form (B, S, X, C) where each sequence has 1 first-position token\n       followed by (S-1) second-position tokens\n    5) Flattens to (B*S, X, C) for processing\n    Returns:",
+        "detail": "src.qwen_vl.model.vggt.models.aggregator",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "src.qwen_vl.model.vggt.models.aggregator",
+        "description": "src.qwen_vl.model.vggt.models.aggregator",
+        "peekOfCode": "logger = logging.getLogger(__name__)\n_RESNET_MEAN = [0.485, 0.456, 0.406]\n_RESNET_STD = [0.229, 0.224, 0.225]\nclass Aggregator(nn.Module):\n    \"\"\"\n    The Aggregator applies alternating-attention over input frames,\n    as described in VGGT: Visual Geometry Grounded Transformer.\n    Remember to set model.train() to enable gradient checkpointing to reduce memory usage.\n    Args:\n        img_size (int): Image size in pixels.",
+        "detail": "src.qwen_vl.model.vggt.models.aggregator",
+        "documentation": {}
+    },
+    {
+        "label": "_RESNET_MEAN",
+        "kind": 5,
+        "importPath": "src.qwen_vl.model.vggt.models.aggregator",
+        "description": "src.qwen_vl.model.vggt.models.aggregator",
+        "peekOfCode": "_RESNET_MEAN = [0.485, 0.456, 0.406]\n_RESNET_STD = [0.229, 0.224, 0.225]\nclass Aggregator(nn.Module):\n    \"\"\"\n    The Aggregator applies alternating-attention over input frames,\n    as described in VGGT: Visual Geometry Grounded Transformer.\n    Remember to set model.train() to enable gradient checkpointing to reduce memory usage.\n    Args:\n        img_size (int): Image size in pixels.\n        patch_size (int): Size of each patch for PatchEmbed.",
+        "detail": "src.qwen_vl.model.vggt.models.aggregator",
+        "documentation": {}
+    },
+    {
+        "label": "_RESNET_STD",
+        "kind": 5,
+        "importPath": "src.qwen_vl.model.vggt.models.aggregator",
+        "description": "src.qwen_vl.model.vggt.models.aggregator",
+        "peekOfCode": "_RESNET_STD = [0.229, 0.224, 0.225]\nclass Aggregator(nn.Module):\n    \"\"\"\n    The Aggregator applies alternating-attention over input frames,\n    as described in VGGT: Visual Geometry Grounded Transformer.\n    Remember to set model.train() to enable gradient checkpointing to reduce memory usage.\n    Args:\n        img_size (int): Image size in pixels.\n        patch_size (int): Size of each patch for PatchEmbed.\n        embed_dim (int): Dimension of the token embeddings.",
+        "detail": "src.qwen_vl.model.vggt.models.aggregator",
+        "documentation": {}
+    },
+    {
+        "label": "VGGT",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.vggt.models.vggt",
+        "description": "src.qwen_vl.model.vggt.models.vggt",
+        "peekOfCode": "class VGGT(nn.Module, PyTorchModelHubMixin):\n    def __init__(\n        self,\n        img_size=518,\n        patch_size=14,\n        embed_dim=1024,\n        enable_camera=True,\n        enable_point=True,\n        enable_depth=True,\n        enable_track=True,",
+        "detail": "src.qwen_vl.model.vggt.models.vggt",
+        "documentation": {}
+    },
+    {
+        "label": "unproject_depth_map_to_point_map",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.utils.geometry",
+        "description": "src.qwen_vl.model.vggt.utils.geometry",
+        "peekOfCode": "def unproject_depth_map_to_point_map(\n    depth_map: np.ndarray, extrinsics_cam: np.ndarray, intrinsics_cam: np.ndarray\n) -> np.ndarray:\n    \"\"\"\n    Unproject a batch of depth maps to 3D world coordinates.\n    Args:\n        depth_map (np.ndarray): Batch of depth maps of shape (S, H, W, 1) or (S, H, W)\n        extrinsics_cam (np.ndarray): Batch of camera extrinsic matrices of shape (S, 3, 4)\n        intrinsics_cam (np.ndarray): Batch of camera intrinsic matrices of shape (S, 3, 3)\n    Returns:",
+        "detail": "src.qwen_vl.model.vggt.utils.geometry",
+        "documentation": {}
+    },
+    {
+        "label": "depth_to_world_coords_points",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.utils.geometry",
+        "description": "src.qwen_vl.model.vggt.utils.geometry",
+        "peekOfCode": "def depth_to_world_coords_points(\n    depth_map: np.ndarray,\n    extrinsic: np.ndarray,\n    intrinsic: np.ndarray,\n    eps=1e-8,\n) -> tuple[np.ndarray, np.ndarray, np.ndarray]:\n    \"\"\"\n    Convert a depth map to world coordinates.\n    Args:\n        depth_map (np.ndarray): Depth map of shape (H, W).",
+        "detail": "src.qwen_vl.model.vggt.utils.geometry",
+        "documentation": {}
+    },
+    {
+        "label": "depth_to_cam_coords_points",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.utils.geometry",
+        "description": "src.qwen_vl.model.vggt.utils.geometry",
+        "peekOfCode": "def depth_to_cam_coords_points(depth_map: np.ndarray, intrinsic: np.ndarray) -> tuple[np.ndarray, np.ndarray]:\n    \"\"\"\n    Convert a depth map to camera coordinates.\n    Args:\n        depth_map (np.ndarray): Depth map of shape (H, W).\n        intrinsic (np.ndarray): Camera intrinsic matrix of shape (3, 3).\n    Returns:\n        tuple[np.ndarray, np.ndarray]: Camera coordinates (H, W, 3)\n    \"\"\"\n    H, W = depth_map.shape",
+        "detail": "src.qwen_vl.model.vggt.utils.geometry",
+        "documentation": {}
+    },
+    {
+        "label": "closed_form_inverse_se3",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.utils.geometry",
+        "description": "src.qwen_vl.model.vggt.utils.geometry",
+        "peekOfCode": "def closed_form_inverse_se3(se3, R=None, T=None):\n    \"\"\"\n    Compute the inverse of each 4x4 (or 3x4) SE3 matrix in a batch.\n    If `R` and `T` are provided, they must correspond to the rotation and translation\n    components of `se3`. Otherwise, they will be extracted from `se3`.\n    Args:\n        se3: Nx4x4 or Nx3x4 array or tensor of SE3 matrices.\n        R (optional): Nx3x3 array or tensor of rotation matrices.\n        T (optional): Nx3x1 array or tensor of translation vectors.\n    Returns:",
+        "detail": "src.qwen_vl.model.vggt.utils.geometry",
+        "documentation": {}
+    },
+    {
+        "label": "project_world_points_to_camera_points_batch",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.utils.geometry",
+        "description": "src.qwen_vl.model.vggt.utils.geometry",
+        "peekOfCode": "def project_world_points_to_camera_points_batch(world_points, cam_extrinsics):\n    \"\"\"\n    Transforms 3D points to 2D using extrinsic and intrinsic parameters.\n    Args:\n        world_points (torch.Tensor): 3D points of shape BxSxHxWx3.\n        cam_extrinsics (torch.Tensor): Extrinsic parameters of shape BxSx3x4.\n    Returns:\n    \"\"\"\n    # TODO: merge this into project_world_points_to_cam\n    # device = world_points.device",
+        "detail": "src.qwen_vl.model.vggt.utils.geometry",
+        "documentation": {}
+    },
+    {
+        "label": "project_world_points_to_cam",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.utils.geometry",
+        "description": "src.qwen_vl.model.vggt.utils.geometry",
+        "peekOfCode": "def project_world_points_to_cam(\n    world_points,\n    cam_extrinsics,\n    cam_intrinsics=None,\n    distortion_params=None,\n    default=0,\n    only_points_cam=False,\n):\n    \"\"\"\n    Transforms 3D points to 2D using extrinsic and intrinsic parameters.",
+        "detail": "src.qwen_vl.model.vggt.utils.geometry",
+        "documentation": {}
+    },
+    {
+        "label": "img_from_cam",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.utils.geometry",
+        "description": "src.qwen_vl.model.vggt.utils.geometry",
+        "peekOfCode": "def img_from_cam(cam_intrinsics, cam_points, distortion_params=None, default=0.0):\n    \"\"\"\n    Applies intrinsic parameters and optional distortion to the given 3D points.\n    Args:\n        cam_intrinsics (torch.Tensor): Intrinsic camera parameters of shape Bx3x3.\n        cam_points (torch.Tensor): 3D points in camera coordinates of shape Bx3xN.\n        distortion_params (torch.Tensor, optional): Distortion parameters of shape BxN, where N can be 1, 2, or 4.\n        default (float, optional): Default value to replace NaNs in the output.\n    Returns:\n        pixel_coords (torch.Tensor): 2D points in pixel coordinates of shape BxNx2.",
+        "detail": "src.qwen_vl.model.vggt.utils.geometry",
+        "documentation": {}
+    },
+    {
+        "label": "cam_from_img",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.utils.geometry",
+        "description": "src.qwen_vl.model.vggt.utils.geometry",
+        "peekOfCode": "def cam_from_img(pred_tracks, intrinsics, extra_params=None):\n    \"\"\"\n    Normalize predicted tracks based on camera intrinsics.\n    Args:\n    intrinsics (torch.Tensor): The camera intrinsics tensor of shape [batch_size, 3, 3].\n    pred_tracks (torch.Tensor): The predicted tracks tensor of shape [batch_size, num_tracks, 2].\n    extra_params (torch.Tensor, optional): Distortion parameters of shape BxN, where N can be 1, 2, or 4.\n    Returns:\n    torch.Tensor: Normalized tracks tensor.\n    \"\"\"",
+        "detail": "src.qwen_vl.model.vggt.utils.geometry",
+        "documentation": {}
+    },
+    {
+        "label": "randomly_limit_trues",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.utils.helper",
+        "description": "src.qwen_vl.model.vggt.utils.helper",
+        "peekOfCode": "def randomly_limit_trues(mask: np.ndarray, max_trues: int) -> np.ndarray:\n    \"\"\"\n    If mask has more than max_trues True values,\n    randomly keep only max_trues of them and set the rest to False.\n    \"\"\"\n    # 1D positions of all True entries\n    true_indices = np.flatnonzero(mask)  # shape = (N_true,)\n    # if already within budget, return as-is\n    if true_indices.size <= max_trues:\n        return mask",
+        "detail": "src.qwen_vl.model.vggt.utils.helper",
+        "documentation": {}
+    },
+    {
+        "label": "create_pixel_coordinate_grid",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.utils.helper",
+        "description": "src.qwen_vl.model.vggt.utils.helper",
+        "peekOfCode": "def create_pixel_coordinate_grid(num_frames, height, width):\n    \"\"\"\n    Creates a grid of pixel coordinates and frame indices for all frames.\n    Returns:\n        tuple: A tuple containing:\n            - points_xyf (numpy.ndarray): Array of shape (num_frames, height, width, 3)\n                                            with x, y coordinates and frame indices\n            - y_coords (numpy.ndarray): Array of y coordinates for all frames\n            - x_coords (numpy.ndarray): Array of x coordinates for all frames\n            - f_coords (numpy.ndarray): Array of frame indices for all frames",
+        "detail": "src.qwen_vl.model.vggt.utils.helper",
+        "documentation": {}
+    },
+    {
+        "label": "load_and_preprocess_images_square",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.utils.load_fn",
+        "description": "src.qwen_vl.model.vggt.utils.load_fn",
+        "peekOfCode": "def load_and_preprocess_images_square(image_path_list, target_size=1024):\n    \"\"\"\n    Load and preprocess images by center padding to square and resizing to target size.\n    Also returns the position information of original pixels after transformation.\n    Args:\n        image_path_list (list): List of paths to image files\n        target_size (int, optional): Target size for both width and height. Defaults to 518.\n    Returns:\n        tuple: (\n            torch.Tensor: Batched tensor of preprocessed images with shape (N, 3, target_size, target_size),",
+        "detail": "src.qwen_vl.model.vggt.utils.load_fn",
+        "documentation": {}
+    },
+    {
+        "label": "load_and_preprocess_images",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.utils.load_fn",
+        "description": "src.qwen_vl.model.vggt.utils.load_fn",
+        "peekOfCode": "def load_and_preprocess_images(image_path_list, mode=\"crop\"):\n    \"\"\"\n    A quick start function to load and preprocess images for model input.\n    This assumes the images should have the same shape for easier batching, but our model can also work well with different shapes.\n    Args:\n        image_path_list (list): List of paths to image files\n        mode (str, optional): Preprocessing mode, either \"crop\" or \"pad\".\n                             - \"crop\" (default): Sets width to 518px and center crops height if needed.\n                             - \"pad\": Preserves all pixels by making the largest dimension 518px\n                               and padding the smaller dimension to reach a square shape.",
+        "detail": "src.qwen_vl.model.vggt.utils.load_fn",
+        "documentation": {}
+    },
+    {
+        "label": "extri_intri_to_pose_encoding",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.utils.pose_enc",
+        "description": "src.qwen_vl.model.vggt.utils.pose_enc",
+        "peekOfCode": "def extri_intri_to_pose_encoding(\n    extrinsics, intrinsics, image_size_hw=None, pose_encoding_type=\"absT_quaR_FoV\"  # e.g., (256, 512)\n):\n    \"\"\"Convert camera extrinsics and intrinsics to a compact pose encoding.\n    This function transforms camera parameters into a unified pose encoding format,\n    which can be used for various downstream tasks like pose prediction or representation.\n    Args:\n        extrinsics (torch.Tensor): Camera extrinsic parameters with shape BxSx3x4,\n            where B is batch size and S is sequence length.\n            In OpenCV coordinate system (x-right, y-down, z-forward), representing camera from world transformation.",
+        "detail": "src.qwen_vl.model.vggt.utils.pose_enc",
+        "documentation": {}
+    },
+    {
+        "label": "pose_encoding_to_extri_intri",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.utils.pose_enc",
+        "description": "src.qwen_vl.model.vggt.utils.pose_enc",
+        "peekOfCode": "def pose_encoding_to_extri_intri(\n    pose_encoding, image_size_hw=None, pose_encoding_type=\"absT_quaR_FoV\", build_intrinsics=True  # e.g., (256, 512)\n):\n    \"\"\"Convert a pose encoding back to camera extrinsics and intrinsics.\n    This function performs the inverse operation of extri_intri_to_pose_encoding,\n    reconstructing the full camera parameters from the compact encoding.\n    Args:\n        pose_encoding (torch.Tensor): Encoded camera pose parameters with shape BxSx9,\n            where B is batch size and S is sequence length.\n            For \"absT_quaR_FoV\" type, the 9 dimensions are:",
+        "detail": "src.qwen_vl.model.vggt.utils.pose_enc",
+        "documentation": {}
+    },
+    {
+        "label": "quat_to_mat",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.utils.rotation",
+        "description": "src.qwen_vl.model.vggt.utils.rotation",
+        "peekOfCode": "def quat_to_mat(quaternions: torch.Tensor) -> torch.Tensor:\n    \"\"\"\n    Quaternion Order: XYZW or say ijkr, scalar-last\n    Convert rotations given as quaternions to rotation matrices.\n    Args:\n        quaternions: quaternions with real part last,\n            as tensor of shape (..., 4).\n    Returns:\n        Rotation matrices as tensor of shape (..., 3, 3).\n    \"\"\"",
+        "detail": "src.qwen_vl.model.vggt.utils.rotation",
+        "documentation": {}
+    },
+    {
+        "label": "mat_to_quat",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.utils.rotation",
+        "description": "src.qwen_vl.model.vggt.utils.rotation",
+        "peekOfCode": "def mat_to_quat(matrix: torch.Tensor) -> torch.Tensor:\n    \"\"\"\n    Convert rotations given as rotation matrices to quaternions.\n    Args:\n        matrix: Rotation matrices as tensor of shape (..., 3, 3).\n    Returns:\n        quaternions with real part last, as tensor of shape (..., 4).\n        Quaternion Order: XYZW or say ijkr, scalar-last\n    \"\"\"\n    if matrix.size(-1) != 3 or matrix.size(-2) != 3:",
+        "detail": "src.qwen_vl.model.vggt.utils.rotation",
+        "documentation": {}
+    },
+    {
+        "label": "standardize_quaternion",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.vggt.utils.rotation",
+        "description": "src.qwen_vl.model.vggt.utils.rotation",
+        "peekOfCode": "def standardize_quaternion(quaternions: torch.Tensor) -> torch.Tensor:\n    \"\"\"\n    Convert a unit quaternion to a standard form: one in which the real\n    part is non negative.\n    Args:\n        quaternions: Quaternions with real part last,\n            as tensor of shape (..., 4).\n    Returns:\n        Standardized quaternions as tensor of shape (..., 4).\n    \"\"\"",
+        "detail": "src.qwen_vl.model.vggt.utils.rotation",
+        "documentation": {}
+    },
+    {
+        "label": "ResidualConvUnit",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.depth_supervision",
+        "description": "src.qwen_vl.model.depth_supervision",
+        "peekOfCode": "class ResidualConvUnit(nn.Module):\n    def __init__(self, features: int, activation: nn.Module) -> None:\n        super().__init__()\n        self.conv1 = nn.Conv2d(features, features, 3, stride=1, padding=1)\n        self.conv2 = nn.Conv2d(features, features, 3, stride=1, padding=1)\n        self.activation = activation\n    def forward(self, tensor: torch.Tensor) -> torch.Tensor:\n        output = self.activation(tensor)\n        output = self.conv1(output)\n        output = self.activation(output)",
+        "detail": "src.qwen_vl.model.depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "FeatureFusionBlock",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.depth_supervision",
+        "description": "src.qwen_vl.model.depth_supervision",
+        "peekOfCode": "class FeatureFusionBlock(nn.Module):\n    def __init__(self, features: int, *, has_residual: bool = True) -> None:\n        super().__init__()\n        activation = nn.ReLU(inplace=False)\n        self.has_residual = has_residual\n        if has_residual:\n            self.residual_unit = ResidualConvUnit(features, activation)\n        self.output_unit = ResidualConvUnit(features, activation)\n        self.output_projection = nn.Conv2d(features, features, kernel_size=1)\n    def forward(",
+        "detail": "src.qwen_vl.model.depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "GeoVRDepthHead",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.depth_supervision",
+        "description": "src.qwen_vl.model.depth_supervision",
+        "peekOfCode": "class GeoVRDepthHead(nn.Module):\n    \"\"\"GeoVR DenseHead adapted to a four-element selected-feature list.\"\"\"\n    def __init__(\n        self,\n        dim_in: int,\n        *,\n        patch_size: int = 28,\n        target_patch_size: int = 28,\n        features: int = 256,\n        out_channels: Sequence[int] = (256, 512, 1024, 1024),",
+        "detail": "src.qwen_vl.model.depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "DepthLossOutput",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.depth_supervision",
+        "description": "src.qwen_vl.model.depth_supervision",
+        "peekOfCode": "class DepthLossOutput:\n    loss: torch.Tensor\n    regression: torch.Tensor\n    gradient: torch.Tensor\n    mae: torch.Tensor\n    valid_fraction: torch.Tensor\ndef compute_geovr_depth_loss(\n    predicted_depth: torch.Tensor,\n    teacher_depth: torch.Tensor,\n    *,",
+        "detail": "src.qwen_vl.model.depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "make_sincos_position_embedding",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.depth_supervision",
+        "description": "src.qwen_vl.model.depth_supervision",
+        "peekOfCode": "def make_sincos_position_embedding(\n    embed_dim: int,\n    positions: torch.Tensor,\n    omega_0: float = 100.0,\n) -> torch.Tensor:\n    \"\"\"Return GeoVR's one-dimensional sine/cosine position embedding.\"\"\"\n    if embed_dim <= 0 or embed_dim % 2:\n        raise ValueError(\"The 1D position embedding dimension must be positive and even\")\n    omega_dtype = torch.float32 if positions.device.type == \"mps\" else torch.float64\n    omega = torch.arange(",
+        "detail": "src.qwen_vl.model.depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "position_grid_to_embedding",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.depth_supervision",
+        "description": "src.qwen_vl.model.depth_supervision",
+        "peekOfCode": "def position_grid_to_embedding(\n    position_grid: torch.Tensor,\n    embed_dim: int,\n    omega_0: float = 100.0,\n) -> torch.Tensor:\n    \"\"\"Convert an ``[H, W, 2]`` normalized UV grid to ``[H, W, C]``.\"\"\"\n    if position_grid.ndim != 3 or position_grid.shape[-1] != 2:\n        raise ValueError(\"position_grid must have shape [height, width, 2]\")\n    if embed_dim <= 0 or embed_dim % 4:\n        raise ValueError(\"The 2D position embedding dimension must be divisible by four\")",
+        "detail": "src.qwen_vl.model.depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "create_normalized_uv_grid",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.depth_supervision",
+        "description": "src.qwen_vl.model.depth_supervision",
+        "peekOfCode": "def create_normalized_uv_grid(\n    width: int,\n    height: int,\n    *,\n    aspect_ratio: float | None = None,\n    dtype: torch.dtype | None = None,\n    device: torch.device | None = None,\n) -> torch.Tensor:\n    \"\"\"Create the deterministic, diagonal-normalized UV grid used by GeoVR.\"\"\"\n    width = int(width)",
+        "detail": "src.qwen_vl.model.depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "custom_interpolate",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.depth_supervision",
+        "description": "src.qwen_vl.model.depth_supervision",
+        "peekOfCode": "def custom_interpolate(\n    tensor: torch.Tensor,\n    *,\n    size: tuple[int, int] | None = None,\n    scale_factor: float | None = None,\n    mode: str = \"bilinear\",\n    align_corners: bool = True,\n) -> torch.Tensor:\n    \"\"\"Interpolate in bounded chunks to avoid PyTorch's INT_MAX limit.\"\"\"\n    if size is None:",
+        "detail": "src.qwen_vl.model.depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "filter_by_quantile",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.depth_supervision",
+        "description": "src.qwen_vl.model.depth_supervision",
+        "peekOfCode": "def filter_by_quantile(\n    loss_tensor: torch.Tensor,\n    valid_range: float,\n    min_elements: int = 1000,\n    hard_max: float = 100.0,\n) -> torch.Tensor:\n    \"\"\"Port of GeoVR's residual-quantile filter, including edge behavior.\"\"\"\n    if loss_tensor.numel() <= min_elements:\n        return loss_tensor\n    loss_value = loss_tensor.detach().clamp(max=hard_max)",
+        "detail": "src.qwen_vl.model.depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "compute_geovr_depth_loss",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.depth_supervision",
+        "description": "src.qwen_vl.model.depth_supervision",
+        "peekOfCode": "def compute_geovr_depth_loss(\n    predicted_depth: torch.Tensor,\n    teacher_depth: torch.Tensor,\n    *,\n    gradient_scales: Sequence[int] = (1, 2, 4, 8),\n    outlier_keep_ratio: float = 0.98,\n) -> DepthLossOutput:\n    \"\"\"Compute GeoVR's robust L1 plus strided multi-scale gradient loss.\"\"\"\n    if predicted_depth.shape != teacher_depth.shape:\n        raise ValueError(",
+        "detail": "src.qwen_vl.model.depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "finite_depth_statistics",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.depth_supervision",
+        "description": "src.qwen_vl.model.depth_supervision",
+        "peekOfCode": "def finite_depth_statistics(depth: torch.Tensor) -> dict[str, torch.Tensor]:\n    \"\"\"Return scalar distribution diagnostics over finite depth values.\"\"\"\n    finite = depth.detach().float()[torch.isfinite(depth.detach())]\n    device = depth.device\n    if finite.numel() == 0:\n        nan = torch.tensor(float(\"nan\"), device=device)\n        return {\n            name: nan\n            for name in (\"min\", \"max\", \"mean\", \"median\", \"p01\", \"p05\", \"p50\", \"p95\", \"p99\")\n        }",
+        "detail": "src.qwen_vl.model.depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "remain",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.spatial_forcing",
+        "description": "src.qwen_vl.model.spatial_forcing",
+        "peekOfCode": "class remains sufficient for inference from a saved checkpoint.\n\"\"\"\nfrom typing import Optional, Sequence\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nfrom transformers.cache_utils import Cache\nfrom transformers.models.qwen3_5.modeling_qwen3_5 import (\n    Qwen3_5CausalLMOutputWithPast,\n    Qwen3_5ForConditionalGeneration,",
+        "detail": "src.qwen_vl.model.spatial_forcing",
+        "documentation": {}
+    },
+    {
+        "label": "SpatialForcingProjector",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.spatial_forcing",
+        "description": "src.qwen_vl.model.spatial_forcing",
+        "peekOfCode": "class SpatialForcingProjector(nn.Module):\n    \"\"\"LayerNorm -> Linear -> GELU -> Linear projection into VGGT space.\"\"\"\n    def __init__(self, student_dim: int, hidden_dim: int, teacher_dim: int):\n        super().__init__()\n        self.norm = nn.LayerNorm(student_dim)\n        self.net = nn.Sequential(\n            nn.Linear(student_dim, hidden_dim),\n            nn.GELU(),\n            nn.Linear(hidden_dim, teacher_dim),\n        )",
+        "detail": "src.qwen_vl.model.spatial_forcing",
+        "documentation": {}
+    },
+    {
+        "label": "Qwen3_5ForConditionalGenerationWithSpatialForcing",
+        "kind": 6,
+        "importPath": "src.qwen_vl.model.spatial_forcing",
+        "description": "src.qwen_vl.model.spatial_forcing",
+        "peekOfCode": "class Qwen3_5ForConditionalGenerationWithSpatialForcing(\n    Qwen3_5ForConditionalGeneration\n):\n    \"\"\"Qwen3.5 student with a training-only frozen VGGT alignment teacher.\"\"\"\n    accepts_loss_kwargs = False\n    _keys_to_ignore_on_load_missing = [\n        r\"spatial_projector\\..*\",\n        r\"student_depth_head\\..*\",\n    ]\n    def __init__(self, config):",
+        "detail": "src.qwen_vl.model.spatial_forcing",
+        "documentation": {}
+    },
+    {
+        "label": "create_aspect_ratio_uv_grid",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.spatial_forcing",
+        "description": "src.qwen_vl.model.spatial_forcing",
+        "peekOfCode": "def create_aspect_ratio_uv_grid(\n    width: int,\n    height: int,\n    *,\n    aspect_ratio: float | None = None,\n    dtype: torch.dtype = torch.float32,\n    device: torch.device | None = None,\n) -> torch.Tensor:\n    \"\"\"Create the normalized UV grid used by the Spatial-Forcing reference.\"\"\"\n    width = int(width)",
+        "detail": "src.qwen_vl.model.spatial_forcing",
+        "documentation": {}
+    },
+    {
+        "label": "position_grid_to_sincos_embedding",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.spatial_forcing",
+        "description": "src.qwen_vl.model.spatial_forcing",
+        "peekOfCode": "def position_grid_to_sincos_embedding(\n    position_grid: torch.Tensor,\n    embed_dim: int,\n    *,\n    omega_0: float = VGGT_POSITION_EMBED_OMEGA,\n) -> torch.Tensor:\n    \"\"\"Convert an ``[H, W, 2]`` UV grid to an ``[H, W, D]`` embedding.\"\"\"\n    if position_grid.ndim != 3 or position_grid.shape[-1] != 2:\n        raise ValueError(\"position_grid must have shape [height, width, 2]\")\n    if embed_dim <= 0 or embed_dim % 4:",
+        "detail": "src.qwen_vl.model.spatial_forcing",
+        "documentation": {}
+    },
+    {
+        "label": "add_vggt_position_embedding",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.spatial_forcing",
+        "description": "src.qwen_vl.model.spatial_forcing",
+        "peekOfCode": "def add_vggt_position_embedding(\n    teacher_features: torch.Tensor,\n    *,\n    teacher_grid_hw: tuple[int, int],\n    image_hw: tuple[int, int],\n    scale: float = VGGT_POSITION_EMBED_SCALE,\n) -> torch.Tensor:\n    \"\"\"Add reference-compatible aspect-ratio-aware UV encoding before pooling.\"\"\"\n    if teacher_features.ndim != 2:\n        raise ValueError(",
+        "detail": "src.qwen_vl.model.spatial_forcing",
+        "documentation": {}
+    },
+    {
+        "label": "resize_teacher_spatial_grid",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.spatial_forcing",
+        "description": "src.qwen_vl.model.spatial_forcing",
+        "peekOfCode": "def resize_teacher_spatial_grid(\n    teacher_features: torch.Tensor,\n    teacher_grid_hw: tuple[int, int],\n    student_grid_hw: tuple[int, int],\n) -> torch.Tensor:\n    \"\"\"Resize VGGT patch features as a 2D grid, never as a flat sequence.\"\"\"\n    if teacher_features.ndim != 2:\n        raise ValueError(\n            f\"teacher_features must have shape [N, D], got {tuple(teacher_features.shape)}\"\n        )",
+        "detail": "src.qwen_vl.model.spatial_forcing",
+        "documentation": {}
+    },
+    {
+        "label": "spatial_forcing_cosine_loss",
+        "kind": 2,
+        "importPath": "src.qwen_vl.model.spatial_forcing",
+        "description": "src.qwen_vl.model.spatial_forcing",
+        "peekOfCode": "def spatial_forcing_cosine_loss(\n    projected_student: torch.Tensor,\n    teacher_features: torch.Tensor,\n) -> tuple[torch.Tensor, torch.Tensor]:\n    \"\"\"Return position-wise cosine loss and mean cosine similarity.\"\"\"\n    if projected_student.shape != teacher_features.shape:\n        raise ValueError(\n            \"Student and teacher features must have identical shapes after projection: \"\n            f\"student={tuple(projected_student.shape)}, \"\n            f\"teacher={tuple(teacher_features.shape)}\"",
+        "detail": "src.qwen_vl.model.spatial_forcing",
+        "documentation": {}
+    },
+    {
+        "label": "VGGT_POSITION_EMBED_SCALE",
+        "kind": 5,
+        "importPath": "src.qwen_vl.model.spatial_forcing",
+        "description": "src.qwen_vl.model.spatial_forcing",
+        "peekOfCode": "VGGT_POSITION_EMBED_SCALE = 0.1\nVGGT_POSITION_EMBED_OMEGA = 100.0\ndef create_aspect_ratio_uv_grid(\n    width: int,\n    height: int,\n    *,\n    aspect_ratio: float | None = None,\n    dtype: torch.dtype = torch.float32,\n    device: torch.device | None = None,\n) -> torch.Tensor:",
+        "detail": "src.qwen_vl.model.spatial_forcing",
+        "documentation": {}
+    },
+    {
+        "label": "VGGT_POSITION_EMBED_OMEGA",
+        "kind": 5,
+        "importPath": "src.qwen_vl.model.spatial_forcing",
+        "description": "src.qwen_vl.model.spatial_forcing",
+        "peekOfCode": "VGGT_POSITION_EMBED_OMEGA = 100.0\ndef create_aspect_ratio_uv_grid(\n    width: int,\n    height: int,\n    *,\n    aspect_ratio: float | None = None,\n    dtype: torch.dtype = torch.float32,\n    device: torch.device | None = None,\n) -> torch.Tensor:\n    \"\"\"Create the normalized UV grid used by the Spatial-Forcing reference.\"\"\"",
+        "detail": "src.qwen_vl.model.spatial_forcing",
+        "documentation": {}
+    },
+    {
+        "label": "ModelArguments",
+        "kind": 6,
+        "importPath": "src.qwen_vl.train.argument",
+        "description": "src.qwen_vl.train.argument",
+        "peekOfCode": "class ModelArguments:\n    model_name_or_path: str = field(default=\"Qwen/Qwen3.5-4B\")\n    tune_mm_llm: bool = field(default=False)\n    tune_mm_mlp: bool = field(default=False)\n    tune_mm_vision: bool = field(default=False)\n    # ``geometry_encoder_path`` keeps the launcher's established CLI name, but\n    # the model is a loss-only teacher and never enters Qwen's inference path.\n    geometry_encoder_path: str = field(default=\"facebook/VGGT-1B\")\n    use_geometry_encoder: bool = field(default=False)\n    use_geometry_fusion: bool = field(default=False)",
+        "detail": "src.qwen_vl.train.argument",
+        "documentation": {}
+    },
+    {
+        "label": "DataArguments",
+        "kind": 6,
+        "importPath": "src.qwen_vl.train.argument",
+        "description": "src.qwen_vl.train.argument",
+        "peekOfCode": "class DataArguments:\n    dataset_use: str = field(default=\"\")\n    dataset_config: Optional[str] = field(default=None)\n    video_max_frames: Optional[int] = field(default=8)\n    video_min_frames: Optional[int] = field(default=4)\n    data_flatten: bool = field(default=False)\n    base_interval: int = field(default=2)\n    max_pixels: int = field(default=28 * 28 * 576)\n    min_pixels: int = field(default=28 * 28 * 16)\n    video_max_frame_pixels: int = field(default=32 * 28 * 28)",
+        "detail": "src.qwen_vl.train.argument",
+        "documentation": {}
+    },
+    {
+        "label": "TrainingArguments",
+        "kind": 6,
+        "importPath": "src.qwen_vl.train.argument",
+        "description": "src.qwen_vl.train.argument",
+        "peekOfCode": "class TrainingArguments(transformers.TrainingArguments):\n    cache_dir: Optional[str] = field(default=None)\n    optim: str = field(default=\"adamw_torch\")\n    model_max_length: int = field(\n        default=512,\n        metadata={\n            \"help\": \"Maximum sequence length. Sequences will be right padded (and possibly truncated).\"\n        },\n    )\n    mm_projector_lr: Optional[float] = None",
+        "detail": "src.qwen_vl.train.argument",
+        "documentation": {}
+    },
+    {
+        "label": "LengthGroupedSampler",
+        "kind": 6,
+        "importPath": "src.qwen_vl.train.sampler",
+        "description": "src.qwen_vl.train.sampler",
+        "peekOfCode": "class LengthGroupedSampler(Sampler):\n    def __init__(\n        self,\n        batch_size: int,\n        world_size: int,\n        lengths,\n        generator=None,\n    ):\n        if lengths is None:\n            raise ValueError(\"Lengths must be provided\")",
+        "detail": "src.qwen_vl.train.sampler",
+        "documentation": {}
+    },
+    {
+        "label": "_ORIGINAL_GET_TRAIN_SAMPLER",
+        "kind": 5,
+        "importPath": "src.qwen_vl.train.sampler",
+        "description": "src.qwen_vl.train.sampler",
+        "peekOfCode": "_ORIGINAL_GET_TRAIN_SAMPLER = Trainer._get_train_sampler\ndef _split_to_even_chunks(indices, lengths, num_chunks):\n    if len(indices) % num_chunks:\n        return [indices[index::num_chunks] for index in range(num_chunks)]\n    entries_per_chunk = len(indices) // num_chunks\n    chunks = [[] for _ in range(num_chunks)]\n    chunk_lengths = [0 for _ in range(num_chunks)]\n    for index in indices:\n        target = chunk_lengths.index(min(chunk_lengths))\n        chunks[target].append(index)",
+        "detail": "src.qwen_vl.train.sampler",
+        "documentation": {}
+    },
+    {
+        "label": "Trainer._get_train_sampler",
+        "kind": 5,
+        "importPath": "src.qwen_vl.train.sampler",
+        "description": "src.qwen_vl.train.sampler",
+        "peekOfCode": "Trainer._get_train_sampler = _get_train_sampler",
+        "detail": "src.qwen_vl.train.sampler",
+        "documentation": {}
+    },
+    {
+        "label": "rank0_print",
+        "kind": 2,
+        "importPath": "src.qwen_vl.train.train_qwen",
+        "description": "src.qwen_vl.train.train_qwen",
+        "peekOfCode": "def rank0_print(*args):\n    if local_rank == 0:\n        print(*args)\ndef safe_save_model_for_hf_trainer(trainer: transformers.Trainer, output_dir: str):\n    \"\"\"Collects the state dict and dump to disk.\"\"\"\n    if trainer.deepspeed:\n        torch.cuda.synchronize()\n        trainer.save_model(output_dir)\n        return\n    state_dict = trainer.model.state_dict()",
+        "detail": "src.qwen_vl.train.train_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "safe_save_model_for_hf_trainer",
+        "kind": 2,
+        "importPath": "src.qwen_vl.train.train_qwen",
+        "description": "src.qwen_vl.train.train_qwen",
+        "peekOfCode": "def safe_save_model_for_hf_trainer(trainer: transformers.Trainer, output_dir: str):\n    \"\"\"Collects the state dict and dump to disk.\"\"\"\n    if trainer.deepspeed:\n        torch.cuda.synchronize()\n        trainer.save_model(output_dir)\n        return\n    state_dict = trainer.model.state_dict()\n    if trainer.args.should_save:\n        cpu_state_dict = {key: value.cpu() for key, value in state_dict.items()}\n        del state_dict",
+        "detail": "src.qwen_vl.train.train_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "resolve_model_modules",
+        "kind": 2,
+        "importPath": "src.qwen_vl.train.train_qwen",
+        "description": "src.qwen_vl.train.train_qwen",
+        "peekOfCode": "def resolve_model_modules(model):\n    if hasattr(model, \"visual\") and hasattr(model, \"model\"):\n        return (\n            model.visual,\n            getattr(model.visual, \"merger\", None),\n            model.model,\n            model.lm_head,\n        )\n    inner_model = getattr(model, \"model\", None)\n    if (",
+        "detail": "src.qwen_vl.train.train_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "set_model",
+        "kind": 2,
+        "importPath": "src.qwen_vl.train.train_qwen",
+        "description": "src.qwen_vl.train.train_qwen",
+        "peekOfCode": "def set_model(model_args, model):\n    visual_module, merger_module, language_module, lm_head = resolve_model_modules(\n        model\n    )\n    if model_args.tune_mm_vision:\n        for n, p in visual_module.named_parameters():\n            p.requires_grad = True\n    else:\n        for n, p in visual_module.named_parameters():\n            p.requires_grad = False",
+        "detail": "src.qwen_vl.train.train_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "train",
+        "kind": 2,
+        "importPath": "src.qwen_vl.train.train_qwen",
+        "description": "src.qwen_vl.train.train_qwen",
+        "peekOfCode": "def train(attn_implementation=\"flash_attention_2\"):\n    global local_rank\n    parser = transformers.HfArgumentParser(\n        (ModelArguments, DataArguments, TrainingArguments)\n    )\n    model_args, data_args, training_args = parser.parse_args_into_dataclasses()\n    set_seed(training_args.seed)\n    # enable_full_determinism(training_args.seed)\n    local_rank = training_args.local_rank\n    os.makedirs(training_args.output_dir, exist_ok=True)",
+        "detail": "src.qwen_vl.train.train_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "project_root",
+        "kind": 5,
+        "importPath": "src.qwen_vl.train.train_qwen",
+        "description": "src.qwen_vl.train.train_qwen",
+        "peekOfCode": "project_root = Path(__file__).parent.parent.parent\nsys.path.append(str(project_root))\nimport qwen_vl.train.sampler  # noqa: F401  # installs the custom VLN sampler\nfrom qwen_vl.train.trainer import SpatialForcingTrainer\nfrom qwen_vl.data.data_qwen import make_supervised_data_module\nfrom qwen_vl.train.argument import (\n    ModelArguments,\n    DataArguments,\n    TrainingArguments,\n)",
+        "detail": "src.qwen_vl.train.train_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "local_rank",
+        "kind": 5,
+        "importPath": "src.qwen_vl.train.train_qwen",
+        "description": "src.qwen_vl.train.train_qwen",
+        "peekOfCode": "local_rank = None\nQWEN3_5_MODEL_TYPES = {\"qwen3_5\", \"qwen3_5_vl\"}\ndef rank0_print(*args):\n    if local_rank == 0:\n        print(*args)\ndef safe_save_model_for_hf_trainer(trainer: transformers.Trainer, output_dir: str):\n    \"\"\"Collects the state dict and dump to disk.\"\"\"\n    if trainer.deepspeed:\n        torch.cuda.synchronize()\n        trainer.save_model(output_dir)",
+        "detail": "src.qwen_vl.train.train_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "QWEN3_5_MODEL_TYPES",
+        "kind": 5,
+        "importPath": "src.qwen_vl.train.train_qwen",
+        "description": "src.qwen_vl.train.train_qwen",
+        "peekOfCode": "QWEN3_5_MODEL_TYPES = {\"qwen3_5\", \"qwen3_5_vl\"}\ndef rank0_print(*args):\n    if local_rank == 0:\n        print(*args)\ndef safe_save_model_for_hf_trainer(trainer: transformers.Trainer, output_dir: str):\n    \"\"\"Collects the state dict and dump to disk.\"\"\"\n    if trainer.deepspeed:\n        torch.cuda.synchronize()\n        trainer.save_model(output_dir)\n        return",
+        "detail": "src.qwen_vl.train.train_qwen",
+        "documentation": {}
+    },
+    {
+        "label": "SpatialForcingTrainer",
+        "kind": 6,
+        "importPath": "src.qwen_vl.train.trainer",
+        "description": "src.qwen_vl.train.trainer",
+        "peekOfCode": "class SpatialForcingTrainer(Trainer):\n    \"\"\"Report the task and alignment objectives separately.\"\"\"\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self._spatial_metric_sums = {}\n        self._spatial_metric_count = 0\n        self.model_accepts_loss_kwargs = False\n    def compute_loss(\n        self,\n        model,",
+        "detail": "src.qwen_vl.train.trainer",
+        "documentation": {}
+    },
+    {
+        "label": "print_trainable_parameters_visual",
+        "kind": 2,
+        "importPath": "src.qwen_vl.train.trainer",
+        "description": "src.qwen_vl.train.trainer",
+        "peekOfCode": "def print_trainable_parameters_visual(self) -> None:\n    trainable_blocks = []\n    frozen_blocks = []\n    for block_index, block in enumerate(self.blocks):\n        target = (\n            trainable_blocks\n            if all(parameter.requires_grad for parameter in block.parameters())\n            else frozen_blocks\n        )\n        target.append(block_index)",
+        "detail": "src.qwen_vl.train.trainer",
+        "documentation": {}
+    },
+    {
+        "label": "print_trainable_parameters",
+        "kind": 2,
+        "importPath": "src.qwen_vl.train.trainer",
+        "description": "src.qwen_vl.train.trainer",
+        "peekOfCode": "def print_trainable_parameters(self) -> None:\n    embeddings_trainable = any(\n        parameter.requires_grad for parameter in self.embed_tokens.parameters()\n    )\n    trainable_layers = []\n    frozen_layers = []\n    for layer_index, layer in enumerate(self.layers):\n        target = (\n            trainable_layers\n            if any(parameter.requires_grad for parameter in layer.parameters())",
+        "detail": "src.qwen_vl.train.trainer",
+        "documentation": {}
+    },
+    {
+        "label": "create_optimizer",
+        "kind": 2,
+        "importPath": "src.qwen_vl.train.trainer",
+        "description": "src.qwen_vl.train.trainer",
+        "peekOfCode": "def create_optimizer(self):\n    \"\"\"Use disjoint base, projector, and student-depth parameter groups.\"\"\"\n    if self.optimizer is not None:\n        return self.optimizer\n    decay_names = set(get_parameter_names(self.model, ALL_LAYERNORM_LAYERS))\n    decay_names = {name for name in decay_names if \"bias\" not in name}\n    projector_names = {\n        name\n        for name, _ in self.model.named_parameters()\n        if \"merger\" in name or \"spatial_projector\" in name",
+        "detail": "src.qwen_vl.train.trainer",
+        "documentation": {}
+    },
+    {
+        "label": "Trainer.create_optimizer",
+        "kind": 5,
+        "importPath": "src.qwen_vl.train.trainer",
+        "description": "src.qwen_vl.train.trainer",
+        "peekOfCode": "Trainer.create_optimizer = create_optimizer\nQwen3_5VisionModel.print_trainable_parameters = print_trainable_parameters_visual\nQwen3_5TextModel.print_trainable_parameters = print_trainable_parameters",
+        "detail": "src.qwen_vl.train.trainer",
+        "documentation": {}
+    },
+    {
+        "label": "Qwen3_5VisionModel.print_trainable_parameters",
+        "kind": 5,
+        "importPath": "src.qwen_vl.train.trainer",
+        "description": "src.qwen_vl.train.trainer",
+        "peekOfCode": "Qwen3_5VisionModel.print_trainable_parameters = print_trainable_parameters_visual\nQwen3_5TextModel.print_trainable_parameters = print_trainable_parameters",
+        "detail": "src.qwen_vl.train.trainer",
+        "documentation": {}
+    },
+    {
+        "label": "Qwen3_5TextModel.print_trainable_parameters",
+        "kind": 5,
+        "importPath": "src.qwen_vl.train.trainer",
+        "description": "src.qwen_vl.train.trainer",
+        "peekOfCode": "Qwen3_5TextModel.print_trainable_parameters = print_trainable_parameters",
+        "detail": "src.qwen_vl.train.trainer",
+        "documentation": {}
+    },
+    {
+        "label": "test_missing_sample_fallbacks_are_distinct_and_can_escape_a_bad_trajectory",
+        "kind": 2,
+        "importPath": "tests.test_data_retry",
+        "description": "tests.test_data_retry",
+        "peekOfCode": "def test_missing_sample_fallbacks_are_distinct_and_can_escape_a_bad_trajectory(\n    monkeypatch,\n):\n    dataset = LazySupervisedDataset.__new__(LazySupervisedDataset)\n    dataset.list_data_dict = [{} for _ in range(20)]\n    attempted_indices = []\n    def get_item(_self, index):\n        attempted_indices.append(index)\n        if index in {0, 1, 2, 3, 4}:\n            raise FileNotFoundError(f\"missing trajectory for {index}\")",
+        "detail": "tests.test_data_retry",
+        "documentation": {}
+    },
+    {
+        "label": "CountingAggregator",
+        "kind": 6,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "class CountingAggregator(nn.Module):\n    def __init__(self):\n        super().__init__()\n        self.calls = 0\n        self.last_hw = None\n    def forward(self, images):\n        self.calls += 1\n        batch, frames, _, height, width = images.shape\n        self.last_hw = (height, width)\n        patches = (height // 14) * (width // 14)",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "CountingDepthHead",
+        "kind": 6,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "class CountingDepthHead(nn.Module):\n    def __init__(self):\n        super().__init__()\n        self.calls = 0\n    def forward(self, aggregated_tokens_list, *, images, patch_start_idx):\n        self.calls += 1\n        batch, frames, _, height, width = images.shape\n        depth = torch.ones(batch, frames, height, width, 1)\n        confidence = torch.full((batch, frames, height, width), 2.0)\n        return depth, confidence",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "FakeVGGT",
+        "kind": 6,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "class FakeVGGT(nn.Module):\n    def __init__(self):\n        super().__init__()\n        self.aggregator = CountingAggregator()\n        self.depth_head = CountingDepthHead()\ndef test_teacher_features_and_depth_share_one_aggregator_execution():\n    encoder = VGGTEncoder.__new__(VGGTEncoder)\n    nn.Module.__init__(encoder)\n    encoder.reference_frame = \"first\"\n    encoder.freeze_encoder = True",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "DummyImageProcessor",
+        "kind": 6,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "class DummyImageProcessor:\n    merge_size = 2\n    patch_size = 14\n    def __call__(self, images, **_kwargs):\n        _, _, height, width = images.shape\n        return {\n            \"pixel_values\": images.clone(),\n            \"image_grid_thw\": torch.tensor([[1, height // 14, width // 14]]),\n        }\ndef test_depth_preprocessing_reuses_exact_qwen_crop():",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "TinyOptimizerModel",
+        "kind": 6,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "class TinyOptimizerModel(nn.Module):\n    def __init__(self):\n        super().__init__()\n        self.base = nn.Linear(4, 4)\n        self.spatial_projector = nn.Linear(4, 4)\n        self.student_depth_head = nn.Linear(4, 4)\n    def forward(self, input_ids=None, labels=None):\n        del input_ids, labels\n        return {\"loss\": self.base.weight.sum() * 0}\ndef test_optimizer_assigns_every_depth_parameter_once_at_depth_lr(tmp_path):",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "make_small_depth_head",
+        "kind": 2,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "def make_small_depth_head():\n    return GeoVRDepthHead(\n        dim_in=16,\n        patch_size=28,\n        target_patch_size=28,\n        features=8,\n        out_channels=(8, 16, 32, 32),\n    )\ndef test_dense_head_consumes_four_selected_features_in_relative_order():\n    torch.manual_seed(0)",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "test_dense_head_consumes_four_selected_features_in_relative_order",
+        "kind": 2,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "def test_dense_head_consumes_four_selected_features_in_relative_order():\n    torch.manual_seed(0)\n    head = make_small_depth_head()\n    selected = [torch.randn(1, 6, 16, requires_grad=True) for _ in range(4)]\n    observed_inputs = []\n    handles = [\n        projection.register_forward_pre_hook(\n            lambda _module, inputs, index=index: observed_inputs.append(\n                (index, inputs[0].detach().clone())\n            )",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "test_dense_head_rejects_absolute_index_style_input",
+        "kind": 2,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "def test_dense_head_rejects_absolute_index_style_input():\n    head = make_small_depth_head()\n    with pytest.raises(ValueError, match=\"exactly four\"):\n        head(\n            [torch.randn(1, 6, 16) for _ in range(33)],\n            student_grid_hw=(2, 3),\n            image_hw=(56, 84),\n            target_hw=(56, 84),\n        )\ndef test_dense_head_matches_teacher_size_not_divisible_by_target_patch():",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "test_dense_head_matches_teacher_size_not_divisible_by_target_patch",
+        "kind": 2,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "def test_dense_head_matches_teacher_size_not_divisible_by_target_patch():\n    head = make_small_depth_head()\n    prediction = head(\n        [torch.randn(1, 6, 16) for _ in range(4)],\n        student_grid_hw=(2, 3),\n        image_hw=(56, 84),\n        target_hw=(42, 63),\n    )\n    assert prediction.shape == (1, 42, 63)\ndef test_depth_head_checkpoint_round_trip_is_numerically_identical():",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "test_depth_head_checkpoint_round_trip_is_numerically_identical",
+        "kind": 2,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "def test_depth_head_checkpoint_round_trip_is_numerically_identical():\n    torch.manual_seed(1)\n    head = make_small_depth_head().eval()\n    features = [torch.randn(1, 6, 16) for _ in range(4)]\n    expected = head(\n        features,\n        student_grid_hw=(2, 3),\n        image_hw=(56, 84),\n        target_hw=(56, 84),\n    )",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "test_spatial_model_strict_restore_allows_only_omitted_teacher_keys",
+        "kind": 2,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "def test_spatial_model_strict_restore_allows_only_omitted_teacher_keys():\n    model_class = Qwen3_5ForConditionalGenerationWithSpatialForcing\n    model = model_class.__new__(model_class)\n    nn.Module.__init__(model)\n    model.student_depth_head = nn.Linear(4, 2)\n    model.spatial_teacher = nn.Linear(4, 4)\n    checkpoint = {\n        key: value.detach().clone() for key, value in model.state_dict().items()\n    }\n    assert checkpoint",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "test_geovr_depth_loss_matches_l1_plus_strided_gradient_formula",
+        "kind": 2,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "def test_geovr_depth_loss_matches_l1_plus_strided_gradient_formula():\n    teacher = torch.ones(1, 4, 4)\n    difference = torch.arange(16, dtype=torch.float32).reshape(1, 4, 4) / 10\n    predicted = (teacher + difference).requires_grad_(True)\n    output = compute_geovr_depth_loss(\n        predicted,\n        teacher,\n        gradient_scales=(1,),\n        outlier_keep_ratio=0.98,\n    )",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "test_quantile_filter_preserves_geovr_edge_cases_and_gradients",
+        "kind": 2,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "def test_quantile_filter_preserves_geovr_edge_cases_and_gradients():\n    small = torch.arange(1000.0, requires_grad=True)\n    assert filter_by_quantile(small, 0.98) is small\n    large = torch.linspace(0.0, 10.0, 2001, requires_grad=True)\n    filtered = filter_by_quantile(large, 0.98)\n    assert filtered.numel() == 1961\n    assert filtered.max().item() == pytest.approx(9.8)\n    filtered.mean().backward()\n    assert large.grad is not None\n    assert torch.count_nonzero(large.grad) == filtered.numel()",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "test_invalid_teacher_depth_uses_mask_and_all_invalid_is_graph_connected",
+        "kind": 2,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "def test_invalid_teacher_depth_uses_mask_and_all_invalid_is_graph_connected():\n    predicted = torch.ones(1, 4, 4, requires_grad=True)\n    teacher = torch.ones_like(predicted)\n    teacher[..., 0, 0] = float(\"nan\")\n    teacher[..., 0, 1] = 0\n    output = compute_geovr_depth_loss(predicted, teacher, gradient_scales=(1,))\n    assert output.valid_fraction == pytest.approx(14 / 16)\n    assert torch.isfinite(output.loss)\n    invalid = torch.full_like(predicted, float(\"nan\"))\n    zero_output = compute_geovr_depth_loss(predicted, invalid)",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "test_uv_grid_is_deterministic_and_uses_requested_dtype_device",
+        "kind": 2,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "def test_uv_grid_is_deterministic_and_uses_requested_dtype_device():\n    first = create_normalized_uv_grid(\n        3, 2, aspect_ratio=1.5, dtype=torch.float64, device=torch.device(\"cpu\")\n    )\n    second = create_normalized_uv_grid(\n        3, 2, aspect_ratio=1.5, dtype=torch.float64, device=torch.device(\"cpu\")\n    )\n    assert first.shape == (2, 3, 2)\n    assert first.dtype == torch.float64\n    assert first.device.type == \"cpu\"",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "test_teacher_features_and_depth_share_one_aggregator_execution",
+        "kind": 2,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "def test_teacher_features_and_depth_share_one_aggregator_execution():\n    encoder = VGGTEncoder.__new__(VGGTEncoder)\n    nn.Module.__init__(encoder)\n    encoder.reference_frame = \"first\"\n    encoder.freeze_encoder = True\n    encoder.enable_depth = True\n    encoder.patch_size = 14\n    encoder.vggt = FakeVGGT()\n    result = encoder.encode_features_and_depth(\n        torch.rand(1, 3, 28, 42),",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "test_teacher_pads_only_for_vggt_and_crops_dense_outputs_to_qwen_fov",
+        "kind": 2,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "def test_teacher_pads_only_for_vggt_and_crops_dense_outputs_to_qwen_fov():\n    encoder = VGGTEncoder.__new__(VGGTEncoder)\n    nn.Module.__init__(encoder)\n    encoder.reference_frame = \"first\"\n    encoder.freeze_encoder = True\n    encoder.enable_depth = True\n    encoder.patch_size = 14\n    encoder.vggt = FakeVGGT()\n    result = encoder.encode_features_and_depth(\n        torch.rand(1, 3, 32, 48),",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "test_hidden_state_capture_mapping_uses_final_norm_for_index_32",
+        "kind": 2,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "def test_hidden_state_capture_mapping_uses_final_norm_for_index_32():\n    layers = [nn.Identity() for _ in range(32)]\n    final_norm = nn.LayerNorm(4)\n    fake_model = SimpleNamespace(\n        model=SimpleNamespace(\n            language_model=SimpleNamespace(layers=layers, norm=final_norm)\n        )\n    )\n    capture = Qwen3_5ForConditionalGenerationWithSpatialForcing._student_capture_module\n    assert capture(fake_model, 7) is layers[6]",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "test_depth_preprocessing_reuses_exact_qwen_crop",
+        "kind": 2,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "def test_depth_preprocessing_reuses_exact_qwen_crop():\n    pixels = torch.zeros(480, 640, 3, dtype=torch.uint8).numpy()\n    pixels[:, :, 0] = torch.arange(640, dtype=torch.uint8).numpy()[None, :]\n    image = Image.fromarray(pixels, mode=\"RGB\")\n    result = prepare_image_inputs(\n        image,\n        DummyImageProcessor(),\n        model_type=\"qwen3.5\",\n        prepare_geometry=True,\n        depth_supervision_enabled=True,",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "test_optimizer_assigns_every_depth_parameter_once_at_depth_lr",
+        "kind": 2,
+        "importPath": "tests.test_depth_supervision",
+        "description": "tests.test_depth_supervision",
+        "peekOfCode": "def test_optimizer_assigns_every_depth_parameter_once_at_depth_lr(tmp_path):\n    model = TinyOptimizerModel()\n    args = TrainingArguments(\n        output_dir=str(tmp_path),\n        learning_rate=1e-6,\n        mm_projector_lr=1e-5,\n        depth_head_lr=2e-5,\n        report_to=\"none\",\n    )\n    trainer = SpatialForcingTrainer(model=model, args=args)",
+        "detail": "tests.test_depth_supervision",
+        "documentation": {}
+    },
+    {
+        "label": "test_current_image_mask_selects_only_final_frame",
+        "kind": 2,
+        "importPath": "tests.test_janusvln_spatial_forcing_data",
+        "description": "tests.test_janusvln_spatial_forcing_data",
+        "peekOfCode": "def test_current_image_mask_selects_only_final_frame(frame_count):\n    vision_start = 10\n    image_pad = 11\n    vision_end = 12\n    tokens_per_frame = [index + 2 for index in range(frame_count)]\n    token_ids = [1]\n    spans = []\n    for token_count in tokens_per_frame:\n        span_start = len(token_ids) + 1\n        token_ids.extend([vision_start] + [image_pad] * token_count + [vision_end, 2])",
+        "detail": "tests.test_janusvln_spatial_forcing_data",
+        "documentation": {}
+    },
+    {
+        "label": "test_current_image_mask_rejects_wrong_grid_count",
+        "kind": 2,
+        "importPath": "tests.test_janusvln_spatial_forcing_data",
+        "description": "tests.test_janusvln_spatial_forcing_data",
+        "peekOfCode": "def test_current_image_mask_rejects_wrong_grid_count():\n    with pytest.raises(ValueError, match=\"does not match\"):\n        build_current_image_token_mask(\n            torch.tensor([10, 11, 11, 12]),\n            image_token_id=11,\n            vision_start_token_id=10,\n            vision_end_token_id=12,\n            expected_token_count=3,\n        )\ndef test_read_json_array_stops_at_requested_prefix(tmp_path):",
+        "detail": "tests.test_janusvln_spatial_forcing_data",
+        "documentation": {}
+    },
+    {
+        "label": "test_read_json_array_stops_at_requested_prefix",
+        "kind": 2,
+        "importPath": "tests.test_janusvln_spatial_forcing_data",
+        "description": "tests.test_janusvln_spatial_forcing_data",
+        "peekOfCode": "def test_read_json_array_stops_at_requested_prefix(tmp_path):\n    path = tmp_path / \"large.json\"\n    path.write_text(json.dumps([{\"index\": index} for index in range(100)]))\n    assert read_json_array(path, max_samples=3) == [\n        {\"index\": 0},\n        {\"index\": 1},\n        {\"index\": 2},\n    ]\ndef test_normalize_janus_path_uses_configured_root(tmp_path):\n    old_absolute_path = \"/some/old/location/R2R-CE-640x480/train/7/step_0003_STOP.png\"",
+        "detail": "tests.test_janusvln_spatial_forcing_data",
+        "documentation": {}
+    },
+    {
+        "label": "test_normalize_janus_path_uses_configured_root",
+        "kind": 2,
+        "importPath": "tests.test_janusvln_spatial_forcing_data",
+        "description": "tests.test_janusvln_spatial_forcing_data",
+        "peekOfCode": "def test_normalize_janus_path_uses_configured_root(tmp_path):\n    old_absolute_path = \"/some/old/location/R2R-CE-640x480/train/7/step_0003_STOP.png\"\n    relative_path = normalize_janusvln_image_path(old_absolute_path, tmp_path)\n    assert relative_path == \"R2R-CE-640x480/train/7/step_0003_STOP.png\"\ndef test_normalize_legacy_rxr_path_uses_configured_root(tmp_path):\n    old_absolute_path = \"/old/JanusVLN/RxR-CE-640x480/train/9/step_0001_STOP.png\"\n    relative_path = normalize_janusvln_image_path(old_absolute_path, tmp_path)\n    assert relative_path == \"RxR-CE-640x480/train/9/step_0001_STOP.png\"\ndef test_spatialstack_style_dataset_config(tmp_path):\n    config_path = tmp_path / \"dataset.json\"",
+        "detail": "tests.test_janusvln_spatial_forcing_data",
+        "documentation": {}
+    },
+    {
+        "label": "test_normalize_legacy_rxr_path_uses_configured_root",
+        "kind": 2,
+        "importPath": "tests.test_janusvln_spatial_forcing_data",
+        "description": "tests.test_janusvln_spatial_forcing_data",
+        "peekOfCode": "def test_normalize_legacy_rxr_path_uses_configured_root(tmp_path):\n    old_absolute_path = \"/old/JanusVLN/RxR-CE-640x480/train/9/step_0001_STOP.png\"\n    relative_path = normalize_janusvln_image_path(old_absolute_path, tmp_path)\n    assert relative_path == \"RxR-CE-640x480/train/9/step_0001_STOP.png\"\ndef test_spatialstack_style_dataset_config(tmp_path):\n    config_path = tmp_path / \"dataset.json\"\n    config_path.write_text(\n        json.dumps(\n            {\n                \"dataset_name\": \"janusvln_r2r_rxr\",",
+        "detail": "tests.test_janusvln_spatial_forcing_data",
+        "documentation": {}
+    },
+    {
+        "label": "test_spatialstack_style_dataset_config",
+        "kind": 2,
+        "importPath": "tests.test_janusvln_spatial_forcing_data",
+        "description": "tests.test_janusvln_spatial_forcing_data",
+        "peekOfCode": "def test_spatialstack_style_dataset_config(tmp_path):\n    config_path = tmp_path / \"dataset.json\"\n    config_path.write_text(\n        json.dumps(\n            {\n                \"dataset_name\": \"janusvln_r2r_rxr\",\n                \"annotation_path\": \"/dataset/train_r2r_rxr.json\",\n                \"data_path\": \"/dataset\",\n            }\n        )",
+        "detail": "tests.test_janusvln_spatial_forcing_data",
+        "documentation": {}
+    },
+    {
+        "label": "test_dataset_config_supports_spatialstack_sampling_suffix",
+        "kind": 2,
+        "importPath": "tests.test_janusvln_spatial_forcing_data",
+        "description": "tests.test_janusvln_spatial_forcing_data",
+        "peekOfCode": "def test_dataset_config_supports_spatialstack_sampling_suffix(tmp_path):\n    config_path = tmp_path / \"dataset.json\"\n    config_path.write_text(\n        json.dumps(\n            {\n                \"dataset_name\": \"janusvln_r2r\",\n                \"annotation_path\": \"/dataset/train_r2r.json\",\n                \"data_path\": \"/dataset\",\n            }\n        )",
+        "detail": "tests.test_janusvln_spatial_forcing_data",
+        "documentation": {}
+    },
+    {
+        "label": "test_resize_teacher_uses_spatial_grid",
+        "kind": 2,
+        "importPath": "tests.test_spatial_forcing_loss",
+        "description": "tests.test_spatial_forcing_loss",
+        "peekOfCode": "def test_resize_teacher_uses_spatial_grid():\n    teacher = torch.arange(4 * 3, dtype=torch.float32).reshape(4, 3)\n    resized = resize_teacher_spatial_grid(\n        teacher,\n        teacher_grid_hw=(2, 2),\n        student_grid_hw=(3, 4),\n    )\n    assert resized.shape == (12, 3)\n    assert torch.isfinite(resized).all()\ndef test_vggt_position_embedding_matches_reference_uv_encoding():",
+        "detail": "tests.test_spatial_forcing_loss",
+        "documentation": {}
+    },
+    {
+        "label": "test_vggt_position_embedding_matches_reference_uv_encoding",
+        "kind": 2,
+        "importPath": "tests.test_spatial_forcing_loss",
+        "description": "tests.test_spatial_forcing_loss",
+        "peekOfCode": "def test_vggt_position_embedding_matches_reference_uv_encoding():\n    positioned = add_vggt_position_embedding(\n        torch.zeros(2, 8),\n        teacher_grid_hw=(1, 2),\n        image_hw=(1, 2),\n    )\n    expected = torch.tensor(\n        [\n            [\n                -0.0432454832,",
+        "detail": "tests.test_spatial_forcing_loss",
+        "documentation": {}
+    },
+    {
+        "label": "test_vggt_position_embedding_preserves_grid_for_pooling",
+        "kind": 2,
+        "importPath": "tests.test_spatial_forcing_loss",
+        "description": "tests.test_spatial_forcing_loss",
+        "peekOfCode": "def test_vggt_position_embedding_preserves_grid_for_pooling():\n    teacher = torch.randn(6, 16, dtype=torch.bfloat16)\n    positioned = add_vggt_position_embedding(\n        teacher,\n        teacher_grid_hw=(2, 3),\n        image_hw=(200, 600),\n    )\n    resized = resize_teacher_spatial_grid(\n        positioned,\n        teacher_grid_hw=(2, 3),",
+        "detail": "tests.test_spatial_forcing_loss",
+        "documentation": {}
+    },
+    {
+        "label": "test_vggt_position_embedding_validates_dimensions",
+        "kind": 2,
+        "importPath": "tests.test_spatial_forcing_loss",
+        "description": "tests.test_spatial_forcing_loss",
+        "peekOfCode": "def test_vggt_position_embedding_validates_dimensions():\n    grid = create_aspect_ratio_uv_grid(3, 2, aspect_ratio=1.5)\n    assert grid.shape == (2, 3, 2)\n    with pytest.raises(ValueError, match=\"divisible by four\"):\n        position_grid_to_sincos_embedding(grid, embed_dim=10)\n    with pytest.raises(ValueError, match=\"token count\"):\n        add_vggt_position_embedding(\n            torch.zeros(5, 8),\n            teacher_grid_hw=(2, 3),\n            image_hw=(200, 300),",
+        "detail": "tests.test_spatial_forcing_loss",
+        "documentation": {}
+    },
+    {
+        "label": "test_cosine_loss_is_zero_for_identical_features",
+        "kind": 2,
+        "importPath": "tests.test_spatial_forcing_loss",
+        "description": "tests.test_spatial_forcing_loss",
+        "peekOfCode": "def test_cosine_loss_is_zero_for_identical_features():\n    features = torch.randn(7, 16)\n    loss, cosine = spatial_forcing_cosine_loss(features, features)\n    assert torch.allclose(loss, torch.tensor(0.0), atol=1e-6)\n    assert torch.allclose(cosine, torch.tensor(1.0), atol=1e-6)\ndef test_projector_and_student_receive_gradients_but_teacher_does_not():\n    projector = SpatialForcingProjector(\n        student_dim=8,\n        hidden_dim=12,\n        teacher_dim=6,",
+        "detail": "tests.test_spatial_forcing_loss",
+        "documentation": {}
+    },
+    {
+        "label": "test_projector_and_student_receive_gradients_but_teacher_does_not",
+        "kind": 2,
+        "importPath": "tests.test_spatial_forcing_loss",
+        "description": "tests.test_spatial_forcing_loss",
+        "peekOfCode": "def test_projector_and_student_receive_gradients_but_teacher_does_not():\n    projector = SpatialForcingProjector(\n        student_dim=8,\n        hidden_dim=12,\n        teacher_dim=6,\n    )\n    student = torch.randn(5, 8, requires_grad=True)\n    teacher = torch.randn(5, 6, requires_grad=True)\n    projected = projector(student)\n    loss, _ = spatial_forcing_cosine_loss(projected, teacher)",
+        "detail": "tests.test_spatial_forcing_loss",
+        "documentation": {}
+    }
+]
