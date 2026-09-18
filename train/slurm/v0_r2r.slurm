@@ -7,7 +7,7 @@
 #SBATCH --gres=gpu:nvidia_h100_80gb_hbm3:4
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=192G
-#SBATCH --time=24:00:00
+#SBATCH --time=28:00:00
 #SBATCH --output=/home/an221229/code/StageVLN-v2/slurm_logs/%x-%j.out
 #SBATCH --error=/home/an221229/code/StageVLN-v2/slurm_logs/%x-%j.err
 set -euo pipefail

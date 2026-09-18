@@ -1,0 +1,7 @@
+{
+  "initial_loss": 1.4192813634872437,
+  "final_loss": 0.0018322499236091971,
+  "updates": 200,
+  "accuracy": 1.0,
+  "supervision": "Only write7, cue only at write0; no detach inside K8"
+}

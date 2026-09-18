@@ -1,0 +1,10 @@
+{
+  "episodes": 10819,
+  "world_size": 4,
+  "updates": 9864,
+  "labels": 631244,
+  "observations": 631244,
+  "last_update_labels": 12,
+  "max_segments_per_rank_update": 10,
+  "no_padding_or_drops": true
+}

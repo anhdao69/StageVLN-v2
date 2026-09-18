@@ -1,0 +1,167 @@
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen3_5ForConditionalGeneration is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen3_5Model is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen3_5VisionModel is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen3_5TextModel is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Casting fp32 inputs back to torch.bfloat16 for flash-attn compatibility.
+[
+  {
+    "recent": 0,
+    "K": 2,
+    "direct_loss": 1.5954410433769226,
+    "repeat_loss": 1.5954410433769226,
+    "bridge_loss": 1.5954410433769226,
+    "flash_attention_deterministic": true,
+    "gradients": {
+      "direct_1/backbone.model.visual.merger.linear_fc2.weight": {
+        "cosine": 1.0000000000000535,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "direct_1/backbone.model.language_model.layers.3.self_attn.q_proj.weight": {
+        "cosine": 1.0000000000016942,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "direct_1/writer.initial_slots": {
+        "cosine": 0.9999999999999919,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "direct_1/writer.blocks.0.self_attention.in_proj_weight": {
+        "cosine": 1.0000000000000002,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "direct_1/instruction_encoder.projection.weight": {
+        "cosine": 1.000000000000005,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "direct_1/visual_projector.projection.weight": {
+        "cosine": 1.0000000000000047,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "direct_1/memory_adapter.output_projection.weight": {
+        "cosine": 1.0000000000000004,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "bridge_2/backbone.model.visual.merger.linear_fc2.weight": {
+        "cosine": 1.0000000000000535,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "bridge_2/backbone.model.language_model.layers.3.self_attn.q_proj.weight": {
+        "cosine": 1.0000000000016942,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "bridge_2/writer.initial_slots": {
+        "cosine": 0.9999999999999919,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "bridge_2/writer.blocks.0.self_attention.in_proj_weight": {
+        "cosine": 1.0000000000000002,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "bridge_2/instruction_encoder.projection.weight": {
+        "cosine": 1.000000000000005,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "bridge_2/visual_projector.projection.weight": {
+        "cosine": 1.0000000000000047,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "bridge_2/memory_adapter.output_projection.weight": {
+        "cosine": 1.0000000000000004,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      }
+    }
+  },
+  {
+    "recent": 4,
+    "K": 2,
+    "direct_loss": 1.5962730646133423,
+    "repeat_loss": 1.5962730646133423,
+    "bridge_loss": 1.5962730646133423,
+    "flash_attention_deterministic": true,
+    "gradients": {
+      "direct_1/backbone.model.visual.merger.linear_fc2.weight": {
+        "cosine": 1.000000000000059,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "direct_1/backbone.model.language_model.layers.3.self_attn.q_proj.weight": {
+        "cosine": 1.000000000002183,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "direct_1/writer.initial_slots": {
+        "cosine": 0.99999999999999,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "direct_1/writer.blocks.0.self_attention.in_proj_weight": {
+        "cosine": 1.0,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "direct_1/instruction_encoder.projection.weight": {
+        "cosine": 1.0000000000000042,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "direct_1/visual_projector.projection.weight": {
+        "cosine": 1.0000000000000047,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "direct_1/memory_adapter.output_projection.weight": {
+        "cosine": 1.0000000000000007,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "bridge_2/backbone.model.visual.merger.linear_fc2.weight": {
+        "cosine": 1.000000000000059,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "bridge_2/backbone.model.language_model.layers.3.self_attn.q_proj.weight": {
+        "cosine": 1.000000000002183,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "bridge_2/writer.initial_slots": {
+        "cosine": 0.99999999999999,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "bridge_2/writer.blocks.0.self_attention.in_proj_weight": {
+        "cosine": 1.0,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "bridge_2/instruction_encoder.projection.weight": {
+        "cosine": 1.0000000000000042,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "bridge_2/visual_projector.projection.weight": {
+        "cosine": 1.0000000000000047,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      },
+      "bridge_2/memory_adapter.output_projection.weight": {
+        "cosine": 1.0000000000000007,
+        "max_absolute": 0.0,
+        "relative_l2": 0.0
+      }
+    }
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "recent": 0,
+    "states": 8,
+    "loss": 12.220935940742493,
+    "max_gradient_error": 1.1920928955078125e-07,
+    "gradient_l1": {
+      "writer.initial_slots": 0.4288443922996521,
+      "writer.blocks.0": 1.1816005408181809,
+      "instruction_encoder": 0.18081704324322345,
+      "visual_projector": 0.05287569388747215,
+      "memory_adapter": 6.112655660137534,
+      "backbone.model.visual.merger": 4.759602854494005
+    }
+  },
+  {
+    "recent": 4,
+    "states": 8,
+    "loss": 12.222026705741882,
+    "max_gradient_error": 1.1920928955078125e-07,
+    "gradient_l1": {
+      "writer.initial_slots": 0.40625059604644775,
+      "writer.blocks.0": 1.0485170723404735,
+      "instruction_encoder": 0.16734905379962584,
+      "visual_projector": 0.0461443942040205,
+      "memory_adapter": 5.279156926088035,
+      "backbone.model.visual.merger": 16.177831953857094
+    }
+  }
+]

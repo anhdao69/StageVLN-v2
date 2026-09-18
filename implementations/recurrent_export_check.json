@@ -1,0 +1,855 @@
+{
+  "export": "/groups/yshang/an221229/checkpoints/StageVLN-v2/verify_v3_recurrent/export",
+  "checkpoint_step": 32,
+  "exact_saved_tensors": 833,
+  "tied_embeddings_preserved": true,
+  "actor_actions": [
+    "TURN_RIGHT",
+    "TURN_RIGHT",
+    "TURN_RIGHT"
+  ],
+  "actor_duplicate_idempotence": true,
+  "probe_observations": [
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 0,
+      "loss": 0.1912716031074524,
+      "memory_norm": 319.8851623535156,
+      "reader_frames": [
+        0
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 0,
+      "loss": 0.1912716031074524,
+      "memory_norm": 319.8851623535156,
+      "reader_frames": [
+        0
+      ],
+      "events": []
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 0,
+      "loss": 0.1912716031074524,
+      "memory_norm": 319.8851623535156,
+      "reader_frames": [
+        0
+      ],
+      "events": []
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 0,
+      "loss": 0.1912716031074524,
+      "memory_norm": 319.8851623535156,
+      "reader_frames": [
+        0
+      ],
+      "events": []
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 0,
+      "loss": 0.1912716031074524,
+      "memory_norm": 319.8851623535156,
+      "reader_frames": [
+        0
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 0,
+          "history_length": 0,
+          "explicit_history_frames": 0,
+          "cross_protocol": true
+        }
+      ]
+    },
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 1,
+      "loss": 0.09051298350095749,
+      "memory_norm": 729.0970458984375,
+      "reader_frames": [
+        0,
+        1
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 1,
+      "loss": 0.09051298350095749,
+      "memory_norm": 729.0970458984375,
+      "reader_frames": [
+        0,
+        1
+      ],
+      "events": []
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 1,
+      "loss": 0.09051298350095749,
+      "memory_norm": 729.0970458984375,
+      "reader_frames": [
+        0,
+        1
+      ],
+      "events": []
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 1,
+      "loss": 0.09051298350095749,
+      "memory_norm": 729.0970458984375,
+      "reader_frames": [
+        0,
+        1
+      ],
+      "events": []
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 1,
+      "loss": 0.15051700174808502,
+      "memory_norm": 729.0970458984375,
+      "reader_frames": [
+        1
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 1,
+          "history_length": 1,
+          "explicit_history_frames": 1,
+          "cross_protocol": true
+        }
+      ]
+    },
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 2,
+      "loss": 0.09806618839502335,
+      "memory_norm": 1121.719482421875,
+      "reader_frames": [
+        0,
+        1,
+        2
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 2,
+      "loss": 0.09806618839502335,
+      "memory_norm": 1121.719482421875,
+      "reader_frames": [
+        0,
+        1,
+        2
+      ],
+      "events": []
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 2,
+      "loss": 0.09806618839502335,
+      "memory_norm": 1121.719482421875,
+      "reader_frames": [
+        0,
+        1,
+        2
+      ],
+      "events": []
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 2,
+      "loss": 0.09806618839502335,
+      "memory_norm": 1121.719482421875,
+      "reader_frames": [
+        0,
+        1,
+        2
+      ],
+      "events": []
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 2,
+      "loss": 0.16868886351585388,
+      "memory_norm": 1121.719482421875,
+      "reader_frames": [
+        2
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 2,
+          "history_length": 2,
+          "explicit_history_frames": 2,
+          "cross_protocol": true
+        }
+      ]
+    },
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 3,
+      "loss": 0.11396140605211258,
+      "memory_norm": 1581.6341552734375,
+      "reader_frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 3,
+      "loss": 0.11396140605211258,
+      "memory_norm": 1581.6341552734375,
+      "reader_frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "events": []
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 3,
+      "loss": 0.11396140605211258,
+      "memory_norm": 1581.6341552734375,
+      "reader_frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "events": []
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 3,
+      "loss": 0.11396140605211258,
+      "memory_norm": 1581.6341552734375,
+      "reader_frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "events": []
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 3,
+      "loss": 0.19692476093769073,
+      "memory_norm": 1581.6341552734375,
+      "reader_frames": [
+        3
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 3,
+          "history_length": 3,
+          "explicit_history_frames": 3,
+          "cross_protocol": true
+        }
+      ]
+    },
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 4,
+      "loss": 0.10997601598501205,
+      "memory_norm": 2000.2550048828125,
+      "reader_frames": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 4,
+      "loss": 0.10997601598501205,
+      "memory_norm": 2000.2550048828125,
+      "reader_frames": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "events": []
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 4,
+      "loss": 0.10997601598501205,
+      "memory_norm": 2000.2550048828125,
+      "reader_frames": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "events": []
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 4,
+      "loss": 0.10997601598501205,
+      "memory_norm": 2000.2550048828125,
+      "reader_frames": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "events": []
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 4,
+      "loss": 0.20789647102355957,
+      "memory_norm": 2000.2550048828125,
+      "reader_frames": [
+        4
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 4,
+          "history_length": 4,
+          "explicit_history_frames": 4,
+          "cross_protocol": true
+        }
+      ]
+    },
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 5,
+      "loss": 0.1659417748451233,
+      "memory_norm": 2412.074951171875,
+      "reader_frames": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 5,
+      "loss": 0.15668781101703644,
+      "memory_norm": 360.40789794921875,
+      "reader_frames": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "events": [
+        {
+          "diagnostic": "reset_at_5",
+          "kind": "reset",
+          "episode": "1",
+          "step": 5,
+          "history_length": 5,
+          "explicit_history_frames": 4
+        }
+      ]
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 5,
+      "loss": 0.16794149577617645,
+      "memory_norm": 2000.2550048828125,
+      "reader_frames": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "events": [
+        {
+          "diagnostic": "freeze_after_4",
+          "kind": "freeze",
+          "episode": "1",
+          "step": 5,
+          "history_length": 5,
+          "explicit_history_frames": 4,
+          "after_step": 4
+        }
+      ]
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 5,
+      "loss": 0.15433508157730103,
+      "memory_norm": 731.6180419921875,
+      "reader_frames": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "events": [
+        {
+          "diagnostic": "replace_from_observed_episode",
+          "kind": "replace",
+          "episode": "1",
+          "step": 5,
+          "history_length": 5,
+          "explicit_history_frames": 4,
+          "source_episode": "2",
+          "source_step": 0
+        }
+      ]
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 5,
+      "loss": 0.35438016057014465,
+      "memory_norm": 2412.074951171875,
+      "reader_frames": [
+        5
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 5,
+          "history_length": 5,
+          "explicit_history_frames": 4,
+          "cross_protocol": true
+        }
+      ]
+    },
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 6,
+      "loss": 0.1161825880408287,
+      "memory_norm": 2798.9111328125,
+      "reader_frames": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 6,
+      "loss": 0.11620128154754639,
+      "memory_norm": 745.7925415039062,
+      "reader_frames": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "events": []
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 6,
+      "loss": 0.11617972701787949,
+      "memory_norm": 2000.2550048828125,
+      "reader_frames": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "events": [
+        {
+          "diagnostic": "freeze_after_4",
+          "kind": "freeze",
+          "episode": "1",
+          "step": 6,
+          "history_length": 6,
+          "explicit_history_frames": 4,
+          "after_step": 4
+        }
+      ]
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 6,
+      "loss": 0.11623108386993408,
+      "memory_norm": 1121.4761962890625,
+      "reader_frames": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "events": []
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 6,
+      "loss": 0.24550482630729675,
+      "memory_norm": 2798.9111328125,
+      "reader_frames": [
+        6
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 6,
+          "history_length": 6,
+          "explicit_history_frames": 4,
+          "cross_protocol": true
+        }
+      ]
+    },
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 7,
+      "loss": 0.07840092480182648,
+      "memory_norm": 3216.7099609375,
+      "reader_frames": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 7,
+      "loss": 0.08617977052927017,
+      "memory_norm": 1166.7698974609375,
+      "reader_frames": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "events": []
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 7,
+      "loss": 0.08618338406085968,
+      "memory_norm": 2000.2550048828125,
+      "reader_frames": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "events": [
+        {
+          "diagnostic": "freeze_after_4",
+          "kind": "freeze",
+          "episode": "1",
+          "step": 7,
+          "history_length": 7,
+          "explicit_history_frames": 4,
+          "after_step": 4
+        }
+      ]
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 7,
+      "loss": 0.0861818790435791,
+      "memory_norm": 1542.3924560546875,
+      "reader_frames": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "events": []
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 7,
+      "loss": 0.24586185812950134,
+      "memory_norm": 3216.7099609375,
+      "reader_frames": [
+        7
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 7,
+          "history_length": 7,
+          "explicit_history_frames": 4,
+          "cross_protocol": true
+        }
+      ]
+    },
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 8,
+      "loss": 0.1005934476852417,
+      "memory_norm": 3695.369873046875,
+      "reader_frames": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 8,
+      "loss": 0.09067592024803162,
+      "memory_norm": 1649.4088134765625,
+      "reader_frames": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "events": []
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 8,
+      "loss": 0.10058588534593582,
+      "memory_norm": 2000.2550048828125,
+      "reader_frames": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "events": [
+        {
+          "diagnostic": "freeze_after_4",
+          "kind": "freeze",
+          "episode": "1",
+          "step": 8,
+          "history_length": 8,
+          "explicit_history_frames": 4,
+          "after_step": 4
+        }
+      ]
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 8,
+      "loss": 0.10057543218135834,
+      "memory_norm": 2024.1708984375,
+      "reader_frames": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "events": []
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 8,
+      "loss": 0.2660558223724365,
+      "memory_norm": 3695.369873046875,
+      "reader_frames": [
+        8
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 8,
+          "history_length": 8,
+          "explicit_history_frames": 4,
+          "cross_protocol": true
+        }
+      ]
+    },
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 9,
+      "loss": 0.10279278457164764,
+      "memory_norm": 4144.02978515625,
+      "reader_frames": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 9,
+      "loss": 0.1022108793258667,
+      "memory_norm": 2101.777587890625,
+      "reader_frames": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "events": []
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 9,
+      "loss": 0.10280384123325348,
+      "memory_norm": 2000.2550048828125,
+      "reader_frames": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "events": [
+        {
+          "diagnostic": "freeze_after_4",
+          "kind": "freeze",
+          "episode": "1",
+          "step": 9,
+          "history_length": 9,
+          "explicit_history_frames": 4,
+          "after_step": 4
+        }
+      ]
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 9,
+      "loss": 0.1028062105178833,
+      "memory_norm": 2475.66796875,
+      "reader_frames": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "events": []
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 9,
+      "loss": 0.2867111563682556,
+      "memory_norm": 4144.02978515625,
+      "reader_frames": [
+        9
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 9,
+          "history_length": 9,
+          "explicit_history_frames": 4,
+          "cross_protocol": true
+        }
+      ]
+    }
+  ],
+  "limitation": "Open-loop teacher-forced dependence diagnostics after a short smoke; no navigation benefit or simulator result."
+}

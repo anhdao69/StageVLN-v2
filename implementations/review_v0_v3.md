@@ -1,5 +1,9 @@
 # Review of plans v0–v3 and live main
 
+Historical baseline review: the recurrent implementation and later verification
+are now documented in [the v2/v3 implementation report](../reports/v2_v3_implementation_report.md).
+The original verdict and unrun-gate statements below describe the earlier review stage.
+
 Reviewed 2026-09-18 against main `d61a5e4`, the installed Qwen3.5 implementation, local R2R metadata/images, and `external/muVLA` / `external/code_vpwem`. An independent reviewer checked architecture and the baseline changes. No training Slurm jobs have been submitted; the user withdrew submission authorization.
 
 ## Verdict

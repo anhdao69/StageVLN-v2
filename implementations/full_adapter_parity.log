@@ -1,0 +1,51 @@
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen3_5ForConditionalGeneration is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen3_5Model is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen3_5VisionModel is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen3_5TextModel is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Casting fp32 inputs back to torch.bfloat16 for flash-attn compatibility.
+[
+  {
+    "image_counts": [
+      1,
+      2
+    ],
+    "deterministic_attention": true,
+    "max_logit_error": 0.0,
+    "native_loss": 1.7131143808364868,
+    "adapter_loss": 1.7131143808364868,
+    "gradients": {
+      "model.visual.merger.linear_fc2.weight": {
+        "max_abs": 0.0,
+        "cosine": 1.0,
+        "relative_l2": 0.0
+      },
+      "model.language_model.layers.3.self_attn.q_proj.weight": {
+        "max_abs": 0.0,
+        "cosine": 1.0000000000000002,
+        "relative_l2": 0.0
+      }
+    }
+  },
+  {
+    "image_counts": [
+      5,
+      9
+    ],
+    "deterministic_attention": true,
+    "max_logit_error": 0.0,
+    "native_loss": 1.2412567138671875,
+    "adapter_loss": 1.2412567138671875,
+    "gradients": {
+      "model.visual.merger.linear_fc2.weight": {
+        "max_abs": 0.0,
+        "cosine": 0.9999999999999999,
+        "relative_l2": 0.0
+      },
+      "model.language_model.layers.3.self_attn.q_proj.weight": {
+        "max_abs": 0.0,
+        "cosine": 1.0,
+        "relative_l2": 0.0
+      }
+    }
+  }
+]

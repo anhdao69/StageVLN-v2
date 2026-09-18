@@ -1,0 +1,20 @@
+[
+  {
+    "file": "implementations/benchmark_v0_timing32.log",
+    "raw_sha256": "ee1d79667331ce4da66b2dce75912f9f0f8558f699bb569938472b898947719f",
+    "normalized_sha256": "2a7e7a5da057d9b2d0ee8c0d5a190c35dd7cdf95c9f633b155300a67fd71b1e1",
+    "change": "Carriage returns converted to newlines and trailing whitespace removed; numeric/text content unchanged"
+  },
+  {
+    "file": "implementations/benchmark_v1_timing32.log",
+    "raw_sha256": "00e4b060a9ed695197a0804f36b841c48dcbcf9921a2c17bdf3f406c735a7a54",
+    "normalized_sha256": "3d91c869cf271d38311c764eb19a3de76d619173bb822747d1b5c7b08219c79d",
+    "change": "Carriage returns converted to newlines and trailing whitespace removed; numeric/text content unchanged"
+  },
+  {
+    "file": "implementations/smoke_v2_b1.log",
+    "raw_sha256": "94f3242c1d593049228ff58642f4d001a82cf889ff30974ec4c312aa650f757f",
+    "normalized_sha256": "1dde52f433ad7a69159039370d5dc22becba26fbfda58eea3caf90cf00d2a108",
+    "change": "Carriage returns converted to newlines and trailing whitespace removed; numeric/text content unchanged"
+  }
+]

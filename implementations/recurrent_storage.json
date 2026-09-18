@@ -1,0 +1,35 @@
+{
+  "trainable_parameters": 4258544128,
+  "replicated_fp32_lower_bound_gib": 63.457252502441406,
+  "ranks": [
+    {
+      "rank": 0,
+      "trainable_parameter_bytes": 17034176512,
+      "gradient_bytes": 17034176512,
+      "local_adam_bytes": 8518474752,
+      "frozen_bytes": 612485120
+    },
+    {
+      "rank": 1,
+      "trainable_parameter_bytes": 17034176512,
+      "gradient_bytes": 17034176512,
+      "local_adam_bytes": 8516639744,
+      "frozen_bytes": 612485120
+    },
+    {
+      "rank": 2,
+      "trainable_parameter_bytes": 17034176512,
+      "gradient_bytes": 17034176512,
+      "local_adam_bytes": 8516619264,
+      "frozen_bytes": 612485120
+    },
+    {
+      "rank": 3,
+      "trainable_parameter_bytes": 17034176512,
+      "gradient_bytes": 17034176512,
+      "local_adam_bytes": 8516619264,
+      "frozen_bytes": 612485120
+    }
+  ],
+  "total_adam_bytes": 34068353024
+}

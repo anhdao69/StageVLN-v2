@@ -1,0 +1,24 @@
+{
+  "muVLA": {
+    "commit": "13e1cf9a34d40726c9f4eeafff464d45c25181bc",
+    "files": {
+      "prismatic/models/memory.py": "11665819a54c18f16b0482bd8ce1b91a5e5015eb8ba93274514bef4d4c35580c",
+      "prismatic/vla/datasets/libero_episodic_dataset.py": "9c8d139478d6b257954035dc8ac4842c345335f4e6e4b045ea0a086f65d0331f",
+      "vla-scripts/finetune.py": "ecfb3832bca80e0b4d8bd5d5f085b0843499f9184fb3e37f6122e49accec251f"
+    }
+  },
+  "VPWEM": {
+    "commit": "5e372e847793ced1c37d39d4efa7b2b710eb826c",
+    "files": {
+      "cleandiffuser/nn_memory/qformer_memory.py": "de871ffb68977c6cec160a0ddede72d4440b938e0e8e25a405351a0bd6bf9e4a"
+    }
+  },
+  "transformers": {
+    "version": "5.3.0",
+    "modeling_qwen3_5.py_sha256": "0e7410f5251e5c324a5628c5340ee3551f7a6a505ce398569fcc3b5f3ac07f7a"
+  },
+  "papers": [
+    "https://arxiv.org/html/2603.04910v1",
+    "https://arxiv.org/html/2606.12497v1"
+  ]
+}

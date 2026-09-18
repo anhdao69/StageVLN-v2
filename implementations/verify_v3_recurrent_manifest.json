@@ -1,0 +1,86 @@
+{
+  "format_version": 1,
+  "config": {
+    "model": "/groups/yshang/an221229/cache/huggingface/hub/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "episode_manifest": "/groups/yshang/an221229/data/StageVLN-v2/episodes.jsonl",
+    "data_root": "/groups/yshang/an221229/data/JanusVLN_data",
+    "seed": 42,
+    "segment_length": 8,
+    "global_batch_size": 64,
+    "min_pixels": 12544,
+    "max_pixels": 451584,
+    "attention": "flash_attention_2",
+    "gradient_checkpointing": true,
+    "optimizer_sharding": true,
+    "lr_language": 1e-06,
+    "lr_merger": 1e-05,
+    "lr_memory": 0.0001,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1.0,
+    "workers_per_rank": 1,
+    "execution": "bridge",
+    "reader_microbatch": 4,
+    "epochs": 1,
+    "variant": "v3_mem64_r4",
+    "memory_enabled": true,
+    "recent": 4,
+    "warmup_updates": 1,
+    "episode_manifest_sha256": "243c9bf96436ee7f3a222d7b148f9ec5c5441899d9886c7699ff00ce3a693bf7",
+    "attention_deterministic": true
+  },
+  "world_size": 4,
+  "execution": "bridge",
+  "reader_microbatch": 4,
+  "gradient_checkpointing": true,
+  "episodes_sha256": "87ec915c4898762b8ed7f40b349aecab0c90be837ee1e1138d521397d991dfc3",
+  "source_sha256": "243c9bf96436ee7f3a222d7b148f9ec5c5441899d9886c7699ff00ce3a693bf7",
+  "chat_sha256": "fb79cf3922f74475e9a5faaac8c08d2f79a3ca7bef5dbf434f3f7726119229b8",
+  "implementation_sha256": "7b1369dd9eba990b7420090d588d0dadc4081d213a26381205c8ae5517e1e6bd",
+  "memory_architecture": {
+    "slots": 64,
+    "width": 512,
+    "layers": 3,
+    "heads": 8,
+    "ffn_width": 2048
+  },
+  "model_config_sha256": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+  "image_processor": {
+    "size": {
+      "longest_edge": 451584,
+      "shortest_edge": 12544
+    },
+    "patch_size": 16,
+    "temporal_patch_size": 2,
+    "merge_size": 2,
+    "image_mean": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "image_std": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "image_processor_type": "Qwen2VLImageProcessorFast",
+    "do_convert_rgb": true,
+    "do_resize": true,
+    "resample": 3,
+    "do_rescale": true,
+    "rescale_factor": 0.00392156862745098,
+    "do_normalize": true,
+    "data_format": "channels_first",
+    "min_pixels": 12544,
+    "max_pixels": 451584
+  },
+  "packages": {
+    "torch": "2.10.0+cu129",
+    "transformers": "5.3.0",
+    "accelerate": "1.13.0",
+    "flash-attn": "2.8.3"
+  },
+  "allocator": "expandable_segments:True",
+  "torch": "2.10.0+cu129",
+  "precision": "FP32 trainable/Adam; BF16 autocast",
+  "max_episodes": 64
+}

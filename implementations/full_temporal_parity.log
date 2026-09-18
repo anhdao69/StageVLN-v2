@@ -1,0 +1,93 @@
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen3_5ForConditionalGeneration is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen3_5Model is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen3_5VisionModel is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen3_5TextModel is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", dtype=torch.float16)`
+Casting fp32 inputs back to torch.bfloat16 for flash-attn compatibility.
+[
+  {
+    "recent": 0,
+    "K": 2,
+    "direct_loss": 1.5954410433769226,
+    "bridge_loss": 1.5954410433769226,
+    "gradients": {
+      "backbone.model.visual.merger.linear_fc2.weight": {
+        "cosine": 0.999951797889004,
+        "max_absolute": 0.004150390625,
+        "relative_l2": 0.009986930283471767
+      },
+      "backbone.model.language_model.layers.3.self_attn.q_proj.weight": {
+        "cosine": 0.9999731951853872,
+        "max_absolute": 0.0703125,
+        "relative_l2": 0.007323574003553517
+      },
+      "writer.initial_slots": {
+        "cosine": 0.9994869704552509,
+        "max_absolute": 0.025117039680480957,
+        "relative_l2": 0.036601224832269144
+      },
+      "writer.blocks.0.self_attention.in_proj_weight": {
+        "cosine": 0.9994705621053033,
+        "max_absolute": 0.00390625,
+        "relative_l2": 0.03738826689551979
+      },
+      "instruction_encoder.projection.weight": {
+        "cosine": 0.9991085296910178,
+        "max_absolute": 5.841255187988281e-06,
+        "relative_l2": 0.0429260711741112
+      },
+      "visual_projector.projection.weight": {
+        "cosine": 0.9993758038843634,
+        "max_absolute": 0.18359375,
+        "relative_l2": 0.035425010654011345
+      },
+      "memory_adapter.output_projection.weight": {
+        "cosine": 0.9996628878567231,
+        "max_absolute": 0.037109375,
+        "relative_l2": 0.026438631901751043
+      }
+    }
+  },
+  {
+    "recent": 4,
+    "K": 2,
+    "direct_loss": 1.5962730646133423,
+    "bridge_loss": 1.5962730646133423,
+    "gradients": {
+      "backbone.model.visual.merger.linear_fc2.weight": {
+        "cosine": 0.9998983091894238,
+        "max_absolute": 0.006591796875,
+        "relative_l2": 0.014261553644157602
+      },
+      "backbone.model.language_model.layers.3.self_attn.q_proj.weight": {
+        "cosine": 0.9999361444297817,
+        "max_absolute": 0.097015380859375,
+        "relative_l2": 0.011360293585309166
+      },
+      "writer.initial_slots": {
+        "cosine": 0.9988318675878354,
+        "max_absolute": 0.04562860727310181,
+        "relative_l2": 0.06552644555157569
+      },
+      "writer.blocks.0.self_attention.in_proj_weight": {
+        "cosine": 0.9988527669961467,
+        "max_absolute": 0.0078125,
+        "relative_l2": 0.0654064779669575
+      },
+      "instruction_encoder.projection.weight": {
+        "cosine": 0.9984193858614746,
+        "max_absolute": 7.0035457611083984e-06,
+        "relative_l2": 0.06031824102895867
+      },
+      "visual_projector.projection.weight": {
+        "cosine": 0.9982557822390901,
+        "max_absolute": 0.265625,
+        "relative_l2": 0.061727705365912246
+      },
+      "memory_adapter.output_projection.weight": {
+        "cosine": 0.9987959720587575,
+        "max_absolute": 0.0546875,
+        "relative_l2": 0.05227157670094371
+      }
+    }
+  }
+]

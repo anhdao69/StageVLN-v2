@@ -20,5 +20,7 @@
     "end-to-end HF upload",
     "simulator metrics",
     "v2/v3 implementation"
-  ]
+  ],
+  "record_scope": "Historical v0/v1 baseline checks before recurrent implementation",
+  "recurrent_followup": "recurrent_verification.json"
 }

@@ -1,0 +1,26 @@
+{
+  "adapter_parity": [
+    {
+      "image_counts": [
+        1,
+        2
+      ],
+      "max_logit_error": 0.0,
+      "gradient_max_errors": {
+        "model.visual.merger.linear_fc2.weight": 0.0,
+        "model.language_model.layers.1.self_attn.q_proj.weight": 0.0
+      }
+    },
+    {
+      "image_counts": [
+        5,
+        9
+      ],
+      "max_logit_error": 0.0,
+      "gradient_max_errors": {
+        "model.visual.merger.linear_fc2.weight": 0.0,
+        "model.language_model.layers.1.self_attn.q_proj.weight": 0.0
+      }
+    }
+  ]
+}

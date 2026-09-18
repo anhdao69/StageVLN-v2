@@ -1,0 +1,11 @@
+{
+  "episodes": 10819,
+  "states": 631244,
+  "min_instruction_tokens": 3,
+  "max_instruction_tokens": 164,
+  "longest_episode": "2339",
+  "sampled_image_size": [
+    640,
+    480
+  ]
+}

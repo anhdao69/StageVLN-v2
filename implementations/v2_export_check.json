@@ -1,0 +1,735 @@
+{
+  "export": "/groups/yshang/an221229/checkpoints/StageVLN-v2/verify_v2_recurrent/export",
+  "checkpoint_step": 32,
+  "exact_saved_tensors": 833,
+  "tied_embeddings_preserved": true,
+  "actor_actions": [
+    "MOVE_FORWARD",
+    "MOVE_FORWARD",
+    "TURN_RIGHT"
+  ],
+  "actor_duplicate_idempotence": true,
+  "probe_observations": [
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 0,
+      "loss": 0.4772208333015442,
+      "memory_norm": 278.09149169921875,
+      "reader_frames": [
+        0
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 0,
+      "loss": 0.4772208333015442,
+      "memory_norm": 278.09149169921875,
+      "reader_frames": [
+        0
+      ],
+      "events": []
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 0,
+      "loss": 0.4772208333015442,
+      "memory_norm": 278.09149169921875,
+      "reader_frames": [
+        0
+      ],
+      "events": []
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 0,
+      "loss": 0.4772208333015442,
+      "memory_norm": 278.09149169921875,
+      "reader_frames": [
+        0
+      ],
+      "events": []
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 0,
+      "loss": 0.4772208333015442,
+      "memory_norm": 278.09149169921875,
+      "reader_frames": [
+        0
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 0,
+          "history_length": 0,
+          "explicit_history_frames": 0,
+          "cross_protocol": true
+        }
+      ]
+    },
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 1,
+      "loss": 0.27130770683288574,
+      "memory_norm": 609.5057983398438,
+      "reader_frames": [
+        1
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 1,
+      "loss": 0.27130770683288574,
+      "memory_norm": 609.5057983398438,
+      "reader_frames": [
+        1
+      ],
+      "events": []
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 1,
+      "loss": 0.27130770683288574,
+      "memory_norm": 609.5057983398438,
+      "reader_frames": [
+        1
+      ],
+      "events": []
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 1,
+      "loss": 0.27130770683288574,
+      "memory_norm": 609.5057983398438,
+      "reader_frames": [
+        1
+      ],
+      "events": []
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 1,
+      "loss": 0.27130770683288574,
+      "memory_norm": 609.5057983398438,
+      "reader_frames": [
+        1
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 1,
+          "history_length": 1,
+          "explicit_history_frames": 0,
+          "cross_protocol": true
+        }
+      ]
+    },
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 2,
+      "loss": 0.24266768991947174,
+      "memory_norm": 927.7452392578125,
+      "reader_frames": [
+        2
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 2,
+      "loss": 0.24266768991947174,
+      "memory_norm": 927.7452392578125,
+      "reader_frames": [
+        2
+      ],
+      "events": []
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 2,
+      "loss": 0.24266768991947174,
+      "memory_norm": 927.7452392578125,
+      "reader_frames": [
+        2
+      ],
+      "events": []
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 2,
+      "loss": 0.24266768991947174,
+      "memory_norm": 927.7452392578125,
+      "reader_frames": [
+        2
+      ],
+      "events": []
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 2,
+      "loss": 0.24266768991947174,
+      "memory_norm": 927.7452392578125,
+      "reader_frames": [
+        2
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 2,
+          "history_length": 2,
+          "explicit_history_frames": 0,
+          "cross_protocol": true
+        }
+      ]
+    },
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 3,
+      "loss": 0.23464111983776093,
+      "memory_norm": 1299.4395751953125,
+      "reader_frames": [
+        3
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 3,
+      "loss": 0.23464111983776093,
+      "memory_norm": 1299.4395751953125,
+      "reader_frames": [
+        3
+      ],
+      "events": []
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 3,
+      "loss": 0.23464111983776093,
+      "memory_norm": 1299.4395751953125,
+      "reader_frames": [
+        3
+      ],
+      "events": []
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 3,
+      "loss": 0.23464111983776093,
+      "memory_norm": 1299.4395751953125,
+      "reader_frames": [
+        3
+      ],
+      "events": []
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 3,
+      "loss": 0.23464111983776093,
+      "memory_norm": 1299.4395751953125,
+      "reader_frames": [
+        3
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 3,
+          "history_length": 3,
+          "explicit_history_frames": 0,
+          "cross_protocol": true
+        }
+      ]
+    },
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 4,
+      "loss": 0.29262208938598633,
+      "memory_norm": 1637.9744873046875,
+      "reader_frames": [
+        4
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 4,
+      "loss": 0.29262208938598633,
+      "memory_norm": 1637.9744873046875,
+      "reader_frames": [
+        4
+      ],
+      "events": []
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 4,
+      "loss": 0.29262208938598633,
+      "memory_norm": 1637.9744873046875,
+      "reader_frames": [
+        4
+      ],
+      "events": []
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 4,
+      "loss": 0.29262208938598633,
+      "memory_norm": 1637.9744873046875,
+      "reader_frames": [
+        4
+      ],
+      "events": []
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 4,
+      "loss": 0.29262208938598633,
+      "memory_norm": 1637.9744873046875,
+      "reader_frames": [
+        4
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 4,
+          "history_length": 4,
+          "explicit_history_frames": 0,
+          "cross_protocol": true
+        }
+      ]
+    },
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 5,
+      "loss": 0.47805333137512207,
+      "memory_norm": 1970.475341796875,
+      "reader_frames": [
+        5
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 5,
+      "loss": 0.49828678369522095,
+      "memory_norm": 313.81121826171875,
+      "reader_frames": [
+        5
+      ],
+      "events": [
+        {
+          "diagnostic": "reset_at_5",
+          "kind": "reset",
+          "episode": "1",
+          "step": 5,
+          "history_length": 5,
+          "explicit_history_frames": 0
+        }
+      ]
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 5,
+      "loss": 0.47804322838783264,
+      "memory_norm": 1637.9744873046875,
+      "reader_frames": [
+        5
+      ],
+      "events": [
+        {
+          "diagnostic": "freeze_after_4",
+          "kind": "freeze",
+          "episode": "1",
+          "step": 5,
+          "history_length": 5,
+          "explicit_history_frames": 0,
+          "after_step": 4
+        }
+      ]
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 5,
+      "loss": 0.478038489818573,
+      "memory_norm": 610.5460205078125,
+      "reader_frames": [
+        5
+      ],
+      "events": [
+        {
+          "diagnostic": "replace_from_observed_episode",
+          "kind": "replace",
+          "episode": "1",
+          "step": 5,
+          "history_length": 5,
+          "explicit_history_frames": 0,
+          "source_episode": "2",
+          "source_step": 0
+        }
+      ]
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 5,
+      "loss": 0.47805333137512207,
+      "memory_norm": 1970.475341796875,
+      "reader_frames": [
+        5
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 5,
+          "history_length": 5,
+          "explicit_history_frames": 0,
+          "cross_protocol": true
+        }
+      ]
+    },
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 6,
+      "loss": 0.07599711418151855,
+      "memory_norm": 2283.1689453125,
+      "reader_frames": [
+        6
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 6,
+      "loss": 0.0759972482919693,
+      "memory_norm": 626.9757080078125,
+      "reader_frames": [
+        6
+      ],
+      "events": []
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 6,
+      "loss": 0.07600108534097672,
+      "memory_norm": 1637.9744873046875,
+      "reader_frames": [
+        6
+      ],
+      "events": [
+        {
+          "diagnostic": "freeze_after_4",
+          "kind": "freeze",
+          "episode": "1",
+          "step": 6,
+          "history_length": 6,
+          "explicit_history_frames": 0,
+          "after_step": 4
+        }
+      ]
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 6,
+      "loss": 0.07599341124296188,
+      "memory_norm": 927.131103515625,
+      "reader_frames": [
+        6
+      ],
+      "events": []
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 6,
+      "loss": 0.07599711418151855,
+      "memory_norm": 2283.1689453125,
+      "reader_frames": [
+        6
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 6,
+          "history_length": 6,
+          "explicit_history_frames": 0,
+          "cross_protocol": true
+        }
+      ]
+    },
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 7,
+      "loss": 0.0931500717997551,
+      "memory_norm": 2620.1826171875,
+      "reader_frames": [
+        7
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 7,
+      "loss": 0.09315022081136703,
+      "memory_norm": 967.9464721679688,
+      "reader_frames": [
+        7
+      ],
+      "events": []
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 7,
+      "loss": 0.093183234333992,
+      "memory_norm": 1637.9744873046875,
+      "reader_frames": [
+        7
+      ],
+      "events": [
+        {
+          "diagnostic": "freeze_after_4",
+          "kind": "freeze",
+          "episode": "1",
+          "step": 7,
+          "history_length": 7,
+          "explicit_history_frames": 0,
+          "after_step": 4
+        }
+      ]
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 7,
+      "loss": 0.09315937757492065,
+      "memory_norm": 1267.86474609375,
+      "reader_frames": [
+        7
+      ],
+      "events": []
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 7,
+      "loss": 0.0931500717997551,
+      "memory_norm": 2620.1826171875,
+      "reader_frames": [
+        7
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 7,
+          "history_length": 7,
+          "explicit_history_frames": 0,
+          "cross_protocol": true
+        }
+      ]
+    },
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 8,
+      "loss": 0.11422045528888702,
+      "memory_norm": 3006.633056640625,
+      "reader_frames": [
+        8
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 8,
+      "loss": 0.11340917646884918,
+      "memory_norm": 1359.2142333984375,
+      "reader_frames": [
+        8
+      ],
+      "events": []
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 8,
+      "loss": 0.1142236515879631,
+      "memory_norm": 1637.9744873046875,
+      "reader_frames": [
+        8
+      ],
+      "events": [
+        {
+          "diagnostic": "freeze_after_4",
+          "kind": "freeze",
+          "episode": "1",
+          "step": 8,
+          "history_length": 8,
+          "explicit_history_frames": 0,
+          "after_step": 4
+        }
+      ]
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 8,
+      "loss": 0.10321547091007233,
+      "memory_norm": 1658.240966796875,
+      "reader_frames": [
+        8
+      ],
+      "events": []
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 8,
+      "loss": 0.11422045528888702,
+      "memory_norm": 3006.633056640625,
+      "reader_frames": [
+        8
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 8,
+          "history_length": 8,
+          "explicit_history_frames": 0,
+          "cross_protocol": true
+        }
+      ]
+    },
+    {
+      "protocol": "baseline",
+      "episode": "1",
+      "step": 9,
+      "loss": 0.15017251670360565,
+      "memory_norm": 3367.522216796875,
+      "reader_frames": [
+        9
+      ],
+      "events": []
+    },
+    {
+      "protocol": "reset_at_5",
+      "episode": "1",
+      "step": 9,
+      "loss": 0.14953288435935974,
+      "memory_norm": 1724.13671875,
+      "reader_frames": [
+        9
+      ],
+      "events": []
+    },
+    {
+      "protocol": "freeze_after_4",
+      "episode": "1",
+      "step": 9,
+      "loss": 0.15016692876815796,
+      "memory_norm": 1637.9744873046875,
+      "reader_frames": [
+        9
+      ],
+      "events": [
+        {
+          "diagnostic": "freeze_after_4",
+          "kind": "freeze",
+          "episode": "1",
+          "step": 9,
+          "history_length": 9,
+          "explicit_history_frames": 0,
+          "after_step": 4
+        }
+      ]
+    },
+    {
+      "protocol": "replace_from_observed_episode",
+      "episode": "1",
+      "step": 9,
+      "loss": 0.15016062557697296,
+      "memory_norm": 2022.1678466796875,
+      "reader_frames": [
+        9
+      ],
+      "events": []
+    },
+    {
+      "protocol": "remove_recent_cross_protocol",
+      "episode": "1",
+      "step": 9,
+      "loss": 0.15017251670360565,
+      "memory_norm": 3367.522216796875,
+      "reader_frames": [
+        9
+      ],
+      "events": [
+        {
+          "diagnostic": "remove_recent_cross_protocol",
+          "kind": "remove_recent",
+          "episode": "1",
+          "step": 9,
+          "history_length": 9,
+          "explicit_history_frames": 0,
+          "cross_protocol": true
+        }
+      ]
+    }
+  ],
+  "limitation": "Open-loop teacher-forced dependence diagnostics after a short smoke; no navigation benefit or simulator result."
+}

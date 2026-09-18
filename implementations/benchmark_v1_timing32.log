@@ -1,0 +1,214 @@
+>>>>> dataset=r2r_v1_sw4
+>>>>> annotation=/groups/yshang/an221229/data/StageVLN-v2/timing_sw4_2048.json
+>>>>> data_root=/groups/yshang/an221229/data/JanusVLN_data
+>>>>> Qwen3.5-4B plain SFT on 4 GPUs
+>>>>> attention=flash_attention_2 deepspeed=zero1.json optimizer=adamw_torch_fused sparse_action_logits=True
+>>>>> micro_batch=4 gradient_accumulation=4 gradient_checkpointing=False
+[2026-09-18 19:24:49,453] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-18 19:24:49,453] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-18 19:24:49,453] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-18 19:24:49,453] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-18 19:24:50,139] [INFO] [comm.py:658:init_distributed] cdb=None
+[2026-09-18 19:24:50,139] [INFO] [comm.py:658:init_distributed] cdb=None
+[2026-09-18 19:24:50,139] [INFO] [comm.py:689:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[2026-09-18 19:24:50,139] [INFO] [comm.py:658:init_distributed] cdb=None
+[2026-09-18 19:24:50,139] [INFO] [comm.py:658:init_distributed] cdb=None
+>>>>> vision backbone: 0/306,242,560 trainable parameters
+>>>>> vision merger: 27,271,680/27,271,680 trainable parameters
+>>>>> language model: 4,205,751,296/4,205,751,296 trainable parameters
+>>>>> lm head: 635,699,200/635,699,200 trainable parameters
+>>>>> loaded 2,048 R2R samples
+>>>>> loaded 2,048 R2R samples
+>>>>> loaded 2,048 R2R samples
+>>>>> loaded 2,048 R2R samples
+[RANK 0] Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 248046, 'pad_token_id': 248044}.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 248046, 'pad_token_id': 248044}.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 248046, 'pad_token_id': 248044}.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 248046, 'pad_token_id': 248044}.
+NCCL version 2.27.5+cuda12.9
+
+  0%|          | 0/32 [00:00<?, ?it/s]
+  3%|▎         | 1/32 [00:09<05:05,  9.85s/it]
+
+{'loss': '1.536', 'grad_norm': '940.4', 'learning_rate': '0', 'epoch': '0.03125'}
+
+  3%|▎         | 1/32 [00:09<05:05,  9.85s/it]
+  6%|▋         | 2/32 [00:15<03:39,  7.33s/it]
+
+{'loss': '1.422', 'grad_norm': '876.2', 'learning_rate': '1e-06', 'epoch': '0.0625'}
+
+  6%|▋         | 2/32 [00:15<03:39,  7.33s/it]
+  9%|▉         | 3/32 [00:17<02:28,  5.13s/it]
+
+{'loss': '0.6105', 'grad_norm': '254', 'learning_rate': '9.974e-07', 'epoch': '0.09375'}
+
+  9%|▉         | 3/32 [00:17<02:28,  5.13s/it]
+ 12%|█▎        | 4/32 [00:20<01:56,  4.16s/it]
+
+{'loss': '0.247', 'grad_norm': '48.46', 'learning_rate': '9.898e-07', 'epoch': '0.125'}
+
+ 12%|█▎        | 4/32 [00:20<01:56,  4.16s/it]
+ 16%|█▌        | 5/32 [00:23<01:41,  3.77s/it]
+
+{'loss': '0.3656', 'grad_norm': '51.18', 'learning_rate': '9.771e-07', 'epoch': '0.1562'}
+
+ 16%|█▌        | 5/32 [00:23<01:41,  3.77s/it]
+ 19%|█▉        | 6/32 [00:26<01:25,  3.30s/it]
+
+{'loss': '0.315', 'grad_norm': '52.66', 'learning_rate': '9.595e-07', 'epoch': '0.1875'}
+
+ 19%|█▉        | 6/32 [00:26<01:25,  3.30s/it]
+ 22%|██▏       | 7/32 [00:29<01:20,  3.22s/it]
+
+{'loss': '0.349', 'grad_norm': '46.24', 'learning_rate': '9.372e-07', 'epoch': '0.2188'}
+
+ 22%|██▏       | 7/32 [00:29<01:20,  3.22s/it]
+ 25%|██▌       | 8/32 [00:31<01:11,  2.97s/it]
+
+{'loss': '0.2613', 'grad_norm': '22.37', 'learning_rate': '9.104e-07', 'epoch': '0.25'}
+
+ 25%|██▌       | 8/32 [00:31<01:11,  2.97s/it]
+ 28%|██▊       | 9/32 [00:35<01:14,  3.24s/it]
+
+{'loss': '0.2581', 'grad_norm': '25.3', 'learning_rate': '8.794e-07', 'epoch': '0.2812'}
+
+ 28%|██▊       | 9/32 [00:35<01:14,  3.24s/it]
+ 31%|███▏      | 10/32 [00:38<01:12,  3.30s/it]
+
+{'loss': '0.2886', 'grad_norm': '21.96', 'learning_rate': '8.445e-07', 'epoch': '0.3125'}
+
+ 31%|███▏      | 10/32 [00:38<01:12,  3.30s/it]
+ 34%|███▍      | 11/32 [00:43<01:19,  3.78s/it]
+
+{'loss': '0.2665', 'grad_norm': '17.2', 'learning_rate': '8.061e-07', 'epoch': '0.3438'}
+
+ 34%|███▍      | 11/32 [00:43<01:19,  3.78s/it]
+ 38%|███▊      | 12/32 [00:46<01:10,  3.52s/it]
+
+{'loss': '0.1782', 'grad_norm': '19.3', 'learning_rate': '7.645e-07', 'epoch': '0.375'}
+
+ 38%|███▊      | 12/32 [00:46<01:10,  3.52s/it]
+ 41%|████      | 13/32 [00:49<01:03,  3.33s/it]
+
+{'loss': '0.3102', 'grad_norm': '15.4', 'learning_rate': '7.202e-07', 'epoch': '0.4062'}
+
+ 41%|████      | 13/32 [00:49<01:03,  3.33s/it]
+ 44%|████▍     | 14/32 [00:52<00:57,  3.21s/it]
+
+{'loss': '0.267', 'grad_norm': '14.05', 'learning_rate': '6.737e-07', 'epoch': '0.4375'}
+
+ 44%|████▍     | 14/32 [00:52<00:57,  3.21s/it]
+ 47%|████▋     | 15/32 [00:55<00:53,  3.14s/it]
+
+{'loss': '0.227', 'grad_norm': '14.85', 'learning_rate': '6.253e-07', 'epoch': '0.4688'}
+
+ 47%|████▋     | 15/32 [00:55<00:53,  3.14s/it]
+ 50%|█████     | 16/32 [00:58<00:48,  3.01s/it]
+
+{'loss': '0.215', 'grad_norm': '13.05', 'learning_rate': '5.757e-07', 'epoch': '0.5'}
+
+ 50%|█████     | 16/32 [00:58<00:48,  3.01s/it]
+ 53%|█████▎    | 17/32 [01:01<00:46,  3.07s/it]
+
+{'loss': '0.2709', 'grad_norm': '15.64', 'learning_rate': '5.253e-07', 'epoch': '0.5312'}
+
+ 53%|█████▎    | 17/32 [01:01<00:46,  3.07s/it]
+ 56%|█████▋    | 18/32 [01:04<00:42,  3.06s/it]
+
+{'loss': '0.2616', 'grad_norm': '16.46', 'learning_rate': '4.747e-07', 'epoch': '0.5625'}
+
+ 56%|█████▋    | 18/32 [01:04<00:42,  3.06s/it]
+ 59%|█████▉    | 19/32 [01:07<00:38,  2.99s/it]
+
+{'loss': '0.2147', 'grad_norm': '8.327', 'learning_rate': '4.243e-07', 'epoch': '0.5938'}
+
+ 59%|█████▉    | 19/32 [01:07<00:38,  2.99s/it]
+ 62%|██████▎   | 20/32 [01:09<00:35,  2.92s/it]
+
+{'loss': '0.218', 'grad_norm': '10.41', 'learning_rate': '3.747e-07', 'epoch': '0.625'}
+
+ 62%|██████▎   | 20/32 [01:09<00:35,  2.92s/it]
+ 66%|██████▌   | 21/32 [01:12<00:32,  2.94s/it]
+
+{'loss': '0.1977', 'grad_norm': '8.745', 'learning_rate': '3.263e-07', 'epoch': '0.6562'}
+
+ 66%|██████▌   | 21/32 [01:12<00:32,  2.94s/it]
+ 69%|██████▉   | 22/32 [01:15<00:29,  2.95s/it]
+
+{'loss': '0.2113', 'grad_norm': '9.469', 'learning_rate': '2.798e-07', 'epoch': '0.6875'}
+
+ 69%|██████▉   | 22/32 [01:15<00:29,  2.95s/it]
+ 72%|███████▏  | 23/32 [01:19<00:27,  3.02s/it]
+
+{'loss': '0.1901', 'grad_norm': '7.179', 'learning_rate': '2.355e-07', 'epoch': '0.7188'}
+
+ 72%|███████▏  | 23/32 [01:19<00:27,  3.02s/it]
+ 75%|███████▌  | 24/32 [01:22<00:23,  2.99s/it]
+
+{'loss': '0.2336', 'grad_norm': '9.872', 'learning_rate': '1.939e-07', 'epoch': '0.75'}
+
+ 75%|███████▌  | 24/32 [01:22<00:23,  2.99s/it]
+ 78%|███████▊  | 25/32 [01:24<00:20,  2.91s/it]
+
+{'loss': '0.2261', 'grad_norm': '13.55', 'learning_rate': '1.555e-07', 'epoch': '0.7812'}
+
+ 78%|███████▊  | 25/32 [01:24<00:20,  2.91s/it]
+ 81%|████████▏ | 26/32 [01:27<00:17,  2.95s/it]
+
+{'loss': '0.1953', 'grad_norm': '8.75', 'learning_rate': '1.206e-07', 'epoch': '0.8125'}
+
+ 81%|████████▏ | 26/32 [01:27<00:17,  2.95s/it]
+ 84%|████████▍ | 27/32 [01:31<00:15,  3.09s/it]
+
+{'loss': '0.235', 'grad_norm': '9.514', 'learning_rate': '8.962e-08', 'epoch': '0.8438'}
+
+ 84%|████████▍ | 27/32 [01:31<00:15,  3.09s/it]
+ 88%|████████▊ | 28/32 [01:33<00:11,  2.99s/it]
+
+{'loss': '0.2148', 'grad_norm': '7.33', 'learning_rate': '6.283e-08', 'epoch': '0.875'}
+
+ 88%|████████▊ | 28/32 [01:33<00:11,  2.99s/it]
+ 91%|█████████ | 29/32 [01:36<00:08,  2.89s/it]
+
+{'loss': '0.243', 'grad_norm': '10.21', 'learning_rate': '4.052e-08', 'epoch': '0.9062'}
+
+ 91%|█████████ | 29/32 [01:36<00:08,  2.89s/it]
+ 94%|█████████▍| 30/32 [01:39<00:05,  2.95s/it]
+
+{'loss': '0.2178', 'grad_norm': '11.15', 'learning_rate': '2.293e-08', 'epoch': '0.9375'}
+
+ 94%|█████████▍| 30/32 [01:39<00:05,  2.95s/it]
+ 97%|█████████▋| 31/32 [01:42<00:03,  3.04s/it]
+
+{'loss': '0.1935', 'grad_norm': '11.63', 'learning_rate': '1.024e-08', 'epoch': '0.9688'}
+
+ 97%|█████████▋| 31/32 [01:42<00:03,  3.04s/it]
+100%|██████████| 32/32 [01:45<00:00,  2.81s/it]
+
+{'loss': '0.1722', 'grad_norm': '9.865', 'learning_rate': '2.565e-09', 'epoch': '1'}
+
+100%|██████████| 32/32 [01:45<00:00,  2.81s/it]
+
+{'train_runtime': '105.3', 'train_samples_per_second': '19.45', 'train_steps_per_second': '0.304', 'train_loss': '0.3316', 'init_mem_cpu_alloc_delta': 4096, 'init_mem_gpu_alloc_delta': 0, 'init_mem_cpu_peaked_delta': 0, 'init_mem_gpu_peaked_delta': 0, 'train_mem_cpu_alloc_delta': 2946797568, 'train_mem_gpu_alloc_delta': 21845762560, 'train_mem_cpu_peaked_delta': 14194434048, 'train_mem_gpu_peaked_delta': 54329986560, 'before_init_mem_cpu': 1285918720, 'before_init_mem_gpu': 0, 'epoch': '1'}
+
+100%|██████████| 32/32 [01:47<00:00,  2.81s/it]
+100%|██████████| 32/32 [01:47<00:00,  3.36s/it]
+***** train metrics *****
+  before_init_mem_cpu        =     1226MB
+  before_init_mem_gpu        =        0MB
+  epoch                      =        1.0
+  init_mem_cpu_alloc_delta   =        0MB
+  init_mem_cpu_peaked_delta  =        0MB
+  init_mem_gpu_alloc_delta   =        0MB
+  init_mem_gpu_peaked_delta  =        0MB
+  total_flos                 = 74986409GF
+  train_loss                 =     0.3316
+  train_mem_cpu_alloc_delta  =     2810MB
+  train_mem_cpu_peaked_delta =    13536MB
+  train_mem_gpu_alloc_delta  =    20833MB
+  train_mem_gpu_peaked_delta =    51813MB
+  train_runtime              = 0:01:45.27
+  train_samples_per_second   =     19.455
+  train_steps_per_second     =      0.304
+>>>>> end-to-end wall time: 164s

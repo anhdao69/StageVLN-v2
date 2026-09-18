@@ -1,0 +1,634 @@
+{
+  "diagnostic": "Complete real canonical R2R episode overfit",
+  "passed": true,
+  "source_manifest": {
+    "path": "/groups/yshang/an221229/data/StageVLN-v2/episodes.jsonl",
+    "sha256": "243c9bf96436ee7f3a222d7b148f9ec5c5441899d9886c7699ff00ce3a693bf7",
+    "episodes": 10819,
+    "observations": 631244,
+    "labeled_states": 631244
+  },
+  "episode": {
+    "identity": "2267",
+    "instruction": "Move towards the bed and stop once you are between the bed and the television.",
+    "instruction_sha256": "340feec06345bf0f9cbd0372cf45c9d0891439de71a7af18fecbe18d65952890",
+    "observations": 21,
+    "labeled_states": 21,
+    "actions": [
+      "MOVE_FORWARD",
+      "MOVE_FORWARD",
+      "MOVE_FORWARD",
+      "MOVE_FORWARD",
+      "MOVE_FORWARD",
+      "MOVE_FORWARD",
+      "MOVE_FORWARD",
+      "MOVE_FORWARD",
+      "MOVE_FORWARD",
+      "MOVE_FORWARD",
+      "MOVE_FORWARD",
+      "MOVE_FORWARD",
+      "MOVE_FORWARD",
+      "MOVE_FORWARD",
+      "MOVE_FORWARD",
+      "MOVE_FORWARD",
+      "MOVE_FORWARD",
+      "MOVE_FORWARD",
+      "MOVE_FORWARD",
+      "MOVE_FORWARD",
+      "STOP"
+    ],
+    "action_counts": {
+      "MOVE_FORWARD": 20,
+      "STOP": 1
+    },
+    "frame_paths": [
+      "R2R/train/2267/step_0000_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0001_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0002_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0003_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0004_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0005_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0006_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0007_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0008_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0009_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0010_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0011_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0012_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0013_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0014_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0015_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0016_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0017_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0018_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0019_MOVE_FORWARD.png",
+      "R2R/train/2267/step_0020_STOP.png"
+    ],
+    "selection": "Shortest complete episode; ties resolved by lexical episode ID"
+  },
+  "configuration": {
+    "device": "cpu",
+    "torch_threads": 1,
+    "torch_interop_threads": 1,
+    "loader_workers": 1,
+    "seed": 42,
+    "initialization": "Random tiny Qwen3.5; no pretrained parameter values",
+    "tokenizer_and_config_source": "/groups/yshang/an221229/cache/huggingface/hub/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "dtype": "float32",
+    "memory": {
+      "slots": 4,
+      "width": 16,
+      "layers": 3,
+      "heads": 2,
+      "ffn_width": 32
+    },
+    "K": 8,
+    "recent": 4,
+    "execution": "bridge",
+    "reader_microbatch": 2,
+    "optimizer": "AdamW",
+    "lr_language": 0.003,
+    "lr_merger": 0.003,
+    "lr_memory": 0.003,
+    "weight_decay": 0.0,
+    "clip_grad_norm": 1.0,
+    "optimizer_steps_per_complete_episode": 1,
+    "min_pixels": 1024,
+    "max_pixels": 4096,
+    "production_pixel_bounds": [
+      12544,
+      451584
+    ],
+    "reduced_pixels_diagnostic_only": true,
+    "max_seconds": 240.0,
+    "max_epochs": 40,
+    "trainable_parameters": 16014852
+  },
+  "passes": [
+    {
+      "epoch": 1,
+      "mean_action_state_loss": 12.407435053870792,
+      "labels": 21,
+      "observations": 21,
+      "segment_lengths": [
+        8,
+        8,
+        5
+      ],
+      "writer_gradient_norm": 0.021446840837597847,
+      "writer_block_gradient_norms": [
+        0.006306896451860666,
+        0.004941701423376799,
+        0.004356385208666325
+      ],
+      "total_gradient_norm_before_clip": 5.929123401641846,
+      "seconds": 1.6738498536869884
+    },
+    {
+      "epoch": 2,
+      "mean_action_state_loss": 11.495004472278413,
+      "labels": 21,
+      "observations": 21,
+      "segment_lengths": [
+        8,
+        8,
+        5
+      ],
+      "writer_gradient_norm": 0.00254245288670063,
+      "writer_block_gradient_norms": [
+        0.0009590660920366645,
+        0.0010772051755338907,
+        0.0011702500050887465
+      ],
+      "total_gradient_norm_before_clip": 4.2207465171813965,
+      "seconds": 1.1388053875416517
+    },
+    {
+      "epoch": 3,
+      "mean_action_state_loss": 11.076851390656971,
+      "labels": 21,
+      "observations": 21,
+      "segment_lengths": [
+        8,
+        8,
+        5
+      ],
+      "writer_gradient_norm": 0.0006720579694956541,
+      "writer_block_gradient_norms": [
+        0.0002664787170942873,
+        0.00027171315741725266,
+        0.000348373141605407
+      ],
+      "total_gradient_norm_before_clip": 4.4017333984375,
+      "seconds": 1.1517700301483274
+    },
+    {
+      "epoch": 4,
+      "mean_action_state_loss": 10.786337307521276,
+      "labels": 21,
+      "observations": 21,
+      "segment_lengths": [
+        8,
+        8,
+        5
+      ],
+      "writer_gradient_norm": 0.0010415903525426984,
+      "writer_block_gradient_norms": [
+        0.0004277029656805098,
+        0.00044612298370338976,
+        0.0005171002121642232
+      ],
+      "total_gradient_norm_before_clip": 4.405752658843994,
+      "seconds": 1.1019140649586916
+    },
+    {
+      "epoch": 5,
+      "mean_action_state_loss": 10.618759200686501,
+      "labels": 21,
+      "observations": 21,
+      "segment_lengths": [
+        8,
+        8,
+        5
+      ],
+      "writer_gradient_norm": 0.0007478293846361339,
+      "writer_block_gradient_norms": [
+        0.0003436024417169392,
+        0.0003482176980469376,
+        0.00042336047044955194
+      ],
+      "total_gradient_norm_before_clip": 4.659749984741211,
+      "seconds": 1.1222594613209367
+    },
+    {
+      "epoch": 6,
+      "mean_action_state_loss": 10.23917039235433,
+      "labels": 21,
+      "observations": 21,
+      "segment_lengths": [
+        8,
+        8,
+        5
+      ],
+      "writer_gradient_norm": 0.00028494279831647873,
+      "writer_block_gradient_norms": [
+        0.00014406269474420696,
+        0.00013224482245277613,
+        0.00016584234253969043
+      ],
+      "total_gradient_norm_before_clip": 4.0783772468566895,
+      "seconds": 1.1087863007560372
+    },
+    {
+      "epoch": 7,
+      "mean_action_state_loss": 9.949721972147623,
+      "labels": 21,
+      "observations": 21,
+      "segment_lengths": [
+        8,
+        8,
+        5
+      ],
+      "writer_gradient_norm": 0.0004651114868465811,
+      "writer_block_gradient_norms": [
+        0.00020245637279003859,
+        0.00024884051526896656,
+        0.0003000484430231154
+      ],
+      "total_gradient_norm_before_clip": 4.1007304191589355,
+      "seconds": 1.1043937746435404
+    },
+    {
+      "epoch": 8,
+      "mean_action_state_loss": 9.634691192990257,
+      "labels": 21,
+      "observations": 21,
+      "segment_lengths": [
+        8,
+        8,
+        5
+      ],
+      "writer_gradient_norm": 0.0004255376406945288,
+      "writer_block_gradient_norms": [
+        0.00020124328148085624,
+        0.00022779300343245268,
+        0.00026961107505485415
+      ],
+      "total_gradient_norm_before_clip": 4.0981879234313965,
+      "seconds": 1.1098946621641517
+    },
+    {
+      "epoch": 9,
+      "mean_action_state_loss": 9.310358092898415,
+      "labels": 21,
+      "observations": 21,
+      "segment_lengths": [
+        8,
+        8,
+        5
+      ],
+      "writer_gradient_norm": 0.00042596508865244687,
+      "writer_block_gradient_norms": [
+        0.00023715246061328799,
+        0.00022856102441437542,
+        0.0002618218131829053
+      ],
+      "total_gradient_norm_before_clip": 4.069535255432129,
+      "seconds": 1.1270187115296721
+    },
+    {
+      "epoch": 10,
+      "mean_action_state_loss": 8.983321644010998,
+      "labels": 21,
+      "observations": 21,
+      "segment_lengths": [
+        8,
+        8,
+        5
+      ],
+      "writer_gradient_norm": 0.00045932462671771646,
+      "writer_block_gradient_norms": [
+        0.00020296384172979742,
+        0.00018497607379686087,
+        0.00024014210794121027
+      ],
+      "total_gradient_norm_before_clip": 4.072689533233643,
+      "seconds": 1.0940542528405786
+    },
+    {
+      "epoch": 11,
+      "mean_action_state_loss": 8.647326287769136,
+      "labels": 21,
+      "observations": 21,
+      "segment_lengths": [
+        8,
+        8,
+        5
+      ],
+      "writer_gradient_norm": 0.0004947133711539209,
+      "writer_block_gradient_norms": [
+        0.0002493518404662609,
+        0.00022643632837571204,
+        0.0003318314265925437
+      ],
+      "total_gradient_norm_before_clip": 4.092673301696777,
+      "seconds": 1.1007961053401232
+    },
+    {
+      "epoch": 12,
+      "mean_action_state_loss": 8.303253900437127,
+      "labels": 21,
+      "observations": 21,
+      "segment_lengths": [
+        8,
+        8,
+        5
+      ],
+      "writer_gradient_norm": 0.0005295782466419041,
+      "writer_block_gradient_norms": [
+        0.00028500042390078306,
+        0.0002462642441969365,
+        0.0003213132149539888
+      ],
+      "total_gradient_norm_before_clip": 4.1065449714660645,
+      "seconds": 1.103690086863935
+    },
+    {
+      "epoch": 13,
+      "mean_action_state_loss": 7.9521920794532415,
+      "labels": 21,
+      "observations": 21,
+      "segment_lengths": [
+        8,
+        8,
+        5
+      ],
+      "writer_gradient_norm": 0.0005265565705485642,
+      "writer_block_gradient_norms": [
+        0.0002791783190332353,
+        0.00023160615819506347,
+        0.0002701530756894499
+      ],
+      "total_gradient_norm_before_clip": 4.113938331604004,
+      "seconds": 1.0938989520072937
+    },
+    {
+      "epoch": 14,
+      "mean_action_state_loss": 7.59490510395595,
+      "labels": 21,
+      "observations": 21,
+      "segment_lengths": [
+        8,
+        8,
+        5
+      ],
+      "writer_gradient_norm": 0.00041509830043651164,
+      "writer_block_gradient_norms": [
+        0.00020825739193242043,
+        0.0001709728385321796,
+        0.0002041748521151021
+      ],
+      "total_gradient_norm_before_clip": 4.1297078132629395,
+      "seconds": 1.1130222100764513
+    },
+    {
+      "epoch": 15,
+      "mean_action_state_loss": 7.230131035759335,
+      "labels": 21,
+      "observations": 21,
+      "segment_lengths": [
+        8,
+        8,
+        5
+      ],
+      "writer_gradient_norm": 0.0003135057631880045,
+      "writer_block_gradient_norms": [
+        0.0001864045625552535,
+        0.00015892456576693803,
+        0.00017323211068287492
+      ],
+      "total_gradient_norm_before_clip": 4.146783828735352,
+      "seconds": 1.09322914108634
+    },
+    {
+      "epoch": 16,
+      "mean_action_state_loss": 6.8586599713280085,
+      "labels": 21,
+      "observations": 21,
+      "segment_lengths": [
+        8,
+        8,
+        5
+      ],
+      "writer_gradient_norm": 0.00016615772619843483,
+      "writer_block_gradient_norms": [
+        9.221712389262393e-05,
+        8.42204608488828e-05,
+        9.398181282449514e-05
+      ],
+      "total_gradient_norm_before_clip": 4.153958320617676,
+      "seconds": 1.0918825324624777
+    },
+    {
+      "epoch": 17,
+      "mean_action_state_loss": 6.482270445142474,
+      "labels": 21,
+      "observations": 21,
+      "segment_lengths": [
+        8,
+        8,
+        5
+      ],
+      "writer_gradient_norm": 0.00033145956695079803,
+      "writer_block_gradient_norms": [
+        0.0001814327551983297,
+        0.0001466181711293757,
+        0.00017070463218260556
+      ],
+      "total_gradient_norm_before_clip": 4.1632232666015625,
+      "seconds": 1.0988075695931911
+    },
+    {
+      "epoch": 18,
+      "mean_action_state_loss": 6.100477650052025,
+      "labels": 21,
+      "observations": 21,
+      "segment_lengths": [
+        8,
+        8,
+        5
+      ],
+      "writer_gradient_norm": 0.00010637537343427539,
+      "writer_block_gradient_norms": [
+        5.240970858721994e-05,
+        4.3053962144767866e-05,
+        4.881467611994594e-05
+      ],
+      "total_gradient_norm_before_clip": 4.178619384765625,
+      "seconds": 1.0910936780273914
+    }
+  ],
+  "pass_criterion": "At least 8 complete passes; final loss <= 0.50 * initial loss; finite gradients; nonzero initial writer-block gradients; exact complete chronology and writer counts",
+  "image_budget": {
+    "first_original_wh": [
+      640,
+      480
+    ],
+    "image_grid_thw": [
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ]
+    ],
+    "processed_pixels_per_frame": [
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048,
+      2048
+    ],
+    "native_reader_tokens_per_frame": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "raw_images": "All original episode RGB files; only native processor resizing reduced"
+  },
+  "stop_reason": "Predeclared loss-reduction criterion achieved",
+  "initial_loss": 12.407435053870792,
+  "final_loss": 6.100477650052025,
+  "final_to_initial_ratio": 0.49167919264254684,
+  "complete_episode_passes": 18,
+  "writer_calls": 378,
+  "consumed_observations": 378,
+  "consumed_labeled_states": 378,
+  "all_gradients_finite": true,
+  "initial_writer_block_gradient_norms": [
+    0.006306896451860666,
+    0.004941701423376799,
+    0.004356385208666325
+  ],
+  "loss_measurement": "Before each optimizer step; fixed weights across the entire complete episode",
+  "limitations": [
+    "Random tiny model and toy hyperparameters",
+    "Reduced native image resolution",
+    "One episode dominated by MOVE_FORWARD; not evidence of memory benefit",
+    "No simulator, navigation success rate, SPL, or production-model fit claim"
+  ],
+  "wall_seconds": 25.140659833326936
+}

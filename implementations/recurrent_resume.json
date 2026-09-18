@@ -1,0 +1,10 @@
+{
+  "first_loss": 12.426631212234497,
+  "next_loss": 12.427716732025146,
+  "resumed_loss": 12.427716732025146,
+  "max_parameter_error": 1.4901161193847656e-08,
+  "max_adam_error": 1.4901161193847656e-08,
+  "exact_cursor": true,
+  "precision": "FP32",
+  "recent": 4
+}

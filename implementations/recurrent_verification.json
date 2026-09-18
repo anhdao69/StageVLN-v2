@@ -1,0 +1,69 @@
+{
+  "date": "2026-09-18",
+  "implementation_commit": "dad84dc77aaeee3d82970e13877514e89fc61ce9",
+  "unit_tests": {
+    "command": "PYTHONPATH=src OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 /home/an221229/code/SpatialForcing-VLN/.venv/bin/python -m pytest -q tests",
+    "passed": 49,
+    "failed": 0,
+    "warnings": 14,
+    "seconds": 31.55
+  },
+  "tiny_qwen_K8_gradient_max_error": {
+    "bridge_b2": 1.1920928955078125e-07,
+    "bridge_b8": 1.7881393432617188e-07
+  },
+  "full_checkpoint_adapter": "Selected-position logits/loss and selected gradients exact, 1/2/5/9 images, deterministic FA2",
+  "full_checkpoint_temporal": "K2 R0/R4 direct/repeat/bridge selected gradients exact; not full K8 all-parameter equality",
+  "delayed_cue_toy": "Passed 200 updates: loss 1.419281 to 0.001832, accuracy 1.0 on synthetic task",
+  "real_episode_tiny_overfit": "Passed 18 complete passes of 21 states: loss 12.407435 to 6.100478; diagnostic-only low resolution",
+  "four_gpu_smokes": {
+    "v2": {
+      "updates": 32,
+      "labels": 2048,
+      "finite_and_decreasing_window_mean": true
+    },
+    "v3": {
+      "updates": 32,
+      "labels": 2048,
+      "finite_and_decreasing_window_mean": true
+    },
+    "current_only_ep": {
+      "updates": 32,
+      "labels": 2048,
+      "finite_and_decreasing_window_mean": true
+    },
+    "recent4_ep": {
+      "updates": 32,
+      "labels": 2048,
+      "finite_and_decreasing_window_mean": true
+    }
+  },
+  "four_gpu_stress": "Selected v2 batch4 / v3 batch8 each consumed 1165 labels including a 13-label tail; finite, no OOM",
+  "full_model_resume": {
+    "v2": "Checkpoint32 to update33, loss 0.2548833599",
+    "v3": "Checkpoint32 to update33, loss 0.2232781170",
+    "scope": "Full model load and successful continuation; no full-model uninterrupted-reference equality claim"
+  },
+  "full_export": {
+    "v2_exact_saved_values": 833,
+    "v3_exact_saved_values": 833,
+    "comparison": "FP32 reload against saved values normalized to loaded dtype; saved frozen vision is BF16",
+    "tied_embeddings": true,
+    "actor_valid_idempotent": true
+  },
+  "memory_probes": "Baseline, reset, freeze, observed-other-episode replacement, remove-recent; 50 open-loop losses per export",
+  "reference_trace": "Full 4B M64/R4/K8, 23 observations, segments 8/8/5/2, reset/continuation, selected gradient checksums",
+  "upload_guard": "Smoke export rejection executed before any HF API call",
+  "slurm_submitted": false,
+  "hf_upload_executed": false,
+  "unrun": [
+    "Full training epochs",
+    "Simulator SR/SPL/NE/OS",
+    "Navigation generalization",
+    "Completed HF publication",
+    "Later-v4 trace reproduction",
+    "K16 long-memory diagnostic"
+  ],
+  "baseline_source_revision": "7a76695",
+  "main_head": "c340227adceb279a1744b1410ca9a84adfa3b231"
+}
