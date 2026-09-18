@@ -8,11 +8,34 @@ import torch
 import torch.distributed as dist
 import transformers
 from transformers import AutoConfig, AutoProcessor, Qwen3_5ForConditionalGeneration
+from transformers.modeling_utils import ALL_ATTENTION_FUNCTIONS
 
 import qwen_vl.train.sampler  # noqa: F401 - installs length-grouped sampling
 from qwen_vl.data.data_qwen import make_supervised_data_module
 from qwen_vl.train.argument import DataArguments, ModelArguments, TrainingArguments
 from qwen_vl.train.trainer import QwenSFTTrainer
+
+
+def _install_qwen35_flash_attention_fix():
+    """Prevent 3-axis multimodal RoPE IDs from entering FA2's packed path."""
+    original_flash_attention = ALL_ATTENTION_FUNCTIONS["flash_attention_2"]
+
+    def qwen35_flash_attention(
+        module, query, key, value, attention_mask, **kwargs
+    ):
+        # Qwen3.5 has already applied multimodal RoPE to Q/K. Transformers 5.3
+        # otherwise mistakes position_ids shaped [3, batch, seq] for packed-
+        # sequence metadata and builds invalid cu_seqlens for FlashAttention.
+        position_ids = kwargs.get("position_ids")
+        if position_ids is not None and position_ids.ndim == 3:
+            kwargs.pop("position_ids")
+        return original_flash_attention(
+            module, query, key, value, attention_mask, **kwargs
+        )
+
+    ALL_ATTENTION_FUNCTIONS.register(
+        "flash_attention_2", qwen35_flash_attention
+    )
 
 
 def _model_parts(model):
@@ -75,6 +98,9 @@ def train():
     model_args, data_args, training_args = parser.parse_args_into_dataclasses()
     transformers.set_seed(training_args.seed)
     os.makedirs(training_args.output_dir, exist_ok=True)
+
+    if model_args.attn_implementation == "flash_attention_2":
+        _install_qwen35_flash_attention_fix()
 
     config = AutoConfig.from_pretrained(
         model_args.model_name_or_path,

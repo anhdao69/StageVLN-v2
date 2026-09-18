@@ -7,7 +7,7 @@ import transformers
 @dataclass
 class ModelArguments:
     model_name_or_path: str = field(default="Qwen/Qwen3.5-4B")
-    attn_implementation: str = field(default="sdpa")
+    attn_implementation: str = field(default="flash_attention_2")
     tune_mm_llm: bool = field(default=True)
     tune_mm_mlp: bool = field(default=True)
     tune_mm_vision: bool = field(default=False)
@@ -23,6 +23,7 @@ class DataArguments:
     min_pixels: int = field(default=16 * 28 * 28)
     max_samples: int = field(default=-1)
     shuffle: bool = field(default=True)
+    sparse_action_logits: bool = field(default=True)
 
 
 @dataclass

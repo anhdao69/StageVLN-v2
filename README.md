@@ -19,14 +19,20 @@ The launcher activates the uv environment at `../SpatialForcing-VLN/.venv`.
 bash train/v0_uniform8.sh
 ```
 
-The defaults retained from the previous SFT recipe are:
+The SFT defaults are:
 
-- Qwen3.5-4B, bf16, TF32, and PyTorch SDPA
+- Qwen3.5-4B, bf16, TF32, and FlashAttention 2
 - language model and multimodal merger trainable; vision encoder frozen
-- batch size 1 per GPU and gradient accumulation 8
+- batch size 2 per GPU and gradient accumulation 4 (global batch 32 on 4 GPUs)
 - language-model learning rate `1e-6` and merger learning rate `1e-5`
-- cosine schedule, one warmup step, weight decay `0.01`, and ZeRO-2
+- cosine schedule, one warmup step, weight decay `0.01`, fused AdamW, and ZeRO-1
 - one epoch, 12,800-token limit, and eight history frames
+
+Qwen3.5 applies multimodal RoPE before attention. The training entry point works
+around a Transformers 5.3 bug that incorrectly treats Qwen's three-axis
+position IDs as FlashAttention packed-sequence metadata. The collator also asks
+the stock Qwen loss for only the assistant-action suffix logits; ignored prompt
+and image-token logits are skipped without changing the SFT loss.
 
 Gradient checkpointing defaults to off on H100 for higher throughput. Enable it
 only if a longer example exceeds memory:
@@ -48,8 +54,10 @@ overridden with `DATASET_CONFIG`, `CACHE_DIR`, `OUTPUT_DIR`, `NPROC_PER_NODE`,
 `MAX_STEPS`, and the other environment variables defined near the top of the
 launcher.
 
-On four H100 80GB GPUs, a two-step benchmark at the default global batch size
-of 32 took 12.11 seconds of trainer time (6.06 seconds/step). With 631,264 R2R
-examples (19,727 steps), that projects to about 33.2 hours for one epoch. This
-is a throughput estimate; filesystem load and trajectory-length variation can
-change the full-run wall time.
+On four H100 80GB GPUs, the final 20-step smoke benchmark trained 640 samples
+in 57.71 seconds: 11.09 samples/s and 2.89 seconds per global-batch-32 step,
+including warm-up. At that compute rate, 631,264 examples (19,727 steps) take
+about 15.8 hours, versus the original SDPA/ZeRO-2 estimate of 33.2 hours. This
+is a compute-throughput estimate on repeated nine-frame samples; filesystem
+load, image diversity, and trajectory-length variation can increase full-run
+wall time.

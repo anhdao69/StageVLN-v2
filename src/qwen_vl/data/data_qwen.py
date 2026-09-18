@@ -271,6 +271,7 @@ class R2RSFTDataset(Dataset):
 @dataclass
 class DataCollatorForSFT:
     tokenizer: transformers.PreTrainedTokenizer
+    sparse_action_logits: bool = True
 
     def __call__(self, instances: Sequence[dict]):
         input_ids = torch.nn.utils.rnn.pad_sequence(
@@ -304,7 +305,7 @@ class DataCollatorForSFT:
                 f"actual={actual_tokens}, expected={expected_tokens}"
             )
 
-        return {
+        batch = {
             "input_ids": input_ids,
             "labels": labels,
             "attention_mask": input_ids.ne(self.tokenizer.pad_token_id),
@@ -314,6 +315,21 @@ class DataCollatorForSFT:
             ),
             "image_grid_thw": grids,
         }
+        if self.sparse_action_logits:
+            # Qwen's stock causal-LM loss accepts labels matching the returned
+            # logits rather than requiring labels to match input_ids. Keep the
+            # token immediately before the first target plus the supervised
+            # suffix. This produces exactly the same shifted-token loss while
+            # avoiding vocabulary logits for thousands of ignored image/prompt
+            # positions.
+            supervised_columns = labels.ne(IGNORE_INDEX).any(dim=0).nonzero()
+            if supervised_columns.numel() == 0:
+                raise ValueError("Batch has no supervised assistant tokens")
+            first_target = int(supervised_columns[0].item())
+            suffix_start = max(first_target - 1, 0)
+            batch["labels"] = labels[:, suffix_start:]
+            batch["logits_to_keep"] = labels.shape[1] - suffix_start
+        return batch
 
 
 def make_supervised_data_module(tokenizer, data_args):
@@ -321,5 +337,7 @@ def make_supervised_data_module(tokenizer, data_args):
     return {
         "train_dataset": dataset,
         "eval_dataset": None,
-        "data_collator": DataCollatorForSFT(tokenizer),
+        "data_collator": DataCollatorForSFT(
+            tokenizer, sparse_action_logits=data_args.sparse_action_logits
+        ),
     }
