@@ -8,8 +8,11 @@ case "$variant" in
     v3) experiment=v3_mem64_r4 ;;
     *) exit 2 ;;
 esac
-ENV_DIR="${ENV_DIR:-/home/an221229/code/SpatialForcing-VLN/.venv}"
-export CUDA_HOME="${CUDA_HOME:-/apps/cuda/cuda-12.6.0}"
+ENV_DIR="${ENV_DIR:-${VIRTUAL_ENV:-$PROJECT_ROOT/.venv}}"
+[[ -x "$ENV_DIR/bin/python" && -x "$ENV_DIR/bin/torchrun" ]] || {
+    echo "Missing environment at $ENV_DIR; run 'uv sync --locked' in $PROJECT_ROOT" >&2
+    exit 1
+}
 export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
 export TOKENIZERS_PARALLELISM=false HF_HUB_DISABLE_PROGRESS_BARS=1
 export PYTORCH_ALLOC_CONF=expandable_segments:True
@@ -17,6 +20,7 @@ run_id="${SLURM_JOB_ID:-$(date -u +%Y%m%dT%H%M%S)}"
 run_dir="/groups/yshang/an221229/checkpoints/StageVLN-v2/${experiment}_bs64_${run_id}"
 mkdir -p "$run_dir/source_snapshot"
 cp -r src configs train scripts "$run_dir/source_snapshot/"
+cp pyproject.toml uv.lock .python-version "$run_dir/source_snapshot/"
 cp implementations/model_manifest.json "$run_dir/"
 git rev-parse HEAD > "$run_dir/git_revision.txt"
 git diff > "$run_dir/source_changes.patch"

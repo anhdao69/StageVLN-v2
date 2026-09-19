@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools==80.10.2", "wheel==0.46.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qwen35-vln-sft"
+version = "0.1.0"
+description = "Qwen3.5-4B chronological R2R navigation training"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "accelerate==1.13.0",
+    "deepspeed==0.16.4",
+    "flash-attn==2.8.3",
+    "huggingface-hub==1.27.0",
+    "numpy==2.4.4",
+    "pillow==12.2.0",
+    "safetensors==0.8.0",
+    "torch==2.10.0",
+    "torchvision==0.25.0",
+    "transformers==5.3.0",
+]
+
+[dependency-groups]
+dev = ["pytest==9.1.1"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["qwen_vl*"]
+
+[tool.uv]
+required-version = ">=0.12.0"
+required-environments = [
+    "sys_platform == 'linux' and platform_machine == 'x86_64'",
+]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu129" }
+torchvision = { index = "pytorch-cu129" }
+flash-attn = { index = "astral-cu129" }
+
+[[tool.uv.index]]
+name = "astral-cu129"
+url = "https://wheels.astral.sh/simple/cu129/"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu129"
+url = "https://download.pytorch.org/whl/cu129"
+explicit = true
+
+[tool.uv.extra-build-dependencies]
+deepspeed = [{ requirement = "torch", match-runtime = true }]

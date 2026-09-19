@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "${PROJECT_ROOT:?PROJECT_ROOT required}"
-ENV_DIR="${ENV_DIR:-/home/an221229/code/SpatialForcing-VLN/.venv}"
-export CUDA_HOME=/apps/cuda/cuda-12.6.0
+ENV_DIR="${ENV_DIR:-${VIRTUAL_ENV:-$PROJECT_ROOT/.venv}}"
+[[ -x "$ENV_DIR/bin/python" && -x "$ENV_DIR/bin/torchrun" ]] || {
+    echo "Missing environment at $ENV_DIR; run 'uv sync --locked' in $PROJECT_ROOT" >&2
+    exit 1
+}
 export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
 export TOKENIZERS_PARALLELISM=false HF_HUB_DISABLE_PROGRESS_BARS=1
 export PYTORCH_ALLOC_CONF=expandable_segments:True
@@ -16,6 +19,7 @@ else
     [[ ! -e "$run_dir" ]] || { echo 'Run directory exists; use explicit resume'; exit 1; }
     mkdir -p "$run_dir/source_snapshot"
     cp -r src configs train scripts "$run_dir/source_snapshot/"
+    cp pyproject.toml uv.lock .python-version "$run_dir/source_snapshot/"
     if [[ -f SOURCE_REVISION ]]; then
         cp SOURCE_REVISION "$run_dir/git_revision.txt"
     else

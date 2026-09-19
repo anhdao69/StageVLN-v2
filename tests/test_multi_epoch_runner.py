@@ -57,6 +57,7 @@ def test_runner_five_epoch_saves_and_interrupted_resume(monkeypatch, tmp_path):
         monkeypatch.setattr(torch.cuda, name, lambda: 0)
     monkeypatch.setattr(torch.cuda, 'is_available', lambda: True)
     monkeypatch.setattr(torch.cuda, 'is_initialized', lambda: False)
+    monkeypatch.setattr(torch.cuda, 'is_current_stream_capturing', lambda: False)
     original_tensor = torch.tensor
     def cpu_tensor(*args, **kwargs):
         kwargs.pop('device', None)

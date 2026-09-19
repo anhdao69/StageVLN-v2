@@ -1,5 +1,46 @@
 # Qwen3.5 R2R training: v0–v3
 
+## New-server environment
+
+This project targets Linux x86-64 GPU servers with an NVIDIA driver new enough
+for CUDA 12.9 wheels. Install `uv`, clone the repository, select the branch, and
+sync the committed environment:
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+git clone https://github.com/anhdao69/StageVLN-v2.git
+cd StageVLN-v2
+git switch recurrent_memory
+uv sync --locked
+```
+
+`uv` installs Python 3.12.13 when it is unavailable, creates `.venv`, and installs
+the project plus the exact versions in `uv.lock`. PyTorch and TorchVision come
+from the official CUDA 12.9 index. FlashAttention comes from Astral's matching
+prebuilt CUDA 12.9 / PyTorch 2.10 wheel, so a local CUDA compilation is not
+needed. The server still needs a compatible NVIDIA driver; `uv` does not install
+GPU drivers.
+
+Verify the environment before training:
+
+```bash
+uv run python -c 'import torch, flash_attn, transformers; print(torch.__version__, torch.version.cuda, flash_attn.__version__, transformers.__version__)'
+uv run pytest -q
+```
+
+The launchers accept this local environment explicitly:
+
+```bash
+export ENV_DIR="$PWD/.venv"
+sbatch --export=ALL train/slurm/re_mem.slurm
+```
+
+The dataset, base-model cache, checkpoint root, CUDA module path, Slurm account,
+and Hugging Face token remain server-specific. Update the JSON config paths and
+Slurm account/partition as needed. Store the Hugging Face token only at
+`~/.cache/stagevln/hf_token` with mode `0600`; credentials are never part of the
+locked environment.
+
 The `recurrent_memory` branch adds v2 (Memory64 + current) and v3 (Memory64 +
 Recent4 + current). Read the [detailed implementation report](reports/v2_v3_implementation_report.md),
 [acceptance record](reports/acceptance.md), and [validation commands](reports/validation_commands.md)
@@ -59,12 +100,11 @@ from `~/.cache/stagevln/hf_token`, mode0600, never from committed source.
 No upload has been performed. The upload helper can retry independently after
 a successful training run using `--folder` and `--repo`.
 
-The generic launcher requires an explicitly selected environment (`ENV_DIR`),
-an active virtualenv, or this repository's `.venv`. The cluster wrapper selects
-the tested shared environment explicitly. Its versions are Python3.12.13,
+The launchers use an explicitly selected environment (`ENV_DIR`), an active
+virtualenv, or this repository's `.venv`, in that order. The locked versions are Python3.12,
 PyTorch2.10.0+cu129, Transformers5.3.0, Accelerate1.13.0, DeepSpeed0.16.4,
 FlashAttention2.8.3. Always set `PYTHONPATH=$PWD/src` for direct Python commands
-because that shared environment also contains another project's editable install.
+outside `uv run`.
 
 ## Correctness changes
 
@@ -86,9 +126,8 @@ states exactly once, with a final update of12 labels and no padded observations.
 ```bash
 /usr/bin/python3 scripts/data/prepare_r2r.py
 export PYTHONPATH="$PWD/src"
-export ENV_DIR=/home/an221229/code/SpatialForcing-VLN/.venv
-"$ENV_DIR/bin/python" -m unittest discover -s tests -v
-"$ENV_DIR/bin/python" scripts/train/check_prompt.py
+uv run pytest -q
+uv run python scripts/train/check_prompt.py
 ```
 
 `prepare_r2r.py` writes the two annotation files, complete episode JSONL,

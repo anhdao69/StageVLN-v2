@@ -11,4 +11,5 @@
 #SBATCH --output=/home/an221229/code/StageVLN-v2/slurm_logs/%x-%j.out
 #SBATCH --error=/home/an221229/code/StageVLN-v2/slurm_logs/%x-%j.err
 set -euo pipefail
-bash /home/an221229/code/StageVLN-v2/train/slurm/run_r2r.sh v0
+export PROJECT_ROOT="${PROJECT_ROOT:-${SLURM_SUBMIT_DIR:-$PWD}}"
+bash "$PROJECT_ROOT/train/slurm/run_r2r.sh" v0
