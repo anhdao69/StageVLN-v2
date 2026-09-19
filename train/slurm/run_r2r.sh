@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 variant="${1:?v0 or v1}"
-export PROJECT_ROOT=/home/an221229/code/StageVLN-v2
+PROJECT_ROOT="${PROJECT_ROOT:-${SLURM_SUBMIT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}}"
+export PROJECT_ROOT
 cd "$PROJECT_ROOT"
-# Explicitly selected and version-audited environment; no implicit discovery.
-export ENV_DIR=/home/an221229/code/SpatialForcing-VLN/.venv
+ENV_DIR="${ENV_DIR:-${VIRTUAL_ENV:-$PROJECT_ROOT/.venv}}"
+export ENV_DIR
+[[ -x "$ENV_DIR/bin/python" && -x "$ENV_DIR/bin/torchrun" ]] || {
+    echo "Missing environment at $ENV_DIR; run 'uv sync --locked' in $PROJECT_ROOT" >&2
+    exit 1
+}
 export MODEL_PATH=/groups/yshang/an221229/cache/huggingface/hub/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a
 export NPROC_PER_NODE=4
 export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
@@ -32,6 +37,7 @@ cp implementations/model_manifest.json "$OUTPUT_DIR/model_manifest.json"
 cp train/slurm/run_r2r.sh "train/slurm/${variant}_r2r.slurm" "$OUTPUT_DIR/"
 mkdir -p "$OUTPUT_DIR/source_snapshot"
 cp -r src configs train scripts "$OUTPUT_DIR/source_snapshot/"
+cp pyproject.toml uv.lock .python-version "$OUTPUT_DIR/source_snapshot/"
 git rev-parse HEAD > "$OUTPUT_DIR/git_revision.txt"
 git diff > "$OUTPUT_DIR/source_changes.patch"
 "$ENV_DIR/bin/python" - "$OUTPUT_DIR" "$variant" <<'PY'
