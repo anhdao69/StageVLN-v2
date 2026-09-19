@@ -58,6 +58,23 @@ class EpisodeScheduler:
         self._cursors = [[0, 0] for _ in range(world_size)]
         self._next_rank = 0
         self.total_labels = self.total_observations = 0
+        self.epoch = 1
+
+    @property
+    def exhausted(self):
+        return all(cursor[0] == len(assignment) for cursor, assignment in zip(self._cursors, self._assignments))
+
+    def advance_epoch(self):
+        if not self.exhausted:
+            raise ValueError('Cannot advance an unfinished epoch')
+        self.epoch += 1
+        self.permutation = list(range(len(self.episodes)))
+        if self.shuffle:
+            random.Random(self.seed + self.epoch - 1).shuffle(self.permutation)
+        self._assignments = [self.permutation[r::self.world_size] for r in range(self.world_size)]
+        self._cursors = [[0, 0] for _ in range(self.world_size)]
+        self._next_rank = 0
+        self.total_labels = self.total_observations = 0
 
     def plan_update(self) -> UpdateSchedule | None:
         segments = [[] for _ in range(self.world_size)]
@@ -89,6 +106,7 @@ class EpisodeScheduler:
 
     def state_dict(self):
         return {
+            'epoch': self.epoch,
             'version': 1, 'episodes_sha256': self.episodes_sha256,
             'world_size': self.world_size, 'K': self.K, 'target_budget': self.target_budget,
             'seed': self.seed, 'shuffle': self.shuffle, 'permutation': list(self.permutation),
@@ -97,6 +115,9 @@ class EpisodeScheduler:
         }
 
     def load_state_dict(self, state):
+        epoch = state.get('epoch', 1)
+        if type(epoch) is not int or epoch < 1:
+            raise ValueError('Invalid epoch')
         expected = self.state_dict()
         for name in ('version', 'episodes_sha256', 'world_size', 'K', 'target_budget', 'seed', 'shuffle'):
             if state.get(name) != expected[name]:
@@ -130,3 +151,4 @@ class EpisodeScheduler:
         self.permutation, self._assignments, self._cursors = permutation, assignments, cursors
         self._next_rank = state['next_rank']
         self.total_labels, self.total_observations = labels, observations
+        self.epoch = epoch

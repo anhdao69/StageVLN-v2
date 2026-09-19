@@ -99,6 +99,7 @@ def save_checkpoint(path, policy, optimizer, scheduler, episode_scheduler,
     _barrier()
     if rank == 0:
         completion = {'format_version': 1, 'world_size': world_size, 'step': step,
+                      'epoch': episode_scheduler.epoch,
                       'manifest': manifest, 'total_labels': episode_scheduler.total_labels,
                       'total_observations': episode_scheduler.total_observations}
         temporary = path / 'manifest.json.tmp'

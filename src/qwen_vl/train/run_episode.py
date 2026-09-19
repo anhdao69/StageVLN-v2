@@ -5,6 +5,7 @@ state sharding and the tested leaf-gradient bridge reduce memory use without
 cutting temporal credit. All ranks participate in one reduction per update.
 """
 import argparse
+from datetime import timedelta
 import hashlib
 from importlib.metadata import version
 import json
@@ -27,13 +28,14 @@ from qwen_vl.train.checkpointing import load_checkpoint, save_checkpoint
 from qwen_vl.train.distributed_grad import finite_gradients, synchronize_gradients
 from qwen_vl.train.episode_trainer import EpisodeTrainer
 from qwen_vl.train.optimizer import build_optimizer
+from qwen_vl.train.retention import prune_steps
 
 
 def arguments():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config', required=True)
     parser.add_argument('--output', required=True)
-    parser.add_argument('--max-updates', type=int, default=0, help='0 means the full configured epoch')
+    parser.add_argument('--max-updates', type=int, default=0, help='0 means all configured epochs; otherwise an absolute global step limit')
     parser.add_argument('--max-episodes', type=int, default=0, help='Smoke only: keep complete episodes')
     parser.add_argument('--reader-microbatch', type=int)
     parser.add_argument('--execution', choices=['direct', 'bridge'])
@@ -68,8 +70,9 @@ def main():
     if min(args.max_updates,args.max_episodes,args.checkpoint_every)<0:
         raise ValueError('Update/episode/checkpoint limits must be nonnegative')
     cfg = json.loads(Path(args.config).read_text())
-    if cfg.get('epochs', 1) != 1:
-        raise ValueError('This entry point consumes one complete epoch; use a new run for a changed protocol')
+    epochs = cfg.get('epochs', 1)
+    if type(epochs) is not int or epochs < 1:
+        raise ValueError('epochs must be a positive integer')
     if args.skip_final_save and not args.max_updates:
         raise ValueError('--skip-final-save is restricted to bounded smoke runs')
     os.environ['FLASH_ATTENTION_DETERMINISTIC'] = '1' if cfg['attention_deterministic'] else '0'
@@ -80,7 +83,7 @@ def main():
         raise RuntimeError('This full-model runner requires CUDA; CPU contracts have separate tests')
     torch.cuda.set_device(local_rank)
     if world > 1:
-        dist.init_process_group('nccl', device_id=torch.device('cuda', local_rank))
+        dist.init_process_group('nccl', device_id=torch.device('cuda', local_rank), timeout=timedelta(hours=2))
     torch.set_num_threads(1)
     torch.backends.cuda.matmul.allow_tf32 = True
     random.seed(cfg['seed']); np.random.seed(cfg['seed']); torch.manual_seed(cfg['seed'])
@@ -93,7 +96,8 @@ def main():
     stream = EpisodeScheduler(episodes, seed=cfg['seed'], rank=rank, world_size=world,
                               K=cfg['segment_length'], target_budget=cfg['global_batch_size'])
     total_labels = sum(f.action is not None for ep in episodes for f in ep.frames)
-    total_updates = math.ceil(total_labels / cfg['global_batch_size'])
+    updates_per_epoch = math.ceil(total_labels / cfg['global_batch_size'])
+    total_updates = epochs * updates_per_epoch
     processor = AutoProcessor.from_pretrained(cfg['model'])
     processor.image_processor.size.update(longest_edge=cfg['max_pixels'], shortest_edge=cfg['min_pixels'])
     processor.image_processor.max_pixels = cfg['max_pixels']
@@ -142,6 +146,12 @@ def main():
     if args.resume:
         state = load_checkpoint(args.resume, policy, optimizer, scheduler, stream, expected_manifest=manifest)
         step = state['step']; trainer.load_state_dict(state['cursors'])
+        expected_step = (stream.epoch - 1)*updates_per_epoch + math.ceil(stream.total_labels/cfg['global_batch_size'])
+        if stream.epoch > epochs or step != expected_step:
+            raise ValueError('Checkpoint epoch/update accounting mismatch')
+        for completed in output.glob('epoch-*/manifest.json'):
+            if json.loads(completed.read_text())['step'] > step:
+                raise ValueError('A later epoch checkpoint exists; resume the latest checkpoint to avoid stale exports')
     if rank == 0:
         (output/'run_manifest.json').write_text(json.dumps(manifest, indent=2)+'\n')
         print(json.dumps(dict(event='ready', world_size=world, states=total_labels, full_states=full_labels,
@@ -149,7 +159,33 @@ def main():
                               microbatch=microbatch, execution=execution)), flush=True)
     timings = []
     try:
-        while not args.max_updates or step < args.max_updates:
+        while True:
+            # Handle completion BEFORE a smoke update limit, including resume
+            # from a periodic checkpoint exactly at the epoch boundary.
+            if stream.exhausted:
+                if trainer.state_dict()['episode'] is not None:
+                    raise RuntimeError('Live episode carry at epoch boundary')
+                if not args.skip_final_save:
+                    epoch_dir = output/f'epoch-{stream.epoch}'
+                    if not (epoch_dir/'manifest.json').exists():
+                        save_checkpoint(epoch_dir, policy, optimizer, scheduler, stream,
+                                        trainer.state_dict(), manifest, step)
+                    if rank == 0:
+                        marker = epoch_dir/('SMOKE_EPOCH_COMPLETE' if args.max_episodes else 'EPOCH_COMPLETE')
+                        if not marker.exists():
+                            policy.export(epoch_dir/'export', processor, cfg['recent'])
+                            (epoch_dir/'export'/'run_manifest.json').write_text(json.dumps(manifest, indent=2)+'\n')
+                            temporary = marker.with_suffix('.tmp')
+                            temporary.write_text(json.dumps(dict(epoch=stream.epoch, step=step))+'\n')
+                            temporary.replace(marker)
+                        prune_steps(output, stream.epoch, keep=0)
+                    if world > 1:
+                        dist.barrier()
+                if stream.epoch == epochs:
+                    break
+                stream.advance_epoch()
+            if args.max_updates and step >= args.max_updates:
+                break
             schedule = stream.plan_update()
             if schedule is None:
                 break
@@ -197,9 +233,9 @@ def main():
             elapsed, peak, reserved = stats.tolist()
             if schedule.global_labels==cfg['global_batch_size']:
                 timings.append(elapsed)
-            row = dict(step=step, loss=float(loss)/schedule.global_labels,
+            row = dict(step=step, epoch=stream.epoch, loss=float(loss)/schedule.global_labels,
                        labeled_states=schedule.global_labels, observed_states=schedule.global_observations,
-                       consumed_labels=stream.total_labels, seconds=elapsed,
+                       consumed_labels=(stream.epoch-1)*total_labels+stream.total_labels, seconds=elapsed,
                        states_per_second=schedule.global_labels/elapsed,
                        grad_norm=float(grad_norm), writer_block0_grad_norm=memory_norm,
                        peak_allocated_gib=peak, peak_reserved_gib=reserved,
@@ -209,24 +245,32 @@ def main():
                 with (output/'metrics.jsonl').open('a') as handle:
                     handle.write(json.dumps(row)+'\n')
             if args.checkpoint_every and step % args.checkpoint_every == 0:
-                save_checkpoint(output/f'checkpoint-{step}', policy, optimizer, scheduler, stream,
+                save_checkpoint(output/f'step-epoch-{stream.epoch}-{step}', policy, optimizer, scheduler, stream,
                                 trainer.state_dict(), manifest, step)
+                if rank == 0:
+                    prune_steps(output, stream.epoch, keep=5)
+                if world > 1:
+                    dist.barrier()
         if not args.skip_final_save:
-            final_path = final_checkpoint_path(output, step, stream.total_observations)
-            if not (final_path/'manifest.json').exists():
+            complete = stream.epoch == epochs and stream.exhausted
+            final_path = output/f'step-epoch-{stream.epoch}-{step}'
+            if not complete and not (final_path/'manifest.json').exists():
                 save_checkpoint(final_path, policy, optimizer, scheduler, stream,
                                 trainer.state_dict(), manifest, step)
             if rank == 0:
-                policy.export(output/'export', processor, cfg['recent'])
-                (output/'export'/'run_manifest.json').write_text(json.dumps(manifest, indent=2)+'\n')
-                complete = stream.total_observations == sum(len(ep.frames) for ep in episodes)
-                marker = 'TRAINING_COMPLETE' if complete and not args.max_episodes else 'SMOKE_COMPLETE'
-                (output/marker).write_text(f'{step} updates; {stream.total_labels} labels; {stream.total_observations} observations\n')
+                prune_steps(output, stream.epoch, keep=5)
+                if complete:
+                    # Preserve the existing final-export uploader interface.
+                    if not (output/'export').exists():
+                        (output/'export').symlink_to(f'epoch-{epochs}/export', target_is_directory=True)
+                    marker = 'TRAINING_COMPLETE' if not args.max_episodes else 'SMOKE_COMPLETE'
+                    (output/marker).write_text(f'{step} updates; {epochs} complete epochs\n')
         if rank == 0:
             # A resumed single update is a cold-start measurement, not a
             # defensible estimate of full-epoch throughput. Exclude short tails.
             steady = timings[2:] if len(timings)>=5 else []
-            report = dict(completed_updates=step, consumed_labels=stream.total_labels,
+            report = dict(completed_updates=step, epoch=stream.epoch, configured_epochs=epochs,
+                          consumed_labels=(stream.epoch-1)*total_labels+stream.total_labels,
                           full_epoch_labels=full_labels, full_epoch_updates=math.ceil(full_labels/cfg['global_batch_size']),
                           steady_mean_seconds=float(np.mean(steady)) if steady else None,
                           estimated_epoch_hours=float(np.mean(steady))*math.ceil(full_labels/cfg['global_batch_size'])/3600 if steady else None,
