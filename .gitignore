@@ -15,3 +15,8 @@ slurm-*.out
 
 .worktrees/
 .superpowers/
+
+# Downloaded exports stay on Hugging Face; evaluated trajectories are archived.
+checkpoints/
+evaluation/**/trajectories/
+evaluation/**/*.log

@@ -1,0 +1,37 @@
+{
+  "identity": {
+    "checkpoint": "/storage/anhdh35/StageVLN-v2/checkpoints/StageVLN-v0-r2r-uniform8",
+    "split": "val_unseen",
+    "max_steps": 10,
+    "max_episodes": 1,
+    "seed": 42,
+    "invalid_action": "STOP",
+    "protocol": "R2R-VLNCE-0.2.4",
+    "trajectory_format": 2,
+    "variant": "v0_uniform8",
+    "history": "uniform8",
+    "weights_sha256": "9fc1d01db9ea98264dac744db62303e0d84aa5c00a0951553b86f03d866b58d0",
+    "prompt_protocol_sha256": "2ebadd742f55f5ae66113a574bd5d2690a33ee6f93de860c35d0e3372a06924d",
+    "attention": "flash_attention_2",
+    "max_new_tokens": 32,
+    "training_metadata_sha256": "204ba79f67060eca3d29461fd2c23bd1560301430b60c82978b53fcf3cddfd36"
+  },
+  "episodes": 1,
+  "success": 0.0,
+  "spl": 0.0,
+  "oracle_success": 0.0,
+  "navigation_error": 6.493043422698975,
+  "total_steps": 10,
+  "invalid_outputs": 0,
+  "forced_max_step_stops": 1,
+  "predicted_action_counts": {
+    "MOVE_FORWARD": 7,
+    "TURN_LEFT": 3
+  },
+  "latency_ms": {
+    "mean": 166.91416169633158,
+    "p50": 131.38623398845084,
+    "p95": 361.5295089315619,
+    "p99": 492.68876180984086
+  }
+}

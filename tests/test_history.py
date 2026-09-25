@@ -15,3 +15,23 @@ class HistoryTests(unittest.TestCase):
     self.assertEqual(x[-1],t)
     self.assertGreaterEqual(x[0],0)
     self.assertEqual(len(x),min(t+1,5 if mode=='sw4' else 9))
+
+ def test_uniform4_is_spaced_across_all_seen_observations(self):
+  from qwen_vl.data.history import history_indices
+  self.assertEqual([history_indices(t,'uniform4') for t in (0,1,4,5,9,100)],
+                   [[0],[0,1],[0,1,2,3,4],[0,1,2,3,5],
+                    [0,2,4,6,9],[0,25,50,75,100]])
+  for t in range(513):
+   indices=history_indices(t,'uniform4')
+   self.assertEqual(indices,sorted(set(indices)))
+   self.assertEqual(indices[-1],t)
+   self.assertEqual(len(indices),min(t+1,5))
+
+ def test_uniform8_evaluator_history_matches_plan(self):
+  from qwen_vl.data.history import history_indices
+  self.assertEqual(history_indices(100,'uniform8'),[0,12,25,37,50,62,75,87,100])
+  for t in range(513):
+   indices=history_indices(t,'uniform8')
+   self.assertEqual(indices,sorted(set(indices)))
+   self.assertEqual(indices[-1],t)
+   self.assertEqual(len(indices),min(t+1,9))

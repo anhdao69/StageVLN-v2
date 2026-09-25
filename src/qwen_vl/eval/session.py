@@ -24,11 +24,15 @@ from qwen_vl.data.prompting import build_state
 ACTIONS = ('MOVE_FORWARD', 'TURN_LEFT', 'TURN_RIGHT', 'STOP')
 
 
+class InvalidActionError(ValueError):
+    """The model generated text outside the four-action protocol."""
+
+
 def decode_action(text: str) -> str:
     """Accept one exact primitive action with optional surrounding whitespace."""
     action = text.strip()
     if action not in ACTIONS:
-        raise ValueError(f'Invalid generated action: {text!r}')
+        raise InvalidActionError(f'Invalid generated action: {text!r}')
     return action
 
 
@@ -186,8 +190,8 @@ class PolicySession:
             previous_digest, result = self._decisions[step_id]
             if previous_digest != digest:
                 raise ValueError('Observation RGB conflicts with the previously observed step')
-            if isinstance(result, ValueError):
-                raise ValueError(str(result))
+            if isinstance(result, InvalidActionError):
+                raise InvalidActionError(str(result))
             return result
         if step_id != self.next_step:
             raise ValueError('New observations must be chronological without skipped steps')
@@ -220,13 +224,13 @@ class PolicySession:
         except ValueError as error:
             # Do not retain a traceback: it holds the whole observation frame
             # and would keep discarded visual features alive across the episode.
-            result = ValueError(str(error))
+            result = InvalidActionError(str(error))
         self.memory = memory.detach().float() if memory is not None else None
         self._frames = frames[-self.recent:] if self.recent else []
         self._features = {f.key: features[f.key] for f in self._frames}
         self.next_step += 1
         self.last_state, self.last_token_ids = state, token_ids.detach()
         self._decisions[step_id] = digest, result
-        if isinstance(result, ValueError):
-            raise ValueError(str(result))
+        if isinstance(result, InvalidActionError):
+            raise InvalidActionError(str(result))
         return result

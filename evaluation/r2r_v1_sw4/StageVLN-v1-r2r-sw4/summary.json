@@ -1,0 +1,39 @@
+{
+  "identity": {
+    "checkpoint": "/storage/anhdh35/StageVLN-v2/checkpoints/StageVLN-v1-r2r-sw4",
+    "split": "val_unseen",
+    "max_steps": 500,
+    "max_episodes": 0,
+    "seed": 42,
+    "invalid_action": "STOP",
+    "protocol": "R2R-VLNCE-0.2.4",
+    "trajectory_format": 2,
+    "variant": "v1_sw4",
+    "history": "sw4",
+    "weights_sha256": "5b43db06e9d1d005285f1d05f68bb77fbade4b60d5f90f51151d50fb4e923e23",
+    "prompt_protocol_sha256": "83a4c8f0449d289d5be8718e41be251d04a9e1858486db2c29f8faa274ebeb43",
+    "attention": "flash_attention_2",
+    "max_new_tokens": 32,
+    "training_metadata_sha256": "fc24c7f44faae5d3605d60877f89e1f5154d148c4be81bc2cf0609ec391ffc46"
+  },
+  "episodes": 1839,
+  "success": 0.35617183251767265,
+  "spl": 0.3017879928547539,
+  "oracle_success": 0.49864056552474173,
+  "navigation_error": 7.395951811328547,
+  "total_steps": 233463,
+  "invalid_outputs": 0,
+  "forced_max_step_stops": 224,
+  "predicted_action_counts": {
+    "MOVE_FORWARD": 157067,
+    "STOP": 1615,
+    "TURN_LEFT": 39061,
+    "TURN_RIGHT": 35720
+  },
+  "latency_ms": {
+    "mean": 206.0553739840398,
+    "p50": 205.3189339931123,
+    "p95": 336.06724921846757,
+    "p99": 415.0676870928146
+  }
+}

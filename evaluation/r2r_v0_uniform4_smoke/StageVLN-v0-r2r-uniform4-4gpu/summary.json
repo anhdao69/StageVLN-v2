@@ -1,0 +1,36 @@
+{
+  "identity": {
+    "checkpoint": "/storage/anhdh35/StageVLN-v2/checkpoints/StageVLN-v0-r2r-uniform4-4gpu",
+    "split": "val_unseen",
+    "max_steps": 10,
+    "max_episodes": 1,
+    "seed": 42,
+    "invalid_action": "STOP",
+    "protocol": "R2R-VLNCE-0.2.4",
+    "trajectory_format": 2,
+    "variant": "v0_uniform4",
+    "history": "uniform4",
+    "weights_sha256": "38f628518c2942425e38a9beeaa5787c0161fdbb8e59bf277f535fcab45c7faa",
+    "training_metadata_sha256": "2b8081d3075c3fe3eacd587fa55e2f2692a370be9243bdf5a9386261ca8adff5",
+    "prompt_protocol_sha256": "8b0eabc57a2b6e278e60430a656b2ec05c9b55ee13a9f5bc69a353c9f4f90c11",
+    "attention": "flash_attention_2",
+    "max_new_tokens": 32
+  },
+  "episodes": 1,
+  "success": 0.0,
+  "spl": 0.0,
+  "oracle_success": 0.0,
+  "navigation_error": 7.9608235359191895,
+  "total_steps": 10,
+  "invalid_outputs": 0,
+  "forced_max_step_stops": 1,
+  "predicted_action_counts": {
+    "TURN_RIGHT": 10
+  },
+  "latency_ms": {
+    "mean": 250.45678321039304,
+    "p50": 220.42663951287977,
+    "p95": 491.58139021310456,
+    "p99": 615.8215316612041
+  }
+}

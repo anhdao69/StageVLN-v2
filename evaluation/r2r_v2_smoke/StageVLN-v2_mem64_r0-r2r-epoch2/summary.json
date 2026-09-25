@@ -1,0 +1,31 @@
+{
+  "identity": {
+    "checkpoint": "/storage/anhdh35/StageVLN-v2/checkpoints/StageVLN-v2_mem64_r0-r2r-epoch2",
+    "memory_sha256": "2eb0c8958c7f325e213e205e23989441b02494845e9c6d0cd77afb0f570bb38c",
+    "split": "val_unseen",
+    "max_steps": 500,
+    "max_episodes": 1,
+    "seed": 42,
+    "invalid_action": "STOP",
+    "protocol": "R2R-VLNCE-0.2.4"
+  },
+  "episodes": 1,
+  "success": 1.0,
+  "spl": 0.8926675501144549,
+  "oracle_success": 1.0,
+  "navigation_error": 0.8559121489524841,
+  "total_steps": 500,
+  "invalid_outputs": 0,
+  "forced_max_step_stops": 1,
+  "predicted_action_counts": {
+    "MOVE_FORWARD": 36,
+    "TURN_LEFT": 238,
+    "TURN_RIGHT": 226
+  },
+  "latency_ms": {
+    "mean": 79.36116313599632,
+    "p50": 79.23853999909625,
+    "p95": 82.46116909904231,
+    "p99": 84.0222169901972
+  }
+}
